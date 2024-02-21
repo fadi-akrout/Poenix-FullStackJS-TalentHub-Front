@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import './App.css'
-import Home from './views/home'
+import Home from './ClientComponent/home'
+import {Routes, Route} from 'react-router-dom'
+import Admin from './AdminComponent/Admin'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -8,7 +10,11 @@ function App() {
   return (
     <>
       <div>
-        <Home />
+     
+   <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/admin" element={<Admin />} />
+   </Routes>
 
        </div>
     </>
