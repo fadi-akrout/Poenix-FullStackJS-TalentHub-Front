@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Home from './ClientComponent/home'
 import {Routes, Route} from 'react-router-dom'
 import Admin from './AdminComponent/Admin'
-
+import Candidats from './AdminComponent/Candidats'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +13,9 @@ function App() {
      
    <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/admin" element={<Admin />} />
+    <Route path="/admin/*" element={<Admin />} />    {/* <Route path="/candidats" element={<Candidats />} /> */}
+          
+  
    </Routes>
 
        </div>
