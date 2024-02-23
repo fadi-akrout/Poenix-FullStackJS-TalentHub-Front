@@ -3,6 +3,7 @@ import Home from './ClientComponent/home'
 import {Routes, Route} from 'react-router-dom'
 import Admin from './AdminComponent/Admin'
 import Candidates from './ClientComponent/Models/Candidat'
+import CandidatsP from './ClientComponent/CandidatsP'
 
 
 function App() {
@@ -14,10 +15,11 @@ function App() {
      
    <Routes>
     <Route path="/" element={<Home />} />
+    <Route path="/CandidatsP" element={<CandidatsP />}/>
     <Route path="/candidat" element={<Candidates />} />
 
 
-    <Route path="/admin/*" element={<Admin />} />    {/* <Route path="/candidats" element={<Candidats />} /> */}
+    <Route path="/admin/*" element={<Admin />} />    
           
   
    </Routes>
