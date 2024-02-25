@@ -9,7 +9,7 @@ function Evenements() {
     const [evenements, setEvenements] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3501/evenements')
+        axios.get('http://localhost:3500/evenements')
             .then(response => setEvenements(response.data))
             .catch(error => console.error("Erreur de chargement", error));
     }, []);
