@@ -1,44 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Link } from 'react-router-dom';
 
 
 export default function Home() {
     return(
         <div>
              <>
+             <div>
+             <>
              <header className="header-area header-sticky">
-      <div className="container">
-          <div className="row">
-              <div className="col-12">
-                  <nav className="main-nav">
-                     
-                      
-                      <a href="index.html" className="logo">
-                        Talent<span className="text-danger">Hub</span>
-                    </a>
-                       
-                      <ul className="nav">
-                          <li className="scroll-to-section"><a href="#top" className="active">Home</a></li>
-                          <li><a href="meetings.html">Opprotunités D'emploi</a></li>
-                          <li className="scroll-to-section"><a href="#apply">Postulez Maintenant</a></li>
-                          <li className="has-sub">
-                              <a href="javascript:void(0)">Pages</a>
-                              <ul className="sub-menu">
-                                  <li><a href="meetings.html">Offres</a></li>
-                                  <li><a href="meeting-details.html">Detail Des Offre</a></li>
-                              </ul>
-                          </li>
-                          
-                          <li className="scroll-to-section"><a href="#contact">Contactez-nous</a></li> 
-                      </ul>        
-                      <a className='menu-trigger'>
-                          <span>Menu</span>
-                      </a>
-                      
-                  </nav>
-              </div>
-          </div>
-      </div>
-  </header>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <nav className="main-nav">
+                                <a href="index.html" className="logo">
+                                    Talent<span className="text-danger">Hub</span>
+                                </a>
+                                   
+                                <ul className="nav">
+                                    <li className="scroll-to-section"><a href="#top" className="active">Home</a></li>
+                                    <li><a href="meetings.html">Opprotunités D'emploi</a></li>
+                                    <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>
+                                    <li className="has-sub">
+                                        <a href="javascript:void(0)">Pages</a>
+                                        <ul className="sub-menu">
+                                            <li><a href="meetings.html">Offres</a></li>
+                                            <li><a href="meeting-details.html">Detail Des Offre</a></li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li className="scroll-to-section"><a href="#contact">Contactez-nous</a></li> 
+                                </ul>        
+                                <a className='menu-trigger'>
+                                    <span>Menu</span>
+                                </a>
+                                
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </>
+    </div>
  
   <section className="section main-banner" id="top" data-section="section1">
       <video autoplay muted loop id="bg-video">
