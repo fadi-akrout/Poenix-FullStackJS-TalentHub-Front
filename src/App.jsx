@@ -1,8 +1,9 @@
+import OfferList from './ClientComponent/OfferComponent/OfferList';
 import { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Importez les composants en utilisant React.lazy pour le lazy loading
-const Home = lazy(() => import('./ClientComponent/home'));
+const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
 const Admin = lazy(() => import('./AdminComponent/Admin'));
 const Candidates = lazy(() => import('./ClientComponent/Models/Candidat'));
 const CandidatsP = lazy(() => import('./ClientComponent/CandidatsP'));
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <div>
+
       <Suspense fallback={<div>Chargement...</div>}> {/* Ajoutez un fallback pendant le chargement des composants */}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -23,9 +25,11 @@ function App() {
           <Route path="/evenements" element={<Evenement />} />
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
+          <Route path="/offers" element={<OfferList />} />
 
         </Routes>
       </Suspense>
+
     </div>
   );
 }
