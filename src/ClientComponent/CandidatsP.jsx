@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import backgroundImage from './images/bgi.jpg';
 import './CandidatsP.css'; 
+import HeaderClient from './Dashboard/HeaderClient';
+import Footer from './Dashboard/Footer';
 
 function CandidatsP() {
   const [candidateId, setCandidateId] = useState('');
@@ -30,38 +31,11 @@ function CandidatsP() {
   };
 
   return (
-    <>
-      <header className="header-area header-sticky" style={{ backgroundImage: `url(${backgroundImage})` }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <nav className="main-nav">
-                <a href="index.html" className="logo">
-                  Talent<span className="text-danger">Hub</span>
-                </a>
-                <ul className="nav">
-                  <li className="scroll-to-section"><a href="#top" className="active">Home</a></li>
-                  <li><a href="meetings.html">Opportunités D'emploi</a></li>
-                  <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>
-                  <li className="has-sub">
-                    <a href="javascript:void(0)">Pages</a>
-                    <ul className="sub-menu">
-                      <li><a href="meetings.html">Offres</a></li>
-                      <li><a href="meeting-details.html">Détail Des Offres</a></li>
-                    </ul>
-                  </li>
-                  <li className="scroll-to-section"><a href="#contact">Contactez-nous</a></li>
-                </ul>
-                <a className='menu-trigger'>
-                  <span>Menu</span>
-                </a>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div className='grid-container'>
+    <><div>    <HeaderClient />
+    </div>
+      
+      <section className="upcoming-meetings" >
+      <div className='grid-container_Candidats'>
         <div className="form-container">
           <h2>Candidats Form</h2>
           <form onSubmit={handleSubmit}>
@@ -93,6 +67,12 @@ function CandidatsP() {
           </form>
         </div>
       </div>
+      <div>
+         <Footer/>
+      </div>
+      </section>
+
+     
     </>
   );
 }
