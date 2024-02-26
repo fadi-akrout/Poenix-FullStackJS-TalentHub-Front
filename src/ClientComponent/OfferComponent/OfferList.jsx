@@ -8,7 +8,7 @@
         const [offers, setOffers] = useState([]);
 
         useEffect(() => {
-            axios.get('http://localhost:3000/offers')
+            axios.get('http://localhost:3500/offers')
                 .then(response => {
                     setOffers(response.data);
                 })
