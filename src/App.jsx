@@ -1,4 +1,3 @@
-import OfferList from './ClientComponent/OfferComponent/OfferList';
 import { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -11,6 +10,7 @@ const AddCandidats = lazy(() => import('./ClientComponent/CandidatsComponent/Add
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
+const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
 
 
 

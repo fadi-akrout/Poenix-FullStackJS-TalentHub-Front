@@ -19,6 +19,8 @@ function HeaderClient() {
                                     <a href="javascript:void(0)">Pages</a>
                                     <ul className="sub-menu">
                                         <li>< Link to="/evenements">Evenements</Link></li>
+                                        <li>< Link to="/addoffer">Add new offer</Link></li>
+
                                         <li><a >Detail Des Offre</a></li>
                                     </ul>
                                 </li>
