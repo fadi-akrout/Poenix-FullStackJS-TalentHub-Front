@@ -7,15 +7,16 @@ import Footer from '../Dashboard/Footer';
 function OfferList() {
     const [offers, setOffers] = useState([]);
 
-    useEffect(() => {
-        axios.get('http://localhost:3000/offers')
-            .then(response => {
-                setOffers(response.data);
-            })
-            .catch(error => {
-                console.error("Il y a eu une erreur !", error);
-            });
-    }, []);
+
+        useEffect(() => {
+            axios.get('http://localhost:3500/offers')
+                .then(response => {
+                    setOffers(response.data);
+                })
+                .catch(error => {
+                    console.error("Il y a eu une erreur !", error);
+                });
+        }, []);
 
     return (
         <>
