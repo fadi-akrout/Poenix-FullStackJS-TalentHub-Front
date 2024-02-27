@@ -19,47 +19,49 @@
 
         return (
             <>
-              <div>    <HeaderClient />
-               </div>
-            <section className="upcoming-meetings" id="meetings">
-         <div className="container">
+              <div>   
+                 <HeaderClient />
+              </div>
+   
+   <section className="upcoming-meetings" id="meetings">
+    <div className="container">
+        <div className="row">
             {offers.map(offer => (
-                    <div key={offer._id}>
-            <div className="col-lg-8">
-                <div className="meeting-item">
-                <div className="thumb">
-                    <div className="price">
-                   
+                <div key={offer._id} className="col-lg-4 col-md-6 col-sm-12">
+                    <div className="meeting-item">
+                        <div className="thumb">
+                            <div className="price"></div>
+                            <img src="assets/images/meeting-01.jpg" alt="New Lecturer Meeting" />
+                        </div>
+                        <div className="down-content">
+                            <div className="date">
+                                <h6>Mar <span>10</span></h6>
+                            </div>
+                            <div className="job-offer">
+  <h4 className="job-title">{offer.Title}</h4>
+  <div className="job-details">
+    <p className="job-info"><span className="info-label"><strong>Experience Required:</strong></span> {offer.Experience_required}</p>
+    <p className="job-info"><span className="info-label"><strong>Domain:</strong></span> {offer.Domain}</p>
+    <p className="job-info"><span className="info-label"><strong>Mission:</strong></span> {offer.Mission}</p>
+    <p className="job-info"><span className="info-label"><strong>Salary:</strong></span> {offer.Salary}</p>
+    <p className="job-info"><span className="info-label"><strong>Speciality:</strong></span> {offer.Speciality}</p>
+    <p className="job-info"><span className="info-label"><strong>Job Type:</strong></span> {offer.JobType}</p>
+    <p className="job-info"><span className="info-label"><strong>Job City:</strong></span> {offer.JobCity}</p>
+  </div>
+</div>
+                            <div className="main-button-red">
+                                <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>
+                            </div>
+                        </div>
                     </div>
-                <img src="assets/images/meeting-01.jpg" alt="New Lecturer Meeting"/>
                 </div>
-                <div className="down-content">
-                    <div className="date">
-                    <h6>Mar <span>10</span></h6>
-                    </div>
-                    <h4>{offer.Title}</h4>
-                    <p>{offer.Experience_required}</p>
-                    <p>{offer.Domain}</p>
-                    <p>{offer.Mission}</p>
-                    <p>{offer.Salary}</p>
-                    <p>{offer.Speciality}</p>
-                    <p>{offer.JobType}</p>
-                    <p>{offer.JobCity}</p>
-                     <div className="main-button-red">
-            <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>  
-            </div>
-                </div>
-                </div>
-            </div>
-            
-            </div>
-       
-                    
-                ))}
-                  </div>
-                  <div> <Footer/>
-   </div>
-    </section>
+            ))}
+        </div>
+    </div>
+    <div>
+        <Footer />
+    </div>
+</section>
     
         </>
         );
