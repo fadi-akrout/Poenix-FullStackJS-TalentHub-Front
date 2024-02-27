@@ -1,11 +1,12 @@
-    import React, { useState, useEffect } from 'react';
-    import axios from 'axios';
-    import { Link } from 'react-router-dom';
-    import HeaderClient from '../Dashboard/HeaderClient';
-    import Footer from '../Dashboard/Footer';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import HeaderClient from '../Dashboard/HeaderClient';
+import Footer from '../Dashboard/Footer';
 
-    function OfferList() {
-        const [offers, setOffers] = useState([]);
+function OfferList() {
+    const [offers, setOffers] = useState([]);
+
 
         useEffect(() => {
             axios.get('http://localhost:3500/offers')
@@ -62,9 +63,9 @@
         <Footer />
     </div>
 </section>
-    
-        </>
-        );
-    }
 
-    export default OfferList
+        </>
+    );
+}
+
+export default OfferList
