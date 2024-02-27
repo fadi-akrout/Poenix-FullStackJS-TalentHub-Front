@@ -1,10 +1,10 @@
-.grid-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* This ensures the container takes up the full height of the viewport */
-  }
-  
+.grid-container_Candidats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* This ensures the container takes up the full height of the viewport */
+}
+
   .form-container {
     width: 400px; /* Adjust the width as needed */
     padding: 20px;
@@ -16,6 +16,7 @@
   .input-field {
     width: 100%;
     margin-bottom: 10px;
+    
   }
   
   .submit-button {

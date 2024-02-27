@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import HeaderClient from "./HeaderClient";
+import Footer from "./Footer";
 
 
 export default function Home() {
@@ -8,38 +10,7 @@ export default function Home() {
              <>
              <div>
              <>
-             <header className="header-area header-sticky">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12">
-                            <nav className="main-nav">
-                                <a href="index.html" className="logo">
-                                    Talent<span className="text-danger">Hub</span>
-                                </a>
-                                   
-                                <ul className="nav">
-                                    <li className="scroll-to-section"><a href="#top" className="active">Home</a></li>
-                                    <li><a href="meetings.html">Opprotunités D'emploi</a></li>
-                                    <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>
-                                    <li className="has-sub">
-                                        <a href="javascript:void(0)">Pages</a>
-                                        <ul className="sub-menu">
-                                            <li><a href="meetings.html">Offres</a></li>
-                                            <li><a href="meeting-details.html">Detail Des Offre</a></li>
-                                        </ul>
-                                    </li>
-                                    
-                                    <li className="scroll-to-section"><a href="#contact">Contactez-nous</a></li> 
-                                </ul>        
-                                <a className='menu-trigger'>
-                                    <span>Menu</span>
-                                </a>
-                                
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
+            <HeaderClient />
         </>
     </div>
  
@@ -152,7 +123,7 @@ export default function Home() {
               <li><a href="#"><h5>Offre de Stage</h5></a></li>
             </ul>
             <div className="main-button-red">
-              <a href="meetings.html">Postuler Maintenant</a>
+            <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>  
             </div>
           </div>
         </div>
@@ -348,14 +319,8 @@ export default function Home() {
         </div>
       </div>
     </div>
-    <div className="footer">
-      <p>Copyright © 2024 Phoenix., Ltd. All Rights Reserved. 
-          <br/>
-          Design: <a >Phoenix</a>
-          <br/>
-         
-        </p>
-    </div>
+   <div> <Footer/>
+   </div>
   </section>
 
 
