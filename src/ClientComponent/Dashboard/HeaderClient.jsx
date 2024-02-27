@@ -14,7 +14,7 @@ function HeaderClient() {
                     <ul className="nav">
                         <li className="scroll-to-section"><Link to="/">Home</Link></li>                             
                         <li className="scroll-to-section"><Link to="/offers">Opprotunités D'emploi</Link></li>
-                        <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>  
+                        <li className="scroll-to-section"><Link to="/AddCandidats">Postulez Maintenant</Link></li>  
                         <li className="has-sub">
                             <a href="javascript:void(0)">Pages</a>
                             <ul className="sub-menu">
