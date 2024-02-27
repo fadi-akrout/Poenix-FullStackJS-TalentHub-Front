@@ -10,6 +10,8 @@ const Candidates = lazy(() => import('./ClientComponent/Models/Candidat'));
 const AddCandidats = lazy(() => import('./ClientComponent/CandidatsComponent/AddCandidats'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
+const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
+
 
 
 
@@ -28,6 +30,8 @@ function App() {
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} />
+          <Route path="/addoffer" element={<AddOffer />} />
+
 
         </Routes>
       </Suspense>
