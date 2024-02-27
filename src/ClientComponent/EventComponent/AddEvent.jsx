@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'bootstrap';
+import HeaderClient from '../Dashboard/HeaderClient';
+import Footer from '../Dashboard/Footer';
 
 
 function EvenementForm() {
@@ -68,36 +70,42 @@ function EvenementForm() {
     };
 
     return (
-        <div className="container mt-5"> {/* Utilisez les classes de Bootstrap pour le positionnement */}
-            <form onSubmit={handleSubmit} className="card p-4">
-                <div className="mb-3">
-                    <label htmlFor="nom" className="form-label">Nom de l'événement:</label>
-                    <input type="text" id="nom" className="form-control" name="nom" value={formData.nom} onChange={handleChange} required />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="adresse" className="form-label">Adresse:</label>
-                    <input type="text" id="adresse" className="form-control" name="adresse" value={formData.adresse} onChange={handleChange} required />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="dateDebut" className="form-label">Date de début:</label>
-                    <input type="datetime-local" id="dateDebut" className="form-control" name="dateDebut" value={formData.dateDebut} onChange={handleChange} required />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="dateFin" className="form-label">Date de fin:</label>
-                    <input type="datetime-local" id="dateFin" className="form-control" name="dateFin" value={formData.dateFin} onChange={handleChange} required />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="description" className="form-label">Description:</label>
-                    <textarea id="description" className="form-control" name="description" value={formData.description} onChange={handleChange} required />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="imageUpload" className="form-label">Image</label>
-                    <input className="form-control" type="file" id="imageUpload" accept="image/*" onChange={handleImageChange} />
-                </div>
-                <button type="submit" className="btn btn-primary">Ajouter l'événement</button>
+        <>
+            <HeaderClient />
+            <section className="upcoming-meetings" id="meetings">
+                <div className="container mt-5"> {/* Utilisez les classes de Bootstrap pour le positionnement */}
+                    <form onSubmit={handleSubmit} className="card p-4">
+                        <div className="mb-3">
+                            <label htmlFor="nom" className="form-label">Nom de l'événement:</label>
+                            <input type="text" id="nom" className="form-control" name="nom" value={formData.nom} onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="adresse" className="form-label">Adresse:</label>
+                            <input type="text" id="adresse" className="form-control" name="adresse" value={formData.adresse} onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="dateDebut" className="form-label">Date de début:</label>
+                            <input type="datetime-local" id="dateDebut" className="form-control" name="dateDebut" value={formData.dateDebut} onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="dateFin" className="form-label">Date de fin:</label>
+                            <input type="datetime-local" id="dateFin" className="form-control" name="dateFin" value={formData.dateFin} onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="description" className="form-label">Description:</label>
+                            <textarea id="description" className="form-control" name="description" value={formData.description} onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="imageUpload" className="form-label">Image</label>
+                            <input className="form-control" type="file" id="imageUpload" accept="image/*" onChange={handleImageChange} />
+                        </div>
+                        <button type="submit" className="btn btn-primary">Ajouter l'événement</button>
 
-            </form>
-        </div>
+                    </form>
+                </div>
+                <Footer />
+            </section>
+        </>
     );
 }
 
