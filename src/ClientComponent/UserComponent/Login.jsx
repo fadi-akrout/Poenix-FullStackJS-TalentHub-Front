@@ -8,6 +8,7 @@ import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
 import { useNavigate } from 'react-router-dom';
 
+
 const Login = () => {
 
   const navigate = useNavigate();
@@ -39,7 +40,10 @@ const Login = () => {
     try {
         const response = await axios.post('http://localhost:3500/auth', formData);
         console.log(response.data);
+      //  toast.success('Login successful. Welcome!')
+
         navigate('/');
+
     } catch (error) {
         console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
     }

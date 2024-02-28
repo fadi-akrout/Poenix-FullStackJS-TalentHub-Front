@@ -9,7 +9,6 @@ import Footer from '../Dashboard/Footer';
 import { useNavigate } from 'react-router-dom';
 
 
-
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -45,6 +44,7 @@ const Signup = () => {
       try {
           const response = await axios.post('http://localhost:3500/auth/signup', formData);
           console.log(response.data);
+         // toast.success('Signup successful.')
           navigate('/login');
       } catch (error) {
           console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
@@ -55,6 +55,7 @@ const Signup = () => {
     <>
         <div>
             <HeaderClient />
+            
         </div>
       <section className="contact-us" id="contact">
     <div className="container">
