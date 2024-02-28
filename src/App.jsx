@@ -1,7 +1,7 @@
 import OfferList from './ClientComponent/OfferComponent/OfferList';
 import { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
+import Login from './ClientComponent/UserComponent/Login';
 
 // Importez les composants en utilisant React.lazy pour le lazy loading
 const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
@@ -28,6 +28,7 @@ function App() {
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} />
+          <Route path="login" element={<Login />}></Route>
 
         </Routes>
       </Suspense>
