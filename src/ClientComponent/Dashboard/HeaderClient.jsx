@@ -15,12 +15,21 @@ function HeaderClient() {
                                 <li className="scroll-to-section"><Link to="/">Home</Link></li>
                                 <li className="scroll-to-section"><Link to="/offers">Opprotunités D'emploi</Link></li>
                                 <li className="scroll-to-section"><Link to="/AddCandidats">Postulez Maintenant</Link></li> 
+
                                 <li className="has-sub">
                                     <a href="javascript:void(0)">Pages</a>
                                     <ul className="sub-menu">
                                         <li>< Link to="/evenements">Evenements</Link></li>
                                         <li>< Link to="/addoffer">Add new offer</Link></li>
 
+                                        <li><a >Detail Des Offre</a></li>
+                                    </ul>
+                                </li>
+                                <li className="has-sub">
+                                    <a href="javascript:void(0)">Account</a>
+                                    <ul className="sub-menu">
+                                        <li>< Link to="/signup">Sign up</Link></li>
+                                        <li>< Link to="/login">Sign in</Link></li>
                                         <li><a >Detail Des Offre</a></li>
                                     </ul>
                                 </li>

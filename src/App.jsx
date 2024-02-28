@@ -1,6 +1,5 @@
 import { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Login from './ClientComponent/UserComponent/Login';
 
 // Importez les composants en utilisant React.lazy pour le lazy loading
 const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
@@ -11,6 +10,8 @@ const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
 const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
+const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
+const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
 
 
 
@@ -31,7 +32,9 @@ function App() {
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} />
 
-          <Route path="login" element={<Login />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<Signup />}></Route>
+
 
           <Route path="/addoffer" element={<AddOffer />} />
 
