@@ -1,4 +1,3 @@
-import OfferList from './ClientComponent/OfferComponent/OfferList';
 import { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Login from './ClientComponent/UserComponent/Login';
@@ -10,6 +9,9 @@ const Candidates = lazy(() => import('./ClientComponent/Models/Candidat'));
 const AddCandidats = lazy(() => import('./ClientComponent/CandidatsComponent/AddCandidats'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
+const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
+const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
+
 
 
 
@@ -28,7 +30,12 @@ function App() {
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} />
+
           <Route path="login" element={<Login />}></Route>
+
+          <Route path="/addoffer" element={<AddOffer />} />
+
+
 
         </Routes>
       </Suspense>
