@@ -104,6 +104,8 @@ function AddOffer() {
                         <option value="Full Time">Full Time</option>
                         <option value="Part Time">Part Time</option>
                         <option value="Contract">Contract</option>
+                        <option value="Summer internship">Summer internship</option>
+                        <option value="PFE">PFE</option>
                         </select>
                     </fieldset>
                     </div>
