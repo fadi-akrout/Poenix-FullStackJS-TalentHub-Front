@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import HeaderClient from "./HeaderClient";
 import Footer from "./Footer";
 
-
 export default function Home() {
     return(
         <div>
              <>
              <div>
+
              <>
             <HeaderClient />
+          
+
         </>
     </div>
  
