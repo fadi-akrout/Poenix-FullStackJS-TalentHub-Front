@@ -1,8 +1,7 @@
-import { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-
-// Importez les composants en utilisant React.lazy pour le lazy loading
+// Import the components using React.lazy for lazy loading
 const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
 const Admin = lazy(() => import('./AdminComponent/Admin'));
 const Candidates = lazy(() => import('./ClientComponent/Models/Candidat'));
@@ -11,17 +10,15 @@ const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
 const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
-
-
+const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
 
 
 function App() {
-  const [count, setCount] = useState(0); // Si vous n'utilisez pas 'count' et 'setCount', vous pouvez les retirer.
+  const [count, setCount] = useState(0);
 
   return (
     <div>
-
-      <Suspense fallback={<div>Chargement...</div>}> {/* Ajoutez un fallback pendant le chargement des composants */}
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/AddCandidats" element={<AddCandidats />} />
@@ -31,11 +28,10 @@ function App() {
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} />
           <Route path="/addoffer" element={<AddOffer />} />
-
+          <Route path="/updateoffer/:id" element={<UpdateOffer />} />
 
         </Routes>
       </Suspense>
-
     </div>
   );
 }
