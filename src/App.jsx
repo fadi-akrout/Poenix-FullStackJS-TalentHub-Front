@@ -1,7 +1,7 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-// Import the components using React.lazy for lazy loading
+
 const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
 const Admin = lazy(() => import('./AdminComponent/Admin'));
 const Candidates = lazy(() => import('./ClientComponent/Models/Candidat'));
