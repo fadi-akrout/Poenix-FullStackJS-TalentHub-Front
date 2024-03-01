@@ -1,9 +1,12 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import CandidateForm from './ClientComponent/CandidatsComponent/AddCandidate';
+
 
 import CandidateForm from './ClientComponent/CandidatsComponent/AddCandidate';
 
 // Importez les composants en utilisant React.lazy pour le lazy loading
+
 
 const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
 const Admin = lazy(() => import('./AdminComponent/Admin'));
@@ -12,9 +15,13 @@ const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
 const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
+
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
+
 const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
 const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
+
+
 
 
 
