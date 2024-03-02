@@ -1,5 +1,8 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
+import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
+
 
 
 
@@ -35,6 +38,8 @@ function App() {
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} />
+          <Route path="/recruiters" element={<Recruiters />} />
+          <Route path="/add-recruiter" element={<AddRecruiter />} />
 
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
