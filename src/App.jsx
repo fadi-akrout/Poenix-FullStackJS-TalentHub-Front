@@ -5,7 +5,7 @@ import HomeP from './ClientComponent/HomePage/HomeP';
 import Profile from './ClientComponent/HomePage/Profile';
 import SignUpp from './ClientComponent/HomePage/SignUpp';
 import Loginn from './ClientComponent/HomePage/Loginn';
-import OfferList from './ClientComponent/OfferComponent/OfferList';
+//import OfferList from './ClientComponent/OfferComponent/OfferList';
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
 import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
 
@@ -44,15 +44,15 @@ function App() {
     <div>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/Loginn" element={<Loginn/>}></Route>
-          <Route path="/SignUpp" element={<SignUpp/>}></Route>
+          <Route path="/Loginn" element={<Loginn />}></Route>
+          <Route path="/SignUpp" element={<SignUpp />}></Route>
           <Route path="/" element={<Home />} />
           <Route path="/AddCandidate" element={<Candidate />} />
           <Route path="/evenements" element={<Evenement />} />
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} />
-          
+
           <Route path="/addoffer" element={<AddOffer />} />
           <Route path="/HomeP" element={<HomeP />} />
           <Route path="/Profile" element={<Profile />} />
