@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import HeaderClient from '../Dashboard/HeaderClient';
-import Footer from '../Dashboard/Footer';
 
 function OfferList() {
     const [offers, setOffers] = useState([]);
@@ -20,9 +18,6 @@ function OfferList() {
 
         return (
             <>
-              <div>   
-                 <HeaderClient />
-              </div>
    
    <section className="upcoming-meetings" id="meetings">
     <div className="container">
@@ -59,13 +54,10 @@ function OfferList() {
             ))}
         </div>
     </div>
-    <div>
-        <Footer />
-    </div>
 </section>
 
         </>
     );
 }
 
-export default OfferList
+export default OfferList;

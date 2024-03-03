@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 function HeaderClient() {
+
+    
     return (
         <div> <header className="header-area header-sticky">
             <div className="container">
@@ -14,7 +16,9 @@ function HeaderClient() {
                             <ul className="nav">
                                 <li className="scroll-to-section"><Link to="/">Home</Link></li>
                                 <li className="scroll-to-section"><Link to="/offers">Opprotunités D'emploi</Link></li>
-                                <li className="scroll-to-section"><Link to="/AddCandidate">Postulez Maintenant</Link></li> 
+                                <li className="scroll-to-section"><Link to="/AddCandidate">Create Account</Link></li> 
+                                <li className="scroll-to-section"><Link to="/SignUpp">Join us</Link></li> 
+                                <li className="scroll-to-section"><Link to="/Loginn">Login</Link></li> 
 
                                 <li className="has-sub">
                                     <a href="javascript:void(0)">Pages</a>
@@ -28,7 +32,7 @@ function HeaderClient() {
                                 <li className="has-sub">
                                     <a href="javascript:void(0)">Account</a>
                                     <ul className="sub-menu">
-                                        <li>< Link to="/signup">Sign up</Link></li>
+                                        <li>< Link to="/Signup">Sign up</Link></li>
                                         <li>< Link to="/login">Sign in</Link></li>
                                         <li><a >Detail Des Offre</a></li>
                                     </ul>

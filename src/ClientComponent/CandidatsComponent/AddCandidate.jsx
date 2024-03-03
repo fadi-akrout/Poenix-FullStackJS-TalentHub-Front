@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
+import Profile from '../HomePage/Profile'; 
 
 function CandidateForm() {
     const navigate = useNavigate();
@@ -48,8 +49,8 @@ function CandidateForm() {
         try {
             const response = await axios.post('http://localhost:3500/candidates', formData);
             console.log(response.data);
-            // Redirect to a success page or navigate to another route
-            //navigate('/success');
+            // Redirect to the Profile component and pass the candidate data
+            navigate('/HomeP', { state: { candidate: formData } });
         } catch (error) {
             console.error("There was a problem with form submission:", error);
         }
@@ -61,7 +62,7 @@ function CandidateForm() {
             <section className="upcoming-meetings" id="meetings">
                 <div className="container mt-5">
                     <form onSubmit={handleSubmit} className="card p-4">
-                        <div className="row">
+                    <div className="row">
                             <div className="col-md-6">
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name:</label>
@@ -92,8 +93,9 @@ function CandidateForm() {
                                     <input type="text" id="lastPostOccupied" className="form-control" name="lastPostOccupied" value={formData.lastPostOccupied} onChange={handleChange} required />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="cv" className="form-label">CV:</label>
-                                    <input type="file" id="cv" className="form-control" name="cv" onChange={handleChange} required />
+                                    <label htmlFor="cv" className="form-label">CV  (PDF only):</label><br/>
+                                    <input type="file" accept=".pdf" name="cv" id="cv" className="form-control" onChange={handleChange} required />
+                             
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="dateOfBirth" className="form-label">Date of Birth:</label>
@@ -121,26 +123,26 @@ function CandidateForm() {
                                 <div className="mb-3">
                                     <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
                                     <input type="
-text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
-</div>
-<div className="mb-3">
-<label htmlFor="skills" className="form-label">Skills (comma-separated):</label>
-<input type="text" id="skills" className="form-control" name="skills" value={formData.skills} onChange={handleChange} required />
-</div>
-<div className="mb-3">
-<label htmlFor="languages" className="form-label">Languages (comma-separated):</label>
-<input type="text" id="languages" className="form-control" name="languages" value={formData.languages} onChange={handleChange} required />
-</div>
-<div className="mb-3">
-<label htmlFor="linkedinProfile" className="form-label">LinkedIn Profile:</label>
-<input type="text" id="linkedinProfile" className="form-control" name="linkedinProfile" value={formData.linkedinProfile} onChange={handleChange} required />
-</div>
-</div>
-</div>
-<button type="submit" className="btn btn-danger">Submit</button>
-</form>
-</div>
-</section>
+                        text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                        <label htmlFor="skills" className="form-label">Skills (comma-separated):</label>
+                        <input type="text" id="skills" className="form-control" name="skills" value={formData.skills} onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                        <label htmlFor="languages" className="form-label">Languages (comma-separated):</label>
+                        <input type="text" id="languages" className="form-control" name="languages" value={formData.languages} onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                        <label htmlFor="linkedinProfile" className="form-label">LinkedIn Profile:</label>
+                        <input type="text" id="linkedinProfile" className="form-control" name="linkedinProfile" value={formData.linkedinProfile} onChange={handleChange} required />
+                        </div>
+                        </div>
+                        </div>
+                        <button type="submit" className="btn btn-danger">Submit</button>
+                    </form>
+                </div>
+            </section>
             <Footer />
         </>
     );
