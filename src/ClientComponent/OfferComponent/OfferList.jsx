@@ -1,9 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
+=======
+import { Link ,useNavigate } from 'react-router-dom';
+import HeaderClient from '../Dashboard/HeaderClient';
+import Footer from '../Dashboard/Footer';
+import { FaEdit } from 'react-icons/fa';
+import { MdDeleteForever } from 'react-icons/md'
+>>>>>>> 753910e47e0b13742ab2be984356fdfa3f80f77d
 
+/* function navigateToUpdateOffer(offerId) {
+    const navigate = useNavigate();
+    navigate(`/updateoffer/${offerId}`);
+  } */
 function OfferList() {
     const [offers, setOffers] = useState([]);
+ const navigate =useNavigate();
 
 
         useEffect(() => {
@@ -15,7 +28,21 @@ function OfferList() {
                     console.error("Il y a eu une erreur !", error);
                 });
         }, []);
-
+        const handleDelete =(id) => {
+            axios.delete('http://localhost:3500/offers/'+id)
+            .then(response => {
+                console.log(response)
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error("Il y a eu une erreur !", error);
+            });
+        } 
+        const navigateToUpdateOffer = (offerId) => {
+            navigate(`/updateoffer/${offerId}`);
+        }
+    
+     
         return (
             <>
    
@@ -48,7 +75,10 @@ function OfferList() {
                             <div className="main-button-red">
                                 <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>
                             </div>
+                            <MdDeleteForever  onClick={(e)=> handleDelete (offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
+                       <FaEdit onClick={() => navigateToUpdateOffer(offer._id)} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
                         </div>
+
                     </div>
                 </div>
             ))}
