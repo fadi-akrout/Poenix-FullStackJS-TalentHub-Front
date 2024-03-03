@@ -19,7 +19,6 @@ function Evenements() {
     return (
 
         <>
-            <HeaderClient />
             <section className="upcoming-meetings" id="meetings">
                 <div className="container my-5">
                     <h1 className="text-center mb-4">Liste des Événements</h1>
@@ -27,10 +26,10 @@ function Evenements() {
                         <Evenement evenement={evenement} setEvenements={setEvenements} key={evenement._id} />
                     ))}
                     <div className="text-center mt-4">
-                        <Link to="/add-event" className="btn btn-primary">Ajouter un événement</Link>
+                        <Link to="/add-event" className="btn btn-danger">Ajouter un événement</Link>
                     </div>
                 </div>
-                <Footer />
+
             </section>
         </>
     );

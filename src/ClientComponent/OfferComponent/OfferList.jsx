@@ -1,10 +1,14 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
+import { Link } from 'react-router-dom';
+=======
 import { Link ,useNavigate } from 'react-router-dom';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md'
+>>>>>>> 753910e47e0b13742ab2be984356fdfa3f80f77d
 
 /* function navigateToUpdateOffer(offerId) {
     const navigate = useNavigate();
@@ -41,9 +45,6 @@ function OfferList() {
      
         return (
             <>
-              <div>   
-                 <HeaderClient />
-              </div>
    
    <section className="upcoming-meetings" id="meetings">
     <div className="container">
@@ -83,13 +84,10 @@ function OfferList() {
             ))}
         </div>
     </div>
-    <div>
-        <Footer />
-    </div>
 </section>
 
         </>
     );
 }
 
-export default OfferList
+export default OfferList;

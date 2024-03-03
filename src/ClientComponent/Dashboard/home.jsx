@@ -125,7 +125,7 @@ export default function Home() {
               <li><a href="#"><h5>Offre de Stage</h5></a></li>
             </ul>
             <div className="main-button-red">
-            <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>  
+            <li className="scroll-to-section"><Link to="/CandidatsP">Create Account</Link></li>  
             </div>
           </div>
         </div>

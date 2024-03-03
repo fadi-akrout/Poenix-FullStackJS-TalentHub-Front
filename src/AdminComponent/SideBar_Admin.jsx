@@ -57,4 +57,4 @@ function SideBar_Admin({openSidebarToggle, OpenSidebar}) {
   )
 }
 
-export default SideBar_Admin
+export default SideBar_Admin;
