@@ -26,7 +26,7 @@ const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'))
 //const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
 //const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
 
-//const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
+const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
 const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
 const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));

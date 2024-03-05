@@ -108,10 +108,11 @@ function AddOffer() {
                         </select>
                     </fieldset>
 
+                  </div>
                     </div>
                   </form>
-                </div>
               </div>
+             </div>
             </div>
             <div className="col-lg-3">
               <div className="right-info">
@@ -135,8 +136,8 @@ function AddOffer() {
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
+          
+  
         <div>
           <Footer />
         </div>
