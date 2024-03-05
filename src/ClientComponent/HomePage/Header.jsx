@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faEnvelope, faBell, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 import logoImage from './image/Logo_ESPRIT_Ariana.jpg';
-import './Header.css'; 
+import './Header.css';
 
 function Header() {
   return (
@@ -20,28 +20,27 @@ function Header() {
         <div className="collapse navbar-collapse rounded-pill" id="navbarSupportedContent" style={{ backgroundColor: '#fff', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
           <ul className="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
             <li className="nav-item text-center mx-2 mx-lg-1">
-              <a className="nav-link active" aria-current="page" href="#!">
+              <Link to="/HomeP" className="nav-link">
                 <div>
                   <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
                 </div>
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item text-center mx-2 mx-lg-1">
-              <a className="nav-link" href="#!">
+              <Link to="/addoffer" className="nav-link">
                 <div>
                   <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
                 </div>
-                Offers
-              </a>
+                Offres
+              </Link>
             </li>
             <li className="nav-item text-center mx-2 mx-lg-1">
-              <a className="nav-link" href="#!">
-                <div>
-                  <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
-                </div>
-                Events
-              </a>
+              <Link to="/evenements" className="nav-link">                <div>
+                <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
+              </div>
+                Evenements
+              </Link>
             </li>
             <li className="nav-item dropdown text-center mx-2 mx-lg-1">
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"

@@ -12,9 +12,8 @@ import {
 
 } from 'mdb-react-ui-kit';
 
+import myImage from "D:/Pics/7609904.png"
 
-
-//import myImage from "C:/Users/hamzus/Desktop/all/297381586_1742008299468366_3490042585628786731_n.jpg";
 import './Profile.css';
 
 
@@ -25,25 +24,25 @@ export default function Profile() {
       <MDBContainer className="py-4">
         <MDBRow>
           <MDBCol lg="4">
-                    <MDBCard className="mb-4 custom-card">
-                <MDBCardBody className="text-center">
-                    <MDBCardImage
-                    src={myImage} // Use the imported image as src
-                    alt="avatar"
-                    className="rounded-circle"
-                    style={{ width: '150px' }}
-                    fluid
-                    />
-                    <p className="text-white mb-1">Full Stack Developer</p>
-                    <p className="text-white mb-4">Tunisia</p>
-                    <div className="d-flex justify-content-center mb-2">
+            <MDBCard className="mb-4 custom-card">
+              <MDBCardBody className="text-center">
+                <MDBCardImage
+                  src={myImage} // Use the imported image as src
+                  alt="avatar"
+                  className="rounded-circle"
+                  style={{ width: '150px' }}
+                  fluid
+                />
+                <p className="text-white mb-1">Full Stack Developer</p>
+                <p className="text-white mb-4">Tunisia</p>
+                <div className="d-flex justify-content-center mb-2">
 
-                    </div>
-                </MDBCardBody>
-                </MDBCard>
+                </div>
+              </MDBCardBody>
+            </MDBCard>
 
           </MDBCol>
-          
+
           <MDBCol lg="8">
             <MDBCard className="mb-4 custom-card">
               <MDBCardBody>
