@@ -11,6 +11,9 @@ import {
   MDBProgressBar,
 
 } from 'mdb-react-ui-kit';
+
+
+
 //import myImage from "C:/Users/hamzus/Desktop/all/297381586_1742008299468366_3490042585628786731_n.jpg";
 import './Profile.css';
 
