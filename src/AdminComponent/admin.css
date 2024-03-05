@@ -1,3 +1,6 @@
+.black-text {
+  color: black;
+}
 body {
     margin: 0;
     padding: 0;
@@ -136,6 +139,14 @@ body {
     margin: 15px 0;
   }
   
+  .cardadmin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background-color: #7694db;
+  }
   .card {
     display: flex;
     flex-direction: column;

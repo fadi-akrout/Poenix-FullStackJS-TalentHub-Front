@@ -7,6 +7,8 @@ function Candidats() {
   return (
     <div className='grid-container'>
      <a>Candidats component</a>
+     <a>Candidats componentaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
+
     </div>
   )
 }

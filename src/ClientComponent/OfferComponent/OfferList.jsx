@@ -34,6 +34,7 @@ function OfferList() {
             .catch(error => {
                 console.error("Il y a eu une erreur !", error);
             });
+
     }
     const navigateToUpdateOffer = (offerId) => {
         navigate(`/updateoffer/${offerId}`);

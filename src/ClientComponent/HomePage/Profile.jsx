@@ -11,7 +11,14 @@ import {
   MDBListGroup,
   MDBListGroupItem
 } from 'mdb-react-ui-kit';
+
 import myImage from "./image/talenthublogo.png";
+
+
+
+
+//import myImage from "D:/Pics/7609904.png"
+
 import './Profile.css';
 import Header from './Header';
 import { FaLinkedin } from "react-icons/fa";

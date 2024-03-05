@@ -1338,7 +1338,14 @@ section.contact-us #contact {
   border-radius: 20px;
   padding: 40px;
 }
-
+section.contact-us #contact label {
+  color: #1f272b;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  font-size: 15;
+  font-weight: 700;
+}
 section.contact-us #contact h2 {
   text-transform: uppercase;
   color: #1f272b;
