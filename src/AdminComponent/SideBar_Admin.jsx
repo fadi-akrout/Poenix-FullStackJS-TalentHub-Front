@@ -27,6 +27,23 @@ function SideBar_Admin({openSidebarToggle, OpenSidebar}) {
             <BsFillArchiveFill className="icon" /> Candidates
           </Link>
             </li>
+            <li className='sidebar-list-item'> 
+            <Link to="/admin/eventsAdmin">
+            <BsFillArchiveFill className="icon" /> Events
+          </Link>
+            </li>
+            <li className='sidebar-list-item'>
+            <Link to="/admin/addOfferAdmin">
+                    <BsListCheck className='icon'/> ADD Job offers
+            </Link>
+        
+            </li>
+            <li className='sidebar-list-item'>
+            <Link to="/admin/offerlistAdmin">
+                    <BsListCheck className='icon'/> Job offers
+            </Link>
+        
+            </li>
             <li className='sidebar-list-item'>
             <a href="">
                     <BsFillGrid3X3GapFill className='icon'/> Companies
@@ -37,11 +54,7 @@ function SideBar_Admin({openSidebarToggle, OpenSidebar}) {
                     <BsPeopleFill className='icon'/> Staff
                 </a>
             </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsListCheck className='icon'/> Job offers
-                </a>
-            </li>
+           
             <li className='sidebar-list-item'>
                 <a href="">
                     <BsMenuButtonWideFill className='icon'/> Reports

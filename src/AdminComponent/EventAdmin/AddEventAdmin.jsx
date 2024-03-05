@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'bootstrap';
-import HeaderClient from '../Dashboard/HeaderClient';
-import Footer from '../Dashboard/Footer';
 
 
-function EvenementForm() {
+
+function EvenementFormAdmin() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nom: '',
@@ -45,7 +44,7 @@ function EvenementForm() {
         try {
             const response = await axios.post('http://localhost:3500/evenements', formData);
             console.log(response.data);
-            navigate('/evenements');
+            navigate('/admin/eventsAdmin');
         } catch (error) {
             console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
         }
@@ -71,8 +70,8 @@ function EvenementForm() {
 
     return (
         <>
-            <HeaderClient />
-            <section className="contact-us" id="contact">
+         <main className='main-container'>
+         <section className="contact-us" id="contact">
          <div className="container">
       <div className="row">
         <div className="col-lg-12 align-self-center">
@@ -117,8 +116,9 @@ function EvenementForm() {
        
     </div>
                 </section>
+            </main>
         </>
     );
 }
 
-export default EvenementForm;
+export default EvenementFormAdmin;

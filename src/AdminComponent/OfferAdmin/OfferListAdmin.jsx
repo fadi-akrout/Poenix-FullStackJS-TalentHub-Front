@@ -2,8 +2,7 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 
 import { Link ,useNavigate } from 'react-router-dom';
-import HeaderClient from '../Dashboard/HeaderClient';
-import Footer from '../Dashboard/Footer';
+
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md'
 
@@ -11,7 +10,7 @@ import { MdDeleteForever } from 'react-icons/md'
     const navigate = useNavigate();
     navigate(`/updateoffer/${offerId}`);
   } */
-function OfferList() {
+function OfferListAdmin() {
     const [offers, setOffers] = useState([]);
  const navigate =useNavigate();
 
@@ -36,41 +35,41 @@ function OfferList() {
             });
         } 
         const navigateToUpdateOffer = (offerId) => {
-            navigate(`/updateoffer/${offerId}`);
+            navigate(`../offerupdateAdmin/${offerId}`);
         }
     
      
         return (
             <>
-   <HeaderClient />
+  <main className='main-container'>
    <section className="upcoming-meetings" id="meetings">
     <div className="container">
         <div className="row">
             {offers.map(offer => (
                 <div key={offer._id} className="col-lg-4 col-md-6 col-sm-12">
                     <div className="meeting-item">
-                        <div className="thumb">
+                       {/*  <div className="thumb">
                             <div className="price"></div>
                             <img src="assets/images/meeting-01.jpg" alt="New Lecturer Meeting" />
-                        </div>
+                        </div> */}
                         <div className="down-content">
-                            <div className="date">
+                          {/*   <div className="date">
                                 <h6>Mar <span>10</span></h6>
-                            </div>
+                        </div> */}
                             <div className="job-offer">
-  <h4 className="job-title">{offer.Title}</h4>
-  <div className="job-details">
-    <p className="job-info"><span className="info-label"><strong>Experience Required:</strong></span> {offer.Experience_required}</p>
-    <p className="job-info"><span className="info-label"><strong>Domain:</strong></span> {offer.Domain}</p>
-    <p className="job-info"><span className="info-label"><strong>Mission:</strong></span> {offer.Mission}</p>
-    <p className="job-info"><span className="info-label"><strong>Salary:</strong></span> {offer.Salary}</p>
-    <p className="job-info"><span className="info-label"><strong>Speciality:</strong></span> {offer.Speciality}</p>
-    <p className="job-info"><span className="info-label"><strong>Job Type:</strong></span> {offer.JobType}</p>
-    <p className="job-info"><span className="info-label"><strong>Job City:</strong></span> {offer.JobCity}</p>
-  </div>
-</div>
+                            <h4 className="job-title">{offer.Title}</h4>
+                            <div className="job-details">
+                                <p className="job-info"><span className="info-label"><strong>Experience Required:</strong></span> {offer.Experience_required}</p>
+                                <p className="job-info"><span className="info-label"><strong>Domain:</strong></span> {offer.Domain}</p>
+                                <p className="job-info"><span className="info-label"><strong>Mission:</strong></span> {offer.Mission}</p>
+                                <p className="job-info"><span className="info-label"><strong>Salary:</strong></span> {offer.Salary}</p>
+                                <p className="job-info"><span className="info-label"><strong>Speciality:</strong></span> {offer.Speciality}</p>
+                                <p className="job-info"><span className="info-label"><strong>Job Type:</strong></span> {offer.JobType}</p>
+                                <p className="job-info"><span className="info-label"><strong>Job City:</strong></span> {offer.JobCity}</p>
+                            </div>
+                            </div>
                             <div className="main-button-red">
-                                <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>
+                                <li className="scroll-to-section"><Link to="/">Postulez Maintenant</Link></li>
                             </div>
                             <MdDeleteForever  onClick={(e)=> handleDelete (offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
                        <FaEdit onClick={() => navigateToUpdateOffer(offer._id)} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
@@ -82,9 +81,9 @@ function OfferList() {
         </div>
     </div>
 </section>
-
+</main>
         </>
     );
 }
 
-export default OfferList;
+export default OfferListAdmin;

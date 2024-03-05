@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import HeaderClient from '../Dashboard/HeaderClient';
-import Footer from '../Dashboard/Footer';
 
-function AddOffer() {
+
+function AddOfferAdmin() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Title: '',
@@ -48,13 +47,11 @@ function AddOffer() {
  
   return (
     <>
-        <div>
-            <HeaderClient />
-        </div>
+        <main className='main-container'>
       <section className="contact-us" id="contact">
     <div className="container">
       <div className="row">
-        <div className="col-lg-9 align-self-center">
+        <div className="col-lg-12 align-self-center">
           <div className="row">
             <div className="col-lg-12">
               <form  id="contact" onSubmit={handleSubmit}>
@@ -125,37 +122,15 @@ function AddOffer() {
             </div>
           </div>
         </div>
-        <div className="col-lg-3">
-          <div className="right-info">
-            <ul>
-              <li>
-                <h6>Phone Number</h6>
-                <span>010-020-0340</span>
-              </li>
-              <li>
-                <h6>Email Address</h6>
-                <span>TalentHub@phoenix.com</span>
-              </li>
-              <li>
-                <h6>Street Address</h6>
-                <span>1, 2 rue André Ampère - 2083 - Pôle Technologique - El Ghazala.</span>
-              </li>
-              <li>
-                <h6>Website URL</h6>
-                <span>www.TalentHub.com</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+       
       </div>
     </div>
-    <div> 
-        <Footer/>
-    </div>
+   
 
   </section>
+  </main>
     </>
   );
 }
 
-export default AddOffer
+export default AddOfferAdmin
