@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Header from '../HomePage/Header';
-import Footer from '../Dashboard/Footer';
 
-function AddOffer() {
+
+function AddOfferAdmin() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Title: '',
@@ -19,42 +18,41 @@ function AddOffer() {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+      const { name, value } = e.target;
+      setFormData(prevState => ({
+          ...prevState,
+          [name]: value
+      }));
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
-    // Vérifiez que tous les champs sont remplis
-    const areFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
-    if (!areFieldsFilled) {
-      alert("Veuillez remplir tous les champs.");
-      return;
-    }
+      // Vérifiez que tous les champs sont remplis
+      const areFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
+      if (!areFieldsFilled) {
+          alert("Veuillez remplir tous les champs.");
+          return;
+      }
 
-    // Si les vérifications sont passées, continuez avec la soumission
-    try {
-      const response = await axios.post('http://localhost:3500/offers', formData);
-      console.log(response.data);
-      navigate('/offers');
-    } catch (error) {
-      console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
-    }
+      // Si les vérifications sont passées, continuez avec la soumission
+      try {
+          const response = await axios.post('http://localhost:3500/offers', formData);
+          console.log(response.data);
+          navigate('/offers');
+      } catch (error) {
+          console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
+      }
   };
-
+ 
   return (
     <>
-      <div>
-        <Header />
-      </div>
+        <main className='main-container'>
       <section className="contact-us" id="contact">
-        <div className="container">
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-12 align-self-center">
           <div className="row">
-
             <div className="col-lg-12">
               <form  id="contact" onSubmit={handleSubmit}>
                 <div className="row">
@@ -107,43 +105,32 @@ function AddOffer() {
                         <option value="PFE">PFE</option>
                         </select>
                     </fieldset>
-
                     </div>
-                  </form>
+                  <div className="col-lg-4">
+                    <fieldset>
+                    <label htmlFor="JobCity" className="form-label">JobCity:</label>
+                    <input type="text" id="JobCity" className="form-control" name="JobCity" value={formData.JobCity} onChange={handleChange} required />
+                    </fieldset>
+                  </div>
+                  <div className="col-lg-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" className="button">Add offer</button>
+                    </fieldset>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-lg-3">
-              <div className="right-info">
-                <ul>
-                  <li>
-                    <h6>Phone Number</h6>
-                    <span>010-020-0340</span>
-                  </li>
-                  <li>
-                    <h6>Email Address</h6>
-                    <span>TalentHub@phoenix.com</span>
-                  </li>
-                  <li>
-                    <h6>Street Address</h6>
-                    <span>1, 2 rue André Ampère - 2083 - Pôle Technologique - El Ghazala.</span>
-                  </li>
-                  <li>
-                    <h6>Website URL</h6>
-                    <span>www.TalentHub.com</span>
-                  </li>
-                </ul>
-              </div>
+              </form>
             </div>
           </div>
         </div>
-        <div>
-          <Footer />
-        </div>
+       
+      </div>
+    </div>
+   
 
-      </section>
+  </section>
+  </main>
     </>
   );
 }
 
-export default AddOffer
+export default AddOfferAdmin

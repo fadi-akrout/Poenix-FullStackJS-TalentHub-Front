@@ -11,7 +11,9 @@ import {
   MDBProgressBar,
 
 } from 'mdb-react-ui-kit';
+
 import myImage from "D:/Pics/7609904.png"
+
 import './Profile.css';
 
 

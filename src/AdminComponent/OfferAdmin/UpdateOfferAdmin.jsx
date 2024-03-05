@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link ,useParams ,useNavigate} from 'react-router-dom';
-import HeaderClient from '../Dashboard/HeaderClient';
-import Footer from '../Dashboard/Footer';
 
-function UpdateOffer() {
+
+function UpdateOfferAdmin() {
   const navigate = useNavigate();
  const{id}=useParams()
  const [Title,SetTitle]=useState()
@@ -45,7 +44,7 @@ function UpdateOffer() {
           axios.patch('http://localhost:3500/offers/'+id,{Title,Experience_required,Domain,Mission,Salary,Speciality,JobType,JobCity})
           .then(result=> {
             console.log(result)
-            navigate('/offers')
+            navigate('../offerlistAdmin')
           })
           .catch(err => console.log(err) )
         }
@@ -54,19 +53,17 @@ function UpdateOffer() {
 
   return (
     <>
-    <div>
-        <HeaderClient />
-    </div>
+       <main className='main-container'>
  <section className="contact-us" id="contact">
 <div className="container">
   <div className="row">
-    <div className="col-lg-9 align-self-center">
+    <div className="col-lg-12 align-self-center">
       <div className="row">
         <div className="col-lg-12">
           <form  id="contact" on onSubmit={Update}>
             <div className="row">
               <div className="col-lg-12">
-                <h2>Add an offer</h2>
+                <h2>Update an offer</h2>
               </div>
               <div className="col-lg-4">
               <label htmlFor="Title" className="form-label">Title:</label>
@@ -74,7 +71,7 @@ function UpdateOffer() {
               </div>
               <div className="col-lg-4">
                 <fieldset>
-                <label htmlFor="Experience_required" className="form-label">Experience_required:</label>
+                <label htmlFor="Experience_required" className="form-label">Experience required:</label>
                 <input type="text" id="Experience_required" className="form-control" name="Experience_required" value={Experience_required} onChange={(e)=>SetExperience_required(e.target.value)} required />
               </fieldset>
               </div>
@@ -129,37 +126,14 @@ function UpdateOffer() {
         </div>
       </div>
     </div>
-    <div className="col-lg-3">
-      <div className="right-info">
-        <ul>
-          <li>
-            <h6>Phone Number</h6>
-            <span>010-020-0340</span>
-          </li>
-          <li>
-            <h6>Email Address</h6>
-            <span>TalentHub@phoenix.com</span>
-          </li>
-          <li>
-            <h6>Street Address</h6>
-            <span>1, 2 rue André Ampère - 2083 - Pôle Technologique - El Ghazala.</span>
-          </li>
-          <li>
-            <h6>Website URL</h6>
-            <span>www.TalentHub.com</span>
-          </li>
-        </ul>
-      </div>
-    </div>
+    
   </div>
-</div>
-<div> 
-    <Footer/>
 </div>
 
 </section>
+</main>
 </>
   );
 }
 
-export default UpdateOffer;
+export default UpdateOfferAdmin;
