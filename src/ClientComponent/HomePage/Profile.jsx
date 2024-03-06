@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import PDFGeneratorButton from '../PDFGeneratorButton';
+
 import {
   MDBCol,
   MDBContainer,
@@ -27,6 +29,7 @@ import { FaLanguage } from "react-icons/fa6";
 import Footer from '../Dashboard/Footer';
 
 export default function Profile() {
+
   const [candidate, setCandidate] = useState(null);
 
   useEffect(() => {
@@ -48,7 +51,7 @@ export default function Profile() {
 
   return (
     <div className="full-width-header">
-      <Header /> 
+      <Header />
       <section style={{ backgroundImage: 'url("src/ClientComponent/HomePage/image/meetings-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#eee' }}>
         <MDBContainer className="py-4">
           <MDBRow>
@@ -148,6 +151,9 @@ export default function Profile() {
         </MDBContainer>
         <Footer />
       </section>
+      <div>
+        {candidate && <PDFGeneratorButton candidate={candidate} />}
+      </div>
     </div>
   );
 }
