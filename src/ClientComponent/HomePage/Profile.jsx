@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import PDFGeneratorButton from '../PDFGeneratorButton';
 import {
   MDBCol,
   MDBContainer,
@@ -17,6 +19,31 @@ import './Profile.css';
 
 
 export default function Profile() {
+
+
+  const [candidate, setCandidate] = useState(null);
+
+  useEffect(() => {
+    // Remplacez 'your_api_endpoint' par l'endpoint de votre API qui renvoie le dernier candidat ajouté
+    const fetchLastCandidate = async () => {
+      try {
+        const { data } = await axios.get('http://localhost:3500/candidates/last');
+        setCandidate(data);
+      } catch (error) {
+        console.error('There was an error fetching the last candidate:', error);
+      }
+    };
+
+    fetchLastCandidate();
+  }, []);
+
+  if (!candidate) {
+    return <div>Loading...</div>; // Ou tout autre indicateur de chargement que vous préférez
+  }
+
+
+
+
   return (
     <section style={{ backgroundImage: 'url("src/ClientComponent/HomePage/image/meetings-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#eee' }}>
       <MDBContainer className="py-4">
@@ -25,40 +52,39 @@ export default function Profile() {
             <MDBCard className="mb-4 custom-card">
               <MDBCardBody className="text-center">
                 <MDBCardImage
-                  src={myImage} // Use the imported image as src
+                  src={candidate?.profileImage || myImage}
                   alt="avatar"
                   className="rounded-circle"
                   style={{ width: '150px' }}
                   fluid
                 />
-                <p className="text-white mb-1">Full Stack Developer</p>
-                <p className="text-white mb-4">Tunisia</p>
-                <div className="d-flex justify-content-center mb-2">
-
-                </div>
+                <p className="text-white mb-1">{candidate?.actualPost || 'Full Stack Developer'}</p>
+                <p className="text-white mb-4">{candidate?.address || 'Tunisia'}</p>
               </MDBCardBody>
             </MDBCard>
-
           </MDBCol>
 
           <MDBCol lg="8">
             <MDBCard className="mb-4 custom-card">
               <MDBCardBody>
+                {/* Use the candidate data to populate these fields */}
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-white">Johnatan Smith</MDBCardText>
+                    <MDBCardText className="text-white">{candidate?.name || 'Johnatan Smith'}</MDBCardText>
+                    <MDBCardText className="text-white">{candidate?.lastname || 'Johnatan Smith'}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
+
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-white">example@example.com</MDBCardText>
+                    <MDBCardText className="text-white">{candidate?.email || 'Johnatan Smith'}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -67,25 +93,18 @@ export default function Profile() {
                     <MDBCardText>Phone</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-white">(097) 234-5678</MDBCardText>
+                    <MDBCardText className="text-white">{candidate?.phoneNumber || 'Johnatan Smith'}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-white">(098) 765-4321</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
+
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Address</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-white">Bay Area, San Francisco, CA</MDBCardText>
+                    <MDBCardText className="text-white">{candidate?.address || 'Johnatan Smith'}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
               </MDBCardBody>
@@ -159,6 +178,9 @@ export default function Profile() {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      <div>
+        {candidate && <PDFGeneratorButton candidate={candidate} />}
+      </div>
     </section>
   );
 }

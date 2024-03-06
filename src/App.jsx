@@ -5,7 +5,7 @@ import HomeP from './ClientComponent/HomePage/HomeP';
 import Profile from './ClientComponent/HomePage/Profile';
 import SignUpp from './ClientComponent/HomePage/SignUpp';
 import Loginn from './ClientComponent/HomePage/Loginn';
-//import OfferList from './ClientComponent/OfferComponent/OfferList';
+import OfferList from './ClientComponent/OfferComponent/OfferList';
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
 import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
 
