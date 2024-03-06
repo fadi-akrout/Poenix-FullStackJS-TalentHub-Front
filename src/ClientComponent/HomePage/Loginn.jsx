@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBInput, MDBIcon, MDBBtn } from 'mdb-react-ui-kit';
-import logo from './image/talenthublogo.png'; 
+import logo from './image/talenthublogo.png';
 import background from './image/meetings-bg.jpg';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
