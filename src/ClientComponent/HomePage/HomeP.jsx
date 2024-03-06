@@ -46,6 +46,34 @@ function HomeP() {
     backgroundPosition: 'center',
     minHeight: '100vh',
   };
+  const handleLogin = async () => {
+    try {
+        const response = await axios.post('http://localhost:3500/Loginn', { email, password });
+        if (response.data.Status === 'Success') {
+            // Redirect to appropriate page based on user role
+            if (response.data.role === 'Admin') {
+                navigate('/admin-dashboard');
+            } else if (response.data.role === 'Teacher' || response.data.role === 'Student' || response.data.role === 'Recruiter') {
+                navigate('/user-dashboard');
+            }
+        } else {
+            alert('Login failed');
+        }
+    } catch (error) {
+        console.error('Error logging in:', error);
+    }
+};
+
+const handleLogout = async () => {
+    try {
+        await axios.get('http://localhost:3500/logout');
+        // Clear user session and redirect to login page
+        sessionStorage.removeItem('userRole');
+        navigate('/login');
+    } catch (error) {
+        console.error('Error logging out:', error);
+    }
+};
 
   return (
     <div className="App">

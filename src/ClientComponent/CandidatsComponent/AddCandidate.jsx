@@ -24,7 +24,8 @@ function CandidateForm() {
         phoneNumber: '',
         skills: '',
         languages: '',
-        linkedinProfile: ''
+        linkedinProfile: '',
+        profileImage: null
     });
 
     const handleChange = (e) => {
@@ -37,24 +38,27 @@ function CandidateForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         // Verify that all fields are filled
         const areFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
         if (!areFieldsFilled) {
             alert("Please fill in all fields.");
             return;
         }
-
-        // If all checks pass, proceed with submission
+    
+        
         try {
             const response = await axios.post('http://localhost:3500/candidates', formData);
             console.log(response.data);
-            // Redirect to the Profile component and pass the candidate data
-            navigate('/HomeP', { state: { candidate: formData } });
+            
+            
+            navigate('/Profile', { candidate: formData }); 
+
         } catch (error) {
             console.error("There was a problem with form submission:", error);
         }
     };
+    
 
     return (
         <>
@@ -126,16 +130,20 @@ function CandidateForm() {
                         text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
                         </div>
                         <div className="mb-3">
-                        <label htmlFor="skills" className="form-label">Skills (comma-separated):</label>
-                        <input type="text" id="skills" className="form-control" name="skills" value={formData.skills} onChange={handleChange} required />
+                            <label htmlFor="skills" className="form-label">Skills (comma-separated):</label>
+                            <input type="text" id="skills" className="form-control" name="skills" value={formData.skills} onChange={handleChange} required />
                         </div>
                         <div className="mb-3">
-                        <label htmlFor="languages" className="form-label">Languages (comma-separated):</label>
-                        <input type="text" id="languages" className="form-control" name="languages" value={formData.languages} onChange={handleChange} required />
+                            <label htmlFor="languages" className="form-label">Languages (comma-separated):</label>
+                            <input type="text" id="languages" className="form-control" name="languages" value={formData.languages} onChange={handleChange} required />
                         </div>
                         <div className="mb-3">
-                        <label htmlFor="linkedinProfile" className="form-label">LinkedIn Profile:</label>
-                        <input type="text" id="linkedinProfile" className="form-control" name="linkedinProfile" value={formData.linkedinProfile} onChange={handleChange} required />
+                            <label htmlFor="linkedinProfile" className="form-label">LinkedIn Profile:</label>
+                            <input type="text" id="linkedinProfile" className="form-control" name="linkedinProfile" value={formData.linkedinProfile} onChange={handleChange} required />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="profileImage" className="form-label">Profile Image:</label>
+                            <input type="file" accept=".png, .jpg, .jpeg" id="profileImage" className="form-control" name="profileImage" onChange={handleChange} />
                         </div>
                         </div>
                         </div>

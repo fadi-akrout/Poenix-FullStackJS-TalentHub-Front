@@ -72,9 +72,17 @@ function EvenementForm() {
     return (
         <>
             <HeaderClient />
-            <section className="upcoming-meetings" id="meetings">
-                <div className="container mt-5"> {/* Utilisez les classes de Bootstrap pour le positionnement */}
-                    <form onSubmit={handleSubmit} className="card p-4">
+            <section className="contact-us" id="contact">
+         <div className="container">
+      <div className="row">
+        <div className="col-lg-12 align-self-center">
+          <div className="row">
+            <div className="col-lg-12">
+                    <form id="contact" onSubmit={handleSubmit} className="card p-4">
+                    <div className="row">
+                  <div className="col-lg-12">
+                    <h2>Add an Event</h2>
+                  </div>
                         <div className="mb-3">
                             <label htmlFor="nom" className="form-label">Nom de l'événement:</label>
                             <input type="text" id="nom" className="form-control" name="nom" value={formData.nom} onChange={handleChange} required />
@@ -100,11 +108,15 @@ function EvenementForm() {
                             <input className="form-control" type="file" id="imageUpload" accept="image/*" onChange={handleImageChange} />
                         </div>
                         <button type="submit" className="btn btn-primary">Ajouter l'événement</button>
-
+                    </div>
                     </form>
                 </div>
-                <Footer />
-            </section>
+                </div>
+          </div>
+        </div>
+       
+    </div>
+                </section>
         </>
     );
 }

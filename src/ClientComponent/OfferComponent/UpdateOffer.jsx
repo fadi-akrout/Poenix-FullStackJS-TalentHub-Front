@@ -121,7 +121,7 @@ function UpdateOffer() {
               </div>
               <div className="col-lg-12">
                 <fieldset>
-                  <button type="submit" id="form-submit" className="button">Add offer</button>
+                  <button type="submit" id="form-submit" className="button">Update offer</button>
                 </fieldset>
               </div>
             </div>
