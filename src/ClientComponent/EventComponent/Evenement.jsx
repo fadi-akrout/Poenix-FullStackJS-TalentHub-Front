@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import HeaderClient from '../Dashboard/HeaderClient';
+import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
 
 function Evenements() {
@@ -19,7 +19,8 @@ function Evenements() {
     return (
 
         <>
-            <HeaderClient />
+
+
             <section className="upcoming-meetings" id="meetings">
                 <div className="container my-5">
                     <h1 className="text-center mb-4">Liste des Événements</h1>
@@ -27,10 +28,10 @@ function Evenements() {
                         <Evenement evenement={evenement} setEvenements={setEvenements} key={evenement._id} />
                     ))}
                     <div className="text-center mt-4">
-                        <Link to="/add-event" className="btn btn-primary">Ajouter un événement</Link>
+                        <Link to="/add-event" className="btn btn-danger">Ajouter un événement</Link>
                     </div>
                 </div>
-                <Footer />
+
             </section>
         </>
     );

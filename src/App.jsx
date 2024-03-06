@@ -1,19 +1,33 @@
-import { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import UsersList from './ClientComponent/UserComponent/features/UserList'
-import EditUser from './ClientComponent/UserComponent/features/EditUser'
-import NewUserForm from './ClientComponent/UserComponent/features/NewUserForm'
-import Prefetch from './ClientComponent/UserComponent/features/auth/Prefetch';
-import Login1 from './ClientComponent/UserComponent/features/auth/Login';
+
+import HomeP from './ClientComponent/HomePage/HomeP';
+import Profile from './ClientComponent/HomePage/Profile';
+import SignUpp from './ClientComponent/HomePage/SignUpp';
+import Loginn from './ClientComponent/HomePage/Loginn';
+//import OfferList from './ClientComponent/OfferComponent/OfferList';
+import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
+import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
+import OfferList from './ClientComponent/OfferComponent/OfferList';
+
+
+
+
 // Importez les composants en utilisant React.lazy pour le lazy loading
+
+
 const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
 const Admin = lazy(() => import('./AdminComponent/Admin'));
-const Candidates = lazy(() => import('./ClientComponent/Models/Candidat'));
-const AddCandidats = lazy(() => import('./ClientComponent/CandidatsComponent/AddCandidats'));
+const Candidate = lazy(() => import('./ClientComponent/CandidatsComponent/AddCandidate'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
-const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
+
+//const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
+//const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
+
+//const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
+const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
 const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
 const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
 const User = lazy(() => import('./ClientComponent/UserComponent/userList'));
@@ -21,41 +35,42 @@ const User = lazy(() => import('./ClientComponent/UserComponent/userList'));
 
 
 
+
+
+
 function App() {
-  const [count, setCount] = useState(0); // Si vous n'utilisez pas 'count' et 'setCount', vous pouvez les retirer.
+  const [count, setCount] = useState(0);
 
   return (
     <div>
-
-      <Suspense fallback={<div>Chargement...</div>}> {/* Ajoutez un fallback pendant le chargement des composants */}
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
+          <Route path="/Loginn" element={<Loginn />}></Route>
+          <Route path="/SignUpp" element={<SignUpp />}></Route>
           <Route path="/" element={<Home />} />
-          <Route path="/AddCandidats" element={<AddCandidats />} />
-          <Route path="/candidat" element={<Candidates />} />
+          <Route path="/AddCandidate" element={<Candidate />} />
           <Route path="/evenements" element={<Evenement />} />
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} />
-          <Route path="login1" element={<Login1 />} />
-          <Route element={<Prefetch />}>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
 
-          <Route path="/users" element={<User />} />
-          <Route path="usersList">
-              <Route index element={<UsersList />} />
-              <Route path=":id" element={<EditUser />} />
-              <Route path="new" element={<NewUserForm />} />
-            </Route>
-            </Route>
 
           <Route path="/addoffer" element={<AddOffer />} />
+          <Route path="/HomeP" element={<HomeP />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/recruiters" element={<Recruiters />} />
+          <Route path="/add-recruiter" element={<AddRecruiter />} />
 
+
+         
+           
+
+          <Route path="/addoffer" element={<AddOffer />} />
+          <Route path="/updateoffer/:id" element={<UpdateOffer />} />
 
 
         </Routes>
       </Suspense>
-
     </div>
   );
 }
