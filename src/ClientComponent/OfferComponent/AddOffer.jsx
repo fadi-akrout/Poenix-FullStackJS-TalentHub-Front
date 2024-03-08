@@ -52,9 +52,10 @@ function AddOffer() {
         <Header />
       </div>
       <section className="contact-us" id="contact">
-        <div className="container">
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-12 align-self-center">
           <div className="row">
-
             <div className="col-lg-12">
               <form  id="contact" onSubmit={handleSubmit}>
                 <div className="row">
@@ -107,42 +108,29 @@ function AddOffer() {
                         <option value="PFE">PFE</option>
                         </select>
                     </fieldset>
-
-                  </div>
                     </div>
-                  </form>
-              </div>
-             </div>
+                  <div className="col-lg-4">
+                    <fieldset>
+                    <label htmlFor="JobCity" className="form-label">JobCity:</label>
+                    <input type="text" id="JobCity" className="form-control" name="JobCity" value={formData.JobCity} onChange={handleChange} required />
+                    </fieldset>
+                  </div>
+                  <div className="col-lg-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" className="button">Add offer</button>
+                    </fieldset>
+                  </div>
+                </div>
+              </form>
             </div>
-            <div className="col-lg-3">
-              <div className="right-info">
-                <ul>
-                  <li>
-                    <h6>Phone Number</h6>
-                    <span>010-020-0340</span>
-                  </li>
-                  <li>
-                    <h6>Email Address</h6>
-                    <span>TalentHub@phoenix.com</span>
-                  </li>
-                  <li>
-                    <h6>Street Address</h6>
-                    <span>1, 2 rue André Ampère - 2083 - Pôle Technologique - El Ghazala.</span>
-                  </li>
-                  <li>
-                    <h6>Website URL</h6>
-                    <span>www.TalentHub.com</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          
-  
-        <div>
-          <Footer />
+          </div>
         </div>
+       
+      </div>
+    </div>
+   
 
-      </section>
+  </section>
     </>
   );
 }
