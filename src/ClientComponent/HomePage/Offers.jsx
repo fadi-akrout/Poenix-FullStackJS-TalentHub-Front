@@ -55,6 +55,7 @@ function Offers() {
         </div>
       </div>
     </section>
+    
   );
 }
 

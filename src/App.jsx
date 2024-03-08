@@ -30,6 +30,8 @@ const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
 const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
 const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
+const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
+
 
 
 
@@ -61,9 +63,10 @@ function App() {
 
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/staff" element={<AddStaff />}></Route>
 
 
-          <Route path="/addoffer" element={<AddOffer />} />
+         
           <Route path="/updateoffer/:id" element={<UpdateOffer />} />
 
 

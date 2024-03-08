@@ -17,24 +17,28 @@ import {
 //import myImage from "D:/Pics/7609904.png"
 
 import './Profile.css';
+import Footer from '../Dashboard/Footer';
+import Header from './Header';
 
 
 
 export default function Profile() {
   return (
+    <>
+    <Header />
     <section style={{ backgroundImage: 'url("src/ClientComponent/HomePage/image/meetings-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#eee' }}>
       <MDBContainer className="py-4">
         <MDBRow>
           <MDBCol lg="4">
             <MDBCard className="mb-4 custom-card">
               <MDBCardBody className="text-center">
-                <MDBCardImage
+               {/*  <MDBCardImage
                   src={myImage} // Use the imported image as src
                   alt="avatar"
                   className="rounded-circle"
                   style={{ width: '150px' }}
                   fluid
-                />
+                /> */}
                 <p className="text-white mb-1">Full Stack Developer</p>
                 <p className="text-white mb-4">Tunisia</p>
                 <div className="d-flex justify-content-center mb-2">
@@ -163,6 +167,8 @@ export default function Profile() {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      <Footer />
     </section>
+    </>
   );
 }
