@@ -5,9 +5,10 @@ import HomeP from './ClientComponent/HomePage/HomeP';
 import Profile from './ClientComponent/HomePage/Profile';
 import SignUpp from './ClientComponent/HomePage/SignUpp';
 import Loginn from './ClientComponent/HomePage/Loginn';
-//import OfferList from './ClientComponent/OfferComponent/OfferList';
+
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
 import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
+import OfferList from './ClientComponent/OfferComponent/OfferList';
 
 
 
@@ -26,11 +27,16 @@ const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'))
 //const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
 //const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
 
-const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
+//const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
+
 const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
 const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
 const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
+
+
+// const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
+// const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
 
 
 
@@ -61,9 +67,14 @@ function App() {
           <Route path="/recruiters" element={<Recruiters />} />
           <Route path="/add-recruiter" element={<AddRecruiter />} />
 
+
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/staff" element={<AddStaff />}></Route>
+
+          {/* <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<Signup />}></Route> */}
+
 
 
          

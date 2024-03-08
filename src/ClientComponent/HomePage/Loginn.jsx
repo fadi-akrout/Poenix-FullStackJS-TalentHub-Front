@@ -1,16 +1,7 @@
-import React, { useState } from 'react';
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBInput,
-  MDBIcon,
-  MDBBtn
-} from 'mdb-react-ui-kit';
-import logo from './image/talenthublogo.png'; 
+
+import React, { useState, useEffect } from 'react';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBInput, MDBIcon, MDBBtn } from 'mdb-react-ui-kit';
+import logo from './image/talenthublogo.png';
 import background from './image/meetings-bg.jpg';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -18,25 +9,43 @@ import { useNavigate } from 'react-router-dom';
 function Loginn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/Loginn', { email, password })
-      .then(res => {
-        if (res.data.Status === "Success") {
-          if (res.data.role === "Admin") {
-            navigate('/admin/home');
-          } else {
-            navigate('/AddCandidate');
-          }
+    setLoading(true);
+    try {
+      const res = await axios.post('http://localhost:3000/Loginn', { email, password });
+      if (res.data.Status === "Success") {
+        if (res.data.role === "Admin") {
+          navigate('/admin/home');
         } else {
-          console.log("Login failed: ", res.data.message);
+          navigate('/AddCandidate');
         }
-      })
-      .catch(err => console.error("Error occurred: ", err));
+      } else {
+        console.log("Login failed: ", res.data.message);
+      }
+    } catch (error) {
+      console.error("Error occurred: ", error);
+    }
+    setLoading(false);
   };
+
+  useEffect(() => {
+    // Redirect user if already logged in
+    const checkAuth = async () => {
+      try {
+        const res = await axios.get('http://localhost:3000/checkAuth'); // Endpoint to check if user is authenticated
+        if (res.data.authenticated) {
+          navigate(res.data.role === 'Admin' ? '/admin/home' : '/HomeP');
+        }
+      } catch (error) {
+        console.error("Error checking authentication:", error);
+      }
+    };
+    checkAuth();
+  }, [navigate]);
 
   return (
     <MDBContainer fluid className='bg-image d-flex justify-content-center align-items-center' style={{ minHeight: '100vh' }}>
@@ -56,7 +65,9 @@ function Loginn() {
                     <MDBIcon icon="lock me-3" size='lg' />
                     <MDBInput label='Password' id='form3' type='password' onChange={(e) => setPassword(e.target.value)} />
                   </div>
-                  <MDBBtn type="submit" className='btn btn-danger'>Login</MDBBtn>
+                  <MDBBtn type="submit" className='btn btn-danger' disabled={loading}>
+                    {loading ? 'Logging in...' : 'Login'}
+                  </MDBBtn>
                 </form>
               </MDBCol>
               <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
