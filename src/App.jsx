@@ -8,7 +8,7 @@ import Loginn from './ClientComponent/HomePage/Loginn';
 
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
 import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
-import OfferList from './ClientComponent/OfferComponent/OfferList';
+//import OfferList from './ClientComponent/OfferComponent/OfferList';
 
 
 

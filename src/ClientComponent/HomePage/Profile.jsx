@@ -150,10 +150,11 @@ export default function Profile() {
           </MDBRow>
         </MDBContainer>
         <Footer />
+        <div>
+          {candidate && <PDFGeneratorButton candidate={candidate} />}
+        </div>
       </section>
-      <div>
-        {candidate && <PDFGeneratorButton candidate={candidate} />}
-      </div>
+
     </div>
   );
 }
