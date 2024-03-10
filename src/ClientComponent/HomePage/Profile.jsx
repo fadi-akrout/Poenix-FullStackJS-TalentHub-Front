@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import PDFGeneratorButton from '../PDFGeneratorButton';
-
+import React from 'react';
 import {
   MDBCol,
   MDBContainer,
@@ -10,45 +7,22 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-  MDBListGroup,
-  MDBListGroupItem
+  MDBProgress,
+  MDBProgressBar,
+
 } from 'mdb-react-ui-kit';
-
-import myImage from "./image/talenthublogo.png";
-
 
 
 
 //import myImage from "D:/Pics/7609904.png"
 
 import './Profile.css';
-import Header from './Header';
-import { FaLinkedin } from "react-icons/fa";
-import { GiSkills } from "react-icons/gi";
-import { FaLanguage } from "react-icons/fa6";
 import Footer from '../Dashboard/Footer';
+import Header from './Header';
+
+
 
 export default function Profile() {
-
-  const [candidate, setCandidate] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3500/candidates');
-        setCandidate(response.data[0]);
-      } catch (error) {
-        console.error('Error fetching candidate data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (!candidate) {
-    return null;
-  }
-
   return (
     <div className="full-width-header">
       <Header />

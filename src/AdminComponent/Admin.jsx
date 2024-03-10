@@ -10,6 +10,8 @@ import EvenementFormAdmin from './EventAdmin/AddEventAdmin'
 import AddOfferAdmin from './OfferAdmin/AddOfferAdmin'
 import OfferListAdmin from './OfferAdmin/OfferListAdmin'
 import UpdateOfferAdmin from './OfferAdmin/UpdateOfferAdmin'
+import AddStaffAdmin from './StaffAdmin/AddStaffAdmin'
+import StaffAdmin from './StaffAdmin/StaffAdmin'
 function Admin() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
@@ -29,6 +31,10 @@ function Admin() {
           <Route path="/addOfferAdmin" element={<AddOfferAdmin />} />
           <Route path="/offerlistAdmin" element={<OfferListAdmin />} />
           <Route path="/offerupdateAdmin/:id" element={<UpdateOfferAdmin />} />
+          <Route path="/addStaffAdmin" element={<AddStaffAdmin />} />
+          <Route path="/staffAdmin" element={<StaffAdmin />} />
+
+
 
 
 

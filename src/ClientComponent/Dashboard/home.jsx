@@ -6,7 +6,9 @@ import OfferList from "../OfferComponent/OfferList";
 
 export default function Home() {
   return (
+    <>
     <div>
+
       <HeaderClient />
 
       <section className="section main-banner" id="top" data-section="section1">
@@ -70,7 +72,7 @@ export default function Home() {
                   {/* Additional categories can be listed here */}
                 </ul>
                 <div className="main-button-red">
-                  <Link to="/CandidatsP">Postulez Maintenant</Link>
+                  <Link to="/SignUpp">Postulez Maintenant</Link>
                 </div>
               </div>
             </div>
@@ -85,5 +87,6 @@ export default function Home() {
 
       <Footer />
     </div>
+    </>
   );
 }
