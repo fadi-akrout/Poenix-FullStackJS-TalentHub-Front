@@ -14,12 +14,16 @@ import OfferList from './ClientComponent/OfferComponent/OfferList';
 
 
 
+
 // Importez les composants en utilisant React.lazy pour le lazy loading
 
 
 const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
 const Admin = lazy(() => import('./AdminComponent/Admin'));
-const Candidate = lazy(() => import('./ClientComponent/CandidatsComponent/AddCandidate'));
+const AddStudent = lazy(() => import('./ClientComponent/StudentsComponent/AddStudent'));
+const Student = lazy(() => import('./ClientComponent/StudentsComponent/Students'));
+const AddAlumni = lazy(() => import('./ClientComponent/AlumniComponent/AddAlumni'));
+const Alumni = lazy(() => import('./ClientComponent/AlumniComponent/Alumni'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
@@ -48,7 +52,10 @@ function App() {
           <Route path="/Loginn" element={<Loginn />}></Route>
           <Route path="/SignUpp" element={<SignUpp />}></Route>
           <Route path="/" element={<Home />} />
-          <Route path="/AddCandidate" element={<Candidate />} />
+          <Route path="/AddStudent" element={<AddStudent />} />
+          <Route path="/Students" element={<Student />} />
+          <Route path="/AddAlumni" element={<AddAlumni />} />
+          <Route path="/Alumnis" element={<Alumni />} />
           <Route path="/evenements" element={<Evenement />} />
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
