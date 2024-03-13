@@ -21,7 +21,7 @@ function Loginn() {
         if (res.data.role === "Admin") {
           navigate('/admin/home');
         } else {
-          navigate('/AddCandidate');
+          navigate('/AddStudent');
         }
       } else {
         console.log("Login failed: ", res.data.message);
