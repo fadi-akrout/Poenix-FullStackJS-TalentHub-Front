@@ -23,7 +23,7 @@ function SignUpp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/register', { name, email, password, role }) // Include role in the request
+    axios.post('http://localhost:3500/auth/signup', { name, email, password, role }) // Include role in the request
       .then(res => {
         navigate('/Loginn');
         console.log(name, email, password, role); // Log all fields including role
@@ -57,6 +57,7 @@ function SignUpp() {
                     <select className='w-100' onChange={(e) => setRole(e.target.value)}>
                       <option value="">Select Role</option>
                       <option value="Admin">Admin</option>
+                      <option value="Recruter">Recruter</option>
                       <option value="Student">Student</option>
                       <option value="Teacher">Teacher</option>
                       <option value="Alumni">Alumni</option>
