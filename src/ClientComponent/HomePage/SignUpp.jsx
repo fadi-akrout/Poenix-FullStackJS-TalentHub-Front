@@ -23,7 +23,7 @@ function SignUpp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/register', { name, email, password, role }) // Include role in the request
+    axios.post('http://localhost:3500/auth/signup', { name, email, password, role }) // Include role in the request
       .then(res => {
         navigate('/Loginn');
         console.log(name, email, password, role); // Log all fields including role

@@ -34,7 +34,8 @@ function HeaderClient() {
                                     <ul className="sub-menu">
                                         <li>< Link to="/Signup">Sign up</Link></li>
                                         <li>< Link to="/login">Sign in</Link></li>
-                                        <li><a >Detail Des Offre</a></li>
+                                        <li>< Link to="/login">Sign in</Link></li>
+
                                     </ul>
                                 </li>
 
