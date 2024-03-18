@@ -43,7 +43,7 @@ function OfferList() {
 
     return (
         <>
-
+<div> <HeaderClient/> </div>
             <section className="upcoming-meetings" id="meetings">
                 <div className="container">
                     <div className="row">
@@ -71,7 +71,7 @@ function OfferList() {
                                             </div>
                                         </div>
                                         <div className="main-button-red">
-                                            <li className="scroll-to-section"><Link to="/CandidatsP">Postulez Maintenant</Link></li>
+                                            <li className="scroll-to-section"><Link to="/SignUpp">Postulez Maintenant</Link></li>
                                         </div>
                                         <MdDeleteForever onClick={(e) => handleDelete(offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
                                         <FaEdit onClick={() => navigateToUpdateOffer(offer._id)} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
@@ -82,6 +82,7 @@ function OfferList() {
                         ))}
                     </div>
                 </div>
+                <Footer />
             </section>
 
         </>

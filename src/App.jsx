@@ -26,19 +26,23 @@ import PersistLogin from './features/auth/PersistLogin';
 
 
 
+
 // Importez les composants en utilisant React.lazy pour le lazy loading
 
 
 const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
 const Admin = lazy(() => import('./AdminComponent/Admin'));
-const Candidate = lazy(() => import('./ClientComponent/CandidatsComponent/AddCandidate'));
+const AddStudent = lazy(() => import('./ClientComponent/StudentsComponent/AddStudent'));
+const Student = lazy(() => import('./ClientComponent/StudentsComponent/Students'));
+const AddAlumni = lazy(() => import('./ClientComponent/AlumniComponent/AddAlumni'));
+const Alumni = lazy(() => import('./ClientComponent/AlumniComponent/Alumni'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
 const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
 
-
+const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
 
 
 function App() {
@@ -103,6 +107,21 @@ function App() {
             <Route path="offers">
               <Route index element ={<UpdateOffer />} />
             </Route>
+            <Route path="AddStudent">
+              <Route index element ={<AddStudent />} />
+            </Route>
+             <Route path="Students">
+              <Route index element ={<Student />} />
+            </Route>
+             <Route path="AddAlumni">
+              <Route index element ={<AddAlumni />} />
+            </Route>
+           <Route path="Alumnis">
+              <Route index element ={<Alumni />} />
+            </Route>
+             <Route path="staff">
+              <Route index element ={<AddStaff />} />
+            </Route>
 
 
          {/*    <Route path="/addoffer" element={<AddOffer />} />
@@ -112,12 +131,12 @@ function App() {
           <Route path="/add-recruiter" element={<AddRecruiter />} />
           <Route path="/addoffer" element={<AddOffer />} />
           <Route path="/updateoffer/:id" element={<UpdateOffer />} />
-
-          <Route path="/AddCandidate" element={<Candidate />} />
-          <Route path="/evenements" element={<Evenement />} />
+           <Route path="/evenements" element={<Evenement />} />
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} /> */}
+
+         
 
 
             </Route>    
@@ -126,16 +145,8 @@ function App() {
 
 
           </Route>
-         
-
-
-        
-
-            
-         
-
-         
            
+
 
     
 
