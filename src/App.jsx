@@ -44,6 +44,7 @@ const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'))
 const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
 
+
 const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
 
 
@@ -99,9 +100,9 @@ function App() {
             <Route path="updateoffer/:id">
               <Route index element ={<UpdateOffer />} />
             </Route>
-            <Route path="AddCandidate">
+          {/*   <Route path="AddCandidate">
               <Route index element ={<Candidate />} />
-            </Route>
+            </Route> */}
             <Route path="evenements">
               <Route index element ={<Evenement />} />
             </Route>
