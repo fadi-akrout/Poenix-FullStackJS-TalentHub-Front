@@ -45,16 +45,15 @@ function SideBar_Admin({openSidebarToggle, OpenSidebar}) {
         
             </li>
             <li className='sidebar-list-item'>
+            <Link to="/admin/staffAdmin">
+                    <BsPeopleFill className='icon'/> Staff
+             </Link>
+            </li>
+            <li className='sidebar-list-item'>
             <a href="">
                     <BsFillGrid3X3GapFill className='icon'/> Companies
              </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsPeopleFill className='icon'/> Staff
-                </a>
-            </li>
-           
+            </li>       
             <li className='sidebar-list-item'>
                 <a href="">
                     <BsMenuButtonWideFill className='icon'/> Reports

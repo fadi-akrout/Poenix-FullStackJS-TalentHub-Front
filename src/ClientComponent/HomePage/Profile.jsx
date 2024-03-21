@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import PDFGeneratorButton from '../PDFGeneratorButton';
-
+import React from 'react';
 import {
   MDBCol,
   MDBContainer,
@@ -12,44 +9,106 @@ import {
   MDBCardImage,
   MDBListGroup,
   MDBListGroupItem
-} from 'mdb-react-ui-kit';
-//import myImage from "D:/Pics/7609904.png"
-
-
 import myImage from "./image/talenthublogo.png";
 
+} from 'mdb-react-ui-kit';
 
 
 
 //import myImage from "D:/Pics/7609904.png"
 
 import './Profile.css';
-import Header from './Header';
-import { FaLinkedin } from "react-icons/fa";
-import { GiSkills } from "react-icons/gi";
-import { FaLanguage } from "react-icons/fa6";
 import Footer from '../Dashboard/Footer';
+import Header from './Header';
+
+
 
 export default function Profile() {
+  return (
+    <>
+    <Header />
+    <section style={{ backgroundImage: 'url("src/ClientComponent/HomePage/image/meetings-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#eee' }}>
+      <MDBContainer className="py-4">
+        <MDBRow>
+          <MDBCol lg="4">
+            <MDBCard className="mb-4 custom-card">
+              <MDBCardBody className="text-center">
+               {/*  <MDBCardImage
+                  src={myImage} // Use the imported image as src
+                  alt="avatar"
+                  className="rounded-circle"
+                  style={{ width: '150px' }}
+                  fluid
+                /> */}
+                <p className="text-white mb-1">Full Stack Developer</p>
+                <p className="text-white mb-4">Tunisia</p>
+                <div className="d-flex justify-content-center mb-2">
 
-  const [candidate, setCandidate] = useState(null);
+                </div>
+              </MDBCardBody>
+            </MDBCard>
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3500/candidates');
-        setCandidate(response.data[0]);
-      } catch (error) {
-        console.error('Error fetching candidate data:', error);
-      }
-    };
+          </MDBCol>
 
-    fetchData();
-  }, []);
+          <MDBCol lg="8">
+            <MDBCard className="mb-4 custom-card">
+              <MDBCardBody>
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Full Name</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-white">Johnatan Smith</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Email</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-white">example@example.com</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Phone</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-white">(097) 234-5678</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Mobile</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-white">(098) 765-4321</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Address</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-white">Bay Area, San Francisco, CA</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+              </MDBCardBody>
+            </MDBCard>
 
-  if (!candidate) {
-    return null;
-  }
+            <MDBRow>
+              <MDBCol md="6">
+                <MDBCard className="mb-4 mb-md-0 custom-card">
+                  <MDBCardBody>
+                    <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status</MDBCardText>
+                    <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>Web Design</MDBCardText>
+                    <MDBProgress className="rounded">
+                      <MDBProgressBar width={80} valuemin={0} valuemax={100} />
+                    </MDBProgress>
 
   return (
 
@@ -158,5 +217,8 @@ export default function Profile() {
         {candidate && <PDFGeneratorButton candidate={candidate} />}
       </div>
     </div>
+
+    </>
+
   );
 }

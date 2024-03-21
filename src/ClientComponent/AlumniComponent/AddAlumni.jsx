@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
-import Profile from '../HomePage/Profile'; 
 
-function CandidateForm() {
+
+function AlumniForm() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
@@ -25,7 +25,9 @@ function CandidateForm() {
         skills: '',
         languages: '',
         linkedinProfile: '',
-        profileImage: null
+        profileImage: null,
+        graduationYear: '',
+        achievements: ''
     });
 
     const handleChange = (e) => {
@@ -38,27 +40,23 @@ function CandidateForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         // Verify that all fields are filled
         const areFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
         if (!areFieldsFilled) {
             alert("Please fill in all fields.");
             return;
         }
-    
-        
-        try {
-            const response = await axios.post('http://localhost:3500/candidates', formData);
-            console.log(response.data);
-            
-            
-            navigate('/Profile', { candidate: formData }); 
 
+
+        try {
+            const response = await axios.post('http://localhost:3500/alumnis', formData);
+            console.log(response.data);
         } catch (error) {
             console.error("There was a problem with form submission:", error);
         }
     };
-    
+
 
     return (
         <>
@@ -67,6 +65,11 @@ function CandidateForm() {
                 <div className="container mt-5">
                     <form onSubmit={handleSubmit} className="card p-4">
                     <div className="row">
+                        <div className="col-12 text-center">
+                            <h1 style={{ color: 'Black' }}>Register As Alumni</h1>
+                        </div>
+                    </div>
+                        <div className="row">
                             <div className="col-md-6">
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name:</label>
@@ -99,19 +102,17 @@ function CandidateForm() {
                                 <div className="mb-3">
                                     <label htmlFor="cv" className="form-label">CV  (PDF only):</label><br/>
                                     <input type="file" accept=".pdf" name="cv" id="cv" className="form-control" onChange={handleChange} required />
-                             
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="dateOfBirth" className="form-label">Date of Birth:</label>
                                     <input type="date" id="dateOfBirth" className="form-control" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} required />
                                 </div>
-                            </div>
-                            <div className="col-md-6">
-                                
                                 <div className="mb-3">
                                     <label htmlFor="address" className="form-label">Address:</label>
                                     <input type="text" id="address" className="form-control" name="address" value={formData.address} onChange={handleChange} required />
                                 </div>
+                            </div>
+                            <div className="col-md-6">
                                 <div className="mb-3">
                                     <label htmlFor="city" className="form-label">City:</label>
                                     <input type="text" id="city" className="form-control" name="city" value={formData.city} onChange={handleChange} required />
@@ -126,34 +127,42 @@ function CandidateForm() {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
-                                    <input type="
-                        text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="skills" className="form-label">Skills (comma-separated):</label>
-                            <input type="text" id="skills" className="form-control" name="skills" value={formData.skills} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="languages" className="form-label">Languages (comma-separated):</label>
-                            <input type="text" id="languages" className="form-control" name="languages" value={formData.languages} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="linkedinProfile" className="form-label">LinkedIn Profile:</label>
-                            <input type="text" id="linkedinProfile" className="form-control" name="linkedinProfile" value={formData.linkedinProfile} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="profileImage" className="form-label">Profile Image:</label>
-                            <input type="file" accept=".png, .jpg, .jpeg" id="profileImage" className="form-control" name="profileImage" onChange={handleChange} />
-                        </div>
-                        </div>
+                                    <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="skills" className="form-label">Skills (comma-separated):</label>
+                                    <input type="text" id="skills" className="form-control" name="skills" value={formData.skills} onChange={handleChange} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="languages" className="form-label">Languages (comma-separated):</label>
+                                    <input type="text" id="languages" className="form-control" name="languages" value={formData.languages} onChange={handleChange} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="linkedinProfile" className="form-label">LinkedIn Profile:</label>
+                                    <input type="text" id="linkedinProfile" className="form-control" name="linkedinProfile" value={formData.linkedinProfile} onChange={handleChange} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="profileImage" className="form-label">Profile Image:</label>
+                                    <input type="file" accept=".png, .jpg, .jpeg" id="profileImage" className="form-control" name="profileImage" onChange={handleChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="graduationYear" className="form-label">Graduation Year:</label>
+                                    <input type="number"id="graduationYear" className="form-control" name="graduationYear" value={formData.graduationYear} onChange={handleChange} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="achievements" className="form-label">Achievements:</label>
+                                    <input type="text" id="achievements" className="form-control" name="achievements" value={formData.achievements} onChange={handleChange} />
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" className="btn btn-danger">Submit</button>
                     </form>
                 </div>
-            </section>
-            <Footer />
+                <Footer />
+    </section>
+
         </>
     );
 }
 
-export default CandidateForm;
+export default AlumniForm;
