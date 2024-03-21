@@ -11,6 +11,7 @@
 :root {
   /* COLORS */
   --BGCOLOR: #81272e;
+  --BGCOLOR1: #d6060696;
   --BORDER-COLOR: #FFF;
   --COLOR: #FFF;
   --ERROR: firebrick;
@@ -172,7 +173,7 @@ a:focus-visible {
   position: sticky;
   bottom: 0;
   z-index: 1;
-  background-color: var(--BGCOLOR);
+  background-color: var(--BGCOLOR1);
   padding: 0.5em;
   border-top: 1px solid var(--BORDER-COLOR);
   display: flex;
