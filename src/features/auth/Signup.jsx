@@ -6,6 +6,7 @@ import { setCredentials } from './authSlice'
 import { useSignupMutation } from './authApiSlice'
 import usePersist from '../../hooks/usePersist'
 import { ROLES } from "../../config/roles"
+import PulseLoader from 'react-spinners/PulseLoader'
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!#$%])[A-Za-z\d@!#$%]{8,}$/
@@ -112,7 +113,7 @@ const Signup = () => {
     const validRolesClass = !Boolean(roles.length) ? 'form__input--incomplete' : ''
 
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <PulseLoader color={"#FFF"} />
 
     const content = (
         <section className="public">

@@ -1,5 +1,6 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { BrowserRouter,Routes, Route } from 'react-router-dom';
+import useTitle from './hooks/useTitle';
 
 import HomeP from './ClientComponent/HomePage/HomeP';
 import Profile from './ClientComponent/HomePage/Profile';
@@ -7,8 +8,8 @@ import SignUpp from './ClientComponent/HomePage/SignUpp';
 import Loginn from './ClientComponent/HomePage/Loginn';
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
 import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
-import Signup from './features/auth/Signup';
-import Login from './features/auth/Login';
+//import Signup from './features/auth/Signup';
+//import Login from './features/auth/Login';
 import DashLayout from './components/DashLayout';
 
 import Header from './ClientComponent/HomePage/Header';
@@ -43,14 +44,16 @@ const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'))
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
 const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
-
+const Login = lazy(() => import('./features/auth/Login'));
+const Signup = lazy(() => import('./features/auth/Signup'));
 
 const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
 
 
 function App() {
-  const [count, setCount] = useState(0);
-
+/*   const [count, setCount] = useState(0);
+ */
+useTitle('Talent Hub')
 
   return (
     <div>
