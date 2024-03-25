@@ -49,11 +49,12 @@ const EditNoteForm = ({ note, users }) => {
 
     const onSaveNoteClicked = async (e) => {
         if (canSave) {
-            await updateNote({ id: note.id, user: userId, title, text, completed })
+            await updateNote({ id: note.id, title, text, completed,user: userId, })
         }
     }
 
     const onDeleteNoteClicked = async () => {
+        console.log(note.id)
         await deleteNote({ id: note.id })
     }
 
