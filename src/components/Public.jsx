@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 
 const Public = () => {
-    const content = (
+    
+     const content = (
         <section className="public">
             <header>
                 <h1>Welcome to <span className="nowrap">TalentHub!</span></h1>
@@ -25,6 +26,6 @@ const Public = () => {
         </section>
 
     )
-    return content
+    return content 
 }
 export default Public

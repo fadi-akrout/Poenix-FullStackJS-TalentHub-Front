@@ -66,7 +66,7 @@ useTitle('Talent Hub')
  */}
           <Route path ="/" element={<Layout />}>
              {/* public routes */}
-            <Route index element={<Public />} />
+            <Route index element={<Home />} />
             <Route path="/login" element={<Login  />}/>
             <Route path="/signup" element={<Signup />}></Route>
 
@@ -75,7 +75,7 @@ useTitle('Talent Hub')
             <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}>
             <Route element={<Prefetch />}>
             <Route path='dash' element={<DashLayout />}>
-              <Route index element={<Welcome />} />
+              <Route index element={<HomeP />} />
 
               <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
               <Route path="users">
