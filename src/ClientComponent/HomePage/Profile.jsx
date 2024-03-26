@@ -54,6 +54,7 @@ export default function Profile() {
   return (
 
 
+
     <div className="full-width-header">
       <Header />
       <section style={{ backgroundImage: 'url("src/ClientComponent/HomePage/image/meetings-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#eee' }}>
@@ -157,6 +158,7 @@ export default function Profile() {
       <div>
         {candidate && <PDFGeneratorButton candidate={candidate} />}
       </div>
+
     </div>
   );
 }

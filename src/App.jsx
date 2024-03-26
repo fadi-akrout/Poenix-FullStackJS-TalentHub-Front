@@ -8,9 +8,13 @@ import SignUpp from './ClientComponent/HomePage/SignUpp';
 import Loginn from './ClientComponent/HomePage/Loginn';
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
 import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
+<<<<<<< HEAD
+//import OfferList from './ClientComponent/OfferComponent/OfferList';
+=======
 //import Signup from './features/auth/Signup';
 //import Login from './features/auth/Login';
 import DashLayout from './components/DashLayout';
+>>>>>>> 867d6d644b2ea5f0caa1cf7723b3ced4a8cef0b8
 
 import Header from './ClientComponent/HomePage/Header';
 import Layout from './components/Layout';
@@ -42,6 +46,13 @@ const Alumni = lazy(() => import('./ClientComponent/AlumniComponent/Alumni'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
+<<<<<<< HEAD
+
+//const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
+//const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
+
+=======
+>>>>>>> 867d6d644b2ea5f0caa1cf7723b3ced4a8cef0b8
 const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
 const Login = lazy(() => import('./features/auth/Login'));
@@ -147,7 +158,12 @@ useTitle('Talent Hub')
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} /> */}
 
+<<<<<<< HEAD
+
+          <Route path="/updateoffer/:id" element={<UpdateOffer />} />
+=======
          
+>>>>>>> 867d6d644b2ea5f0caa1cf7723b3ced4a8cef0b8
 
 
             </Route>  {/* End Dash */}  

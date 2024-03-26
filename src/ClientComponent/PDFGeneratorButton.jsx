@@ -21,7 +21,7 @@ const generatePDF = (candidate) => {
         startY: 85,
         head: [['Years of Experience', 'Last Position']],
         body: [
-            [`${candidate.nbrYearsOfExperience}`, `${candidate.lastPostOccupied}`],
+            [`${candidate.nbrYearsOfExperience}`]
             // ... ajoutez d'autres expériences ici
         ],
     });
