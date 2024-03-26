@@ -7,6 +7,7 @@ import { useSignupMutation } from './authApiSlice'
 import usePersist from '../../hooks/usePersist'
 import { ROLES } from "../../config/roles"
 import PulseLoader from 'react-spinners/PulseLoader'
+import HeaderClient from '../../ClientComponent/Dashboard/HeaderClient'
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!#$%])[A-Za-z\d@!#$%]{8,}$/
@@ -116,14 +117,21 @@ const Signup = () => {
     if (isLoading) return <PulseLoader color={"#FFF"} />
 
     const content = (
-        <section className="public">
-            <header>
-                <h1> Signup</h1>
-            </header>
-            <main className="signup">
+        <>
+     
+
+        <HeaderClient />
+        
+             
+                <section className="contact-us" id="contact">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-12 align-self-center">
+                  <div className="row">
+                    <div className="col-lg-12">
                 <p ref={usernameRef} className={errClass} aria-live="assertive">{errMsg}</p>
 
-                <form className="form" onSubmit={handleSubmit}>
+                <form id="contact" onSubmit={handleSubmit}>
                     <label htmlFor="username">Username:</label>
                     <input
                          className={`form__input ${validUserClass}`}
@@ -177,11 +185,13 @@ const Signup = () => {
 
                     
                 </form>
-            </main>
-            <footer>
-                <Link to="/">Back to Home</Link>
-            </footer>
+                </div>
+          </div>
+          </div>
+          </div>
+          </div>
         </section>
+        </>
     )
 
     return content

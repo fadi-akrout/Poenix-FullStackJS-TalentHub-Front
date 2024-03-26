@@ -15,29 +15,11 @@ function HeaderClient() {
                         </Link>
                             <ul className="nav">
                                 <li className="scroll-to-section"><Link to="/">Home</Link></li>
-                                <li className="scroll-to-section"><Link to="/offers">Opprotunités D'emploi</Link></li>
-                                <li className="scroll-to-section"><Link to="/AddCandidate">Create Account</Link></li> 
-                                <li className="scroll-to-section"><Link to="/SignUpp">Join us</Link></li> 
-                                <li className="scroll-to-section"><Link to="/Loginn">Login</Link></li> 
+                                <li className="scroll-to-section"><Link to="/signup">Join us</Link></li> 
+                                <li className="scroll-to-section"><Link to="/login">Login</Link></li> 
 
-                                <li className="has-sub">
-                                    <a href="javascript:void(0)">Pages</a>
-                                    <ul className="sub-menu">
-                                        <li>< Link to="/evenements">Evenements</Link></li>
-                                        <li>< Link to="/addoffer">Add new offer</Link></li>
-
-                                        <li><a >Detail Des Offre</a></li>
-                                    </ul>
-                                </li>
-                                <li className="has-sub">
-                                    <a href="javascript:void(0)">Account</a>
-                                    <ul className="sub-menu">
-                                        <li>< Link to="/Signup">Sign up</Link></li>
-                                        <li>< Link to="/login">Sign in</Link></li>
-                                        <li>< Link to="/login">Sign in</Link></li>
-
-                                    </ul>
-                                </li>
+                               
+                            
 
                                 <li className="scroll-to-section"><a href="#contact">Contactez-nous</a></li>
                             </ul>

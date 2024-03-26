@@ -1,15 +1,20 @@
 import { Outlet } from 'react-router-dom'
 import DashHeader from './DashHeader'
 import DashFooter from './DashFooter'
-
+import HeaderClient from '../ClientComponent/Dashboard/HeaderClient';
 const DashLayout = () => {
     return (
         <>
-            <DashHeader />
-            <div className="dash-container">
+           {/*  <DashHeader /> */}
+
+           <HeaderClient/>
+           <section className="upcoming-meetings" id="meetings">
+
+          
                 <Outlet />
-            </div>
-            <DashFooter />
+                </section>
+           
+           {/*  <DashFooter /> */}
         </>
     )
 }
