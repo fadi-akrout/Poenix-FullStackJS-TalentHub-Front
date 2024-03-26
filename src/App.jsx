@@ -1,15 +1,35 @@
 import React, { useState, Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter,Routes, Route } from 'react-router-dom';
+import useTitle from './hooks/useTitle';
 
 import HomeP from './ClientComponent/HomePage/HomeP';
 import Profile from './ClientComponent/HomePage/Profile';
 import SignUpp from './ClientComponent/HomePage/SignUpp';
 import Loginn from './ClientComponent/HomePage/Loginn';
-
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
 import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
+<<<<<<< HEAD
 //import OfferList from './ClientComponent/OfferComponent/OfferList';
+=======
+//import Signup from './features/auth/Signup';
+//import Login from './features/auth/Login';
+import DashLayout from './components/DashLayout';
+>>>>>>> 867d6d644b2ea5f0caa1cf7723b3ced4a8cef0b8
 
+import Header from './ClientComponent/HomePage/Header';
+import Layout from './components/Layout';
+import Public from './components/Public';
+import Welcome from './features/auth/Welcome';
+import UsersList from './features/users/UsersList';
+import NotesList from './features/notes/NotesList';
+import EditUser from './features/users/EditUser';
+import NewUserForm from './features/users/NewUserForm';
+import EditNote from './features/notes/EditNote';
+import NewNote from './features/notes/NewNote';
+import Prefetch from './features/auth/Prefetch';
+import PersistLogin from './features/auth/PersistLogin';
+import RequireAuth from './features/auth/RequireAuth'
+import { ROLES } from './config/roles'
 
 
 
@@ -19,67 +39,144 @@ import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
 
 const Home = lazy(() => import('./ClientComponent/Dashboard/home'));
 const Admin = lazy(() => import('./AdminComponent/Admin'));
-const Candidate = lazy(() => import('./ClientComponent/CandidatsComponent/AddCandidate'));
+const AddStudent = lazy(() => import('./ClientComponent/StudentsComponent/AddStudent'));
+const Student = lazy(() => import('./ClientComponent/StudentsComponent/Students'));
+const AddAlumni = lazy(() => import('./ClientComponent/AlumniComponent/AddAlumni'));
+const Alumni = lazy(() => import('./ClientComponent/AlumniComponent/Alumni'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
+<<<<<<< HEAD
 
 //const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
 //const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
 
+=======
+>>>>>>> 867d6d644b2ea5f0caa1cf7723b3ced4a8cef0b8
 const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
+const Login = lazy(() => import('./features/auth/Login'));
+const Signup = lazy(() => import('./features/auth/Signup'));
 
-const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
-const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
 const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
 
 
-// const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
-// const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
-
-
-
-
-
-
-
-
 function App() {
-  const [count, setCount] = useState(0);
+/*   const [count, setCount] = useState(0);
+ */
+useTitle('Talent Hub')
 
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/Loginn" element={<Loginn />}></Route>
+{/*           <Route path="/Loginn" element={<Loginn />}></Route>
           <Route path="/SignUpp" element={<SignUpp />}></Route>
           <Route path="/" element={<Home />} />
-          <Route path="/AddCandidate" element={<Candidate />} />
-          <Route path="/evenements" element={<Evenement />} />
-          <Route path="/add-event" element={<AddEvent />} />
-          <Route path="/admin/*" element={<Admin />} />
-          <Route path="/offers" element={<OfferList />} />
+         
+ */}
+          <Route path ="/" element={<Layout />}>
+             {/* public routes */}
+            <Route index element={<Home />} />
+            <Route path="/login" element={<Login  />}/>
+            <Route path="/signup" element={<Signup />}></Route>
 
-          <Route path="/addoffer" element={<AddOffer />} />
+              {/* Protected Routes */}
+            <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}>
+            <Route element={<Prefetch />}>
+            <Route path='dash' element={<DashLayout />}>
+              <Route index element={<HomeP />} />
+
+              <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+              <Route path="users">
+              <Route index element={<UsersList />} />
+              <Route path=":id" element={<EditUser />} />
+              <Route path="new" element={<NewUserForm />} />
+            </Route>
+            </Route>
+
+            <Route path="notes">
+              <Route index element={<NotesList />} />
+              <Route path=":id" element={<EditNote />} />
+              <Route path="new" element={<NewNote />} />
+            </Route>
+
+            <Route path="addoffer">
+              <Route index element ={<AddOffer />} />
+            </Route>
+            <Route path="recruiters">
+              <Route index element ={<Recruiters />} />
+            </Route>
+            <Route path="add-recruiter">
+              <Route index element ={<AddRecruiter />} />
+            </Route>
+            <Route path="updateoffer/:id">
+              <Route index element ={<UpdateOffer />} />
+            </Route>
+          {/*   <Route path="AddCandidate">
+              <Route index element ={<Candidate />} />
+            </Route> */}
+            <Route path="evenements">
+              <Route index element ={<Evenement />} />
+            </Route>
+            <Route path="add-event">
+              <Route index element ={<AddEvent />} />
+            </Route>
+            <Route path="admin/*">
+              <Route index element ={<Admin />} />
+            </Route>
+            <Route path="offers">
+              <Route index element ={<UpdateOffer />} />
+            </Route>
+            <Route path="AddStudent">
+              <Route index element ={<AddStudent />} />
+            </Route>
+             <Route path="Students">
+              <Route index element ={<Student />} />
+            </Route>
+             <Route path="AddAlumni">
+              <Route index element ={<AddAlumni />} />
+            </Route>
+           <Route path="Alumnis">
+              <Route index element ={<Alumni />} />
+            </Route>
+             <Route path="staff">
+              <Route index element ={<AddStaff />} />
+            </Route>
+
+
+         {/*    <Route path="/addoffer" element={<AddOffer />} />
           <Route path="/HomeP" element={<HomeP />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/recruiters" element={<Recruiters />} />
           <Route path="/add-recruiter" element={<AddRecruiter />} />
+          <Route path="/addoffer" element={<AddOffer />} />
+          <Route path="/updateoffer/:id" element={<UpdateOffer />} />
+           <Route path="/evenements" element={<Evenement />} />
+          <Route path="/add-event" element={<AddEvent />} />
+          <Route path="/admin/*" element={<Admin />} />
+          <Route path="/offers" element={<OfferList />} /> */}
 
-
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/staff" element={<AddStaff />}></Route>
-
-          {/* <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route> */}
-
-
-
+<<<<<<< HEAD
 
           <Route path="/updateoffer/:id" element={<UpdateOffer />} />
+=======
+         
+>>>>>>> 867d6d644b2ea5f0caa1cf7723b3ced4a8cef0b8
 
+
+            </Route>  {/* End Dash */}  
+            </Route> 
+            </Route> 
+            </Route>  {/* End Protected Routes */}     
+
+
+          </Route>
+           
+
+
+    
 
         </Routes>
       </Suspense>

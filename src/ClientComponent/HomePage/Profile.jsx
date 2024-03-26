@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import PDFGeneratorButton from '../PDFGeneratorButton';
+
 import {
   MDBCol,
   MDBContainer,
@@ -7,23 +10,51 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-  MDBProgress,
-  MDBProgressBar,
-
+  MDBListGroup,
+  MDBListGroupItem
 } from 'mdb-react-ui-kit';
+//import myImage from "D:/Pics/7609904.png"
+
+
+import myImage from "./image/talenthublogo.png";
+
 
 
 
 //import myImage from "D:/Pics/7609904.png"
 
 import './Profile.css';
-import Footer from '../Dashboard/Footer';
 import Header from './Header';
-
-
+import { FaLinkedin } from "react-icons/fa";
+import { GiSkills } from "react-icons/gi";
+import { FaLanguage } from "react-icons/fa6";
+import Footer from '../Dashboard/Footer';
 
 export default function Profile() {
+
+  const [candidate, setCandidate] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3500/candidates');
+        setCandidate(response.data[0]);
+      } catch (error) {
+        console.error('Error fetching candidate data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!candidate) {
+    return null;
+  }
+
   return (
+
+
+
     <div className="full-width-header">
       <Header />
       <section style={{ backgroundImage: 'url("src/ClientComponent/HomePage/image/meetings-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#eee' }}>
@@ -42,7 +73,6 @@ export default function Profile() {
                   <p className="text-black mb-1">{candidate.name}  {candidate.lastname}</p>
                   <p className="text-Black mb-4">{candidate.actualPost}</p>
                   <div className="d-flex justify-content-center mb-2">
-
                   </div>
                 </MDBCardBody>
               </MDBCard>
@@ -124,10 +154,10 @@ export default function Profile() {
           </MDBRow>
         </MDBContainer>
         <Footer />
-        <div>
-          {candidate && <PDFGeneratorButton candidate={candidate} />}
-        </div>
       </section>
+      <div>
+        {candidate && <PDFGeneratorButton candidate={candidate} />}
+      </div>
 
     </div>
   );

@@ -16,12 +16,12 @@ function Loginn() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:3000/Loginn', { email, password });
+      const res = await axios.post('http://localhost:3500/auth', { email, password });
       if (res.data.Status === "Success") {
         if (res.data.role === "Admin") {
           navigate('/admin/home');
         } else {
-          navigate('/AddCandidate');
+          navigate('/AddStudent');
         }
       } else {
         console.log("Login failed: ", res.data.message);
@@ -32,7 +32,7 @@ function Loginn() {
     setLoading(false);
   };
 
-  useEffect(() => {
+ /*  useEffect(() => {
     // Redirect user if already logged in
     const checkAuth = async () => {
       try {
@@ -44,8 +44,8 @@ function Loginn() {
         console.error("Error checking authentication:", error);
       }
     };
-    checkAuth();
-  }, [navigate]);
+   // checkAuth();
+  }, [navigate]); */
 
   return (
     <MDBContainer fluid className='bg-image d-flex justify-content-center align-items-center' style={{ minHeight: '100vh' }}>
