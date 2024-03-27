@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
+import { Link ,useNavigate} from 'react-router-dom';
+import { FaEdit } from 'react-icons/fa';
+import { MdDeleteForever } from 'react-icons/md'
 function Offers() {
   const [offers, setOffers] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get('http://localhost:3500/offers')
@@ -15,6 +16,20 @@ function Offers() {
         console.error('There was an error!', error);
       });
   }, []);
+  const handleDelete = (id) => {
+    axios.delete('http://localhost:3500/offers/' + id)
+        .then(response => {
+            console.log(response)
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error("Il y a eu une erreur !", error);
+        });
+
+}
+const navigateToUpdateOffer = (offerId) => {
+    navigate(`./updateoffer/${offerId}`);
+}
 
   return (
     <section className="upcoming-meetings" id="meetings">
@@ -48,6 +63,8 @@ function Offers() {
                     </li>
                   </ul>
                   <Link to="/CandidatsP" className="btn btn-danger mt-3">Postulez Maintenant</Link>
+                  <MdDeleteForever onClick={(e) => handleDelete(offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
+                 <FaEdit onClick={() => navigateToUpdateOffer(offer._id)} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
                 </div>
               </div>
             </div>

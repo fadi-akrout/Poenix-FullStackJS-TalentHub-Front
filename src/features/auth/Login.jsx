@@ -7,6 +7,7 @@ import { useLoginMutation } from './authApiSlice'
 import usePersist from '../../hooks/usePersist'
 import PulseLoader from 'react-spinners/PulseLoader'
 import HeaderClient from '../../ClientComponent/Dashboard/HeaderClient'
+import Footer from '../../ClientComponent/Dashboard/Footer'
 
 const Login = () => {
     const userRef = useRef()
@@ -77,6 +78,11 @@ const Login = () => {
                 <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
 
                 <form id="contact" onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="col-lg-12">
+                    <h2>Login</h2>
+                  </div>
+                  <fieldset>
                     <label htmlFor="email">Email:</label>
                     <input
                         className="form-control"
@@ -88,7 +94,8 @@ const Login = () => {
                         autoComplete="on"
                         required
                     />
-
+                   </fieldset>
+                   <fieldset>
                     <label htmlFor="password">Password:</label>
                     <input
                         className="form-control"
@@ -98,9 +105,10 @@ const Login = () => {
                         value={password}
                         required
                     />
-                    <button className="form__submit-button">Sign In</button>
-
+                   </fieldset>
+                   <fieldset>
                     <label htmlFor="persist" className="form__persist">
+                    Trust This Device
                         <input
                             type="checkbox"
                             className="form__checkbox"
@@ -108,8 +116,12 @@ const Login = () => {
                             onChange={handleToggle}
                             checked={persist}
                         />
-                        Trust This Device
+                       
                     </label>
+                    </fieldset>
+                    <button className="form__submit-button">LogIn</button>
+
+                    </div>
                 </form>
           
           </div>
@@ -118,6 +130,9 @@ const Login = () => {
           </div>
           </div>
         </section>
+        <section className="upcoming-meetings" id="meetings">
+              <Footer />
+          </section>
         </>
     )
 
