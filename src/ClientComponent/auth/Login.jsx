@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Footer from '../Dashboard/Footer';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +23,13 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
+    <section className="contact-us" id="contact">
+    <div className="container">
+    <div className="row">
+  
+      <div className="col-lg-12">
+    <form id="contact" onSubmit={handleSubmit}>
       <input
         type="email"
         placeholder="Email"
@@ -37,6 +44,17 @@ const Login = () => {
       />
       <button type="submit">Log In</button>
     </form>
+    </div> 
+    </div>  
+    </div>  
+
+
+      
+    </section>
+    <section className="upcoming-meetings" id="meetings">
+              <Footer />
+          </section>
+    </>
   );
 };
 

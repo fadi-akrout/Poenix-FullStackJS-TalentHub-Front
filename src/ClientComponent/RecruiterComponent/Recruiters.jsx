@@ -26,7 +26,7 @@ function Recruiters() {
                         <RecruiterDetail recruiter={recruiter} setRecruiters={setRecruiters} key={recruiter._id} />
                     ))}
                     <div className="text-center mt-4">
-                        <Link to="/add-recruiter" className="btn btn-primary">Ajouter un recruteur</Link>
+                        <Link to="/dash/add-recruiter" className="btn btn-primary">Ajouter un recruteur</Link>
                     </div>
                 </div>
                 <Footer />
@@ -81,6 +81,7 @@ function RecruiterDetail({ recruiter, setRecruiters }) {
                 </div>
             ) : (
                 <div className="card-body">
+                    
                     <h5 className="card-title">{recruiter.name}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">{recruiter.email}</h6>
                     <p className="card-text">{recruiter.company}</p>
