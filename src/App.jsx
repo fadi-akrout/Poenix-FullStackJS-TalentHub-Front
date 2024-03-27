@@ -165,8 +165,8 @@ useTitle('Talent Hub')
 
 
 
-          <Route path="/updateoffer/:id" element={<UpdateOffer />} />
-
+         {/*  <Route path="/updateoffer/:id" element={<UpdateOffer />} />
+ */}
 
 
             </Route>  {/* End Dash */}  
