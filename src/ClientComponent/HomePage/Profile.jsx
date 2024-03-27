@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import PDFGeneratorButton from '../PDFGeneratorButton';
+
 import {
   MDBCol,
   MDBContainer,
@@ -8,7 +11,9 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBListGroup,
+
 } from 'mdb-react-ui-kit';
+
 
 
 
@@ -16,9 +21,15 @@ import {
 //import myImage from "D:/Pics/7609904.png"
 
 import './Profile.css';
-import Footer from '../Dashboard/Footer';
 import Header from './Header';
+import { FaLinkedin } from "react-icons/fa";
+import { GiSkills } from "react-icons/gi";
+import { FaLanguage } from "react-icons/fa6";
+import Footer from '../Dashboard/Footer';
 
+export default function Profile() {
+
+  const [candidate, setCandidate] = useState(null);
 
 
 export default function Profile() {

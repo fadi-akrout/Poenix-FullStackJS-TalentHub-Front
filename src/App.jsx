@@ -1,5 +1,6 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { BrowserRouter,Routes, Route } from 'react-router-dom';
+import useTitle from './hooks/useTitle';
 
 import HomeP from './ClientComponent/HomePage/HomeP';
 import Profile from './ClientComponent/HomePage/Profile';
@@ -7,9 +8,13 @@ import SignUpp from './ClientComponent/HomePage/SignUpp';
 import Loginn from './ClientComponent/HomePage/Loginn';
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
 import AddRecruiter from './ClientComponent/RecruiterComponent/AddRecruiter';
-import Signup from './ClientComponent/auth/Signup';
-import Login from './features/auth/Login';
+
+//import OfferList from './ClientComponent/OfferComponent/OfferList';
+
+//import Signup from './features/auth/Signup';
+//import Login from './features/auth/Login';
 import DashLayout from './components/DashLayout';
+
 
 import Header from './ClientComponent/HomePage/Header';
 import Layout from './components/Layout';
@@ -23,6 +28,8 @@ import EditNote from './features/notes/EditNote';
 import NewNote from './features/notes/NewNote';
 import Prefetch from './features/auth/Prefetch';
 import PersistLogin from './features/auth/PersistLogin';
+import RequireAuth from './features/auth/RequireAuth'
+import { ROLES } from './config/roles'
 
 
 
@@ -39,15 +46,24 @@ const Alumni = lazy(() => import('./ClientComponent/AlumniComponent/Alumni'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
+
+
+//const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
+//const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
+
+
 const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'));
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
+const Login = lazy(() => import('./features/auth/Login'));
+const Signup = lazy(() => import('./features/auth/Signup'));
 
 const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
 
 
 function App() {
-  const [count, setCount] = useState(0);
-
+/*   const [count, setCount] = useState(0);
+ */
+useTitle('Talent Hub')
 
   return (
     <div>
@@ -59,19 +75,24 @@ function App() {
          
  */}
           <Route path ="/" element={<Layout />}>
-            <Route index element={<Public />} />
+             {/* public routes */}
+            <Route index element={<Home />} />
             <Route path="/login" element={<Login  />}/>
             <Route path="/signup" element={<Signup />}></Route>
 
+              {/* Protected Routes */}
             <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}>
             <Route element={<Prefetch />}>
             <Route path='dash' element={<DashLayout />}>
-              <Route index element={<Welcome />} />
+              <Route index element={<HomeP />} />
 
+              <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
               <Route path="users">
               <Route index element={<UsersList />} />
               <Route path=":id" element={<EditUser />} />
               <Route path="new" element={<NewUserForm />} />
+            </Route>
             </Route>
 
             <Route path="notes">
@@ -95,6 +116,7 @@ function App() {
             <Route path="/dash/AddStudent">
               <Route index element ={<AddStudent />} />
             </Route>
+
             <Route path="evenements">
               <Route index element ={<Evenement />} />
             </Route>
@@ -136,12 +158,16 @@ function App() {
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/offers" element={<OfferList />} /> */}
 
-         
 
 
-            </Route>    
+          <Route path="/updateoffer/:id" element={<UpdateOffer />} />
+
+
+
+            </Route>  {/* End Dash */}  
             </Route> 
-            </Route>       
+            </Route> 
+            </Route>  {/* End Protected Routes */}     
 
 
           </Route>
