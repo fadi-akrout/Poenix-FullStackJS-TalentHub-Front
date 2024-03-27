@@ -1,5 +1,5 @@
 import React, { useState, Suspense, lazy } from 'react';
-import { BrowserRouter,Routes, Route } from 'react-router-dom';
+import { BrowserRouter,Routes, Route ,Navigate } from 'react-router-dom';
 import useTitle from './hooks/useTitle';
 
 import HomeP from './ClientComponent/HomePage/HomeP';
@@ -79,13 +79,17 @@ useTitle('Talent Hub')
              {/* public routes */}
             <Route index element={<Home />} />
             <Route path="/login" element={<Login  />}/>
-            <Route path="/signup" element={<Signup />}></Route>
+            <Route path="/signup" element={<Signup />}/>
+
+         
 
               {/* Protected Routes */}
             <Route element={<PersistLogin />}>
             <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}>
             <Route element={<Prefetch />}>
             <Route path='dash' element={<DashLayout />}>
+               {/* Add a catch-all route */}
+            <Route path="*" element={<Navigate to="/dash" />} />
               <Route index element={<HomeP />} />
 
               <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
@@ -102,12 +106,16 @@ useTitle('Talent Hub')
               <Route path="new" element={<NewNote />} />
             </Route>
 
+
             <Route path="reset-password">
               <Route index element ={<ResetPassword />} />
             </Route>
 
+
+  <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter]} />}>
             <Route path="addoffer">
               <Route index element ={<AddOffer />} />
+            </Route>
             </Route>
             <Route path="recruiters">
               <Route index element ={<Recruiters />} />
