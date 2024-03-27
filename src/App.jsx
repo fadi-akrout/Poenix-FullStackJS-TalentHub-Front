@@ -1,5 +1,7 @@
 import React, { useState, Suspense, lazy } from 'react';
+
 import { BrowserRouter,Routes, Route ,Navigate } from 'react-router-dom';
+
 import useTitle from './hooks/useTitle';
 
 import HomeP from './ClientComponent/HomePage/HomeP';
@@ -62,104 +64,106 @@ const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'))
 
 
 function App() {
-/*   const [count, setCount] = useState(0);
- */
-useTitle('Talent Hub')
+  /*   const [count, setCount] = useState(0);
+   */
+  useTitle('Talent Hub')
 
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-{/*           <Route path="/Loginn" element={<Loginn />}></Route>
+          {/*           <Route path="/Loginn" element={<Loginn />}></Route>
           <Route path="/SignUpp" element={<SignUpp />}></Route>
           <Route path="/" element={<Home />} />
          
  */}
-          <Route path ="/" element={<Layout />}>
-             {/* public routes */}
+          <Route path="/" element={<Layout />}>
+            {/* public routes */}
             <Route index element={<Home />} />
+
             <Route path="/login" element={<Login  />}/>
             <Route path="/signup" element={<Signup />}/>
 
          
 
-              {/* Protected Routes */}
+
+            {/* Protected Routes */}
             <Route element={<PersistLogin />}>
-            <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}>
-            <Route element={<Prefetch />}>
-            <Route path='dash' element={<DashLayout />}>
-               {/* Add a catch-all route */}
-            <Route path="*" element={<Navigate to="/dash" />} />
+
+              <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}>
+                <Route element={<Prefetch />}>
+                  <Route path='dash' element={<DashLayout />}>
+                    <Route path="*" element={<Navigate to="/dash" />} />
               <Route index element={<HomeP />} />
+                
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                      <Route path="users">
+                        <Route index element={<UsersList />} />
+                        <Route path=":id" element={<EditUser />} />
+                        <Route path="new" element={<NewUserForm />} />
+                      </Route>
+                    </Route>
 
-              <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-              <Route path="users">
-              <Route index element={<UsersList />} />
-              <Route path=":id" element={<EditUser />} />
-              <Route path="new" element={<NewUserForm />} />
-            </Route>
-            </Route>
+                    <Route path="notes">
+                      <Route index element={<NotesList />} />
+                      <Route path=":id" element={<EditNote />} />
+                      <Route path="new" element={<NewNote />} />
+                    </Route>
 
-            <Route path="notes">
-              <Route index element={<NotesList />} />
-              <Route path=":id" element={<EditNote />} />
-              <Route path="new" element={<NewNote />} />
-            </Route>
-
-
-            <Route path="reset-password">
-              <Route index element ={<ResetPassword />} />
-            </Route>
-
-
-  <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter]} />}>
+                   <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter]} />}>
             <Route path="addoffer">
               <Route index element ={<AddOffer />} />
             </Route>
             </Route>
-            <Route path="recruiters">
-              <Route index element ={<Recruiters />} />
+<Route path="reset-password">
+              <Route index element ={<ResetPassword />} />
             </Route>
-            <Route path="add-recruiter">
-              <Route index element ={<AddRecruiter />} />
-            </Route>
-            <Route path="updateoffer/:id">
-              <Route index element ={<UpdateOffer />} />
-            </Route>
-            <Route path="/dash/AddStudent">
-              <Route index element ={<AddStudent />} />
-            </Route>
-
-            <Route path="evenements">
-              <Route index element ={<Evenement />} />
-            </Route>
-            <Route path="add-event">
-              <Route index element ={<AddEvent />} />
-            </Route>
-            <Route path="admin/*">
-              <Route index element ={<Admin />} />
-            </Route>
-            <Route path="offers">
-              <Route index element ={<UpdateOffer />} />
-            </Route>
-            <Route path="AddStudent">
-              <Route index element ={<AddStudent />} />
-            </Route>
-             <Route path="Students">
-              <Route index element ={<Student />} />
-            </Route>
-             <Route path="/dash/AddAlumni">
-              <Route index element ={<AddAlumni />} />
-            </Route>
-           <Route path="/dash/Alumnis">
-              <Route index element ={<Alumni />} />
-            </Route>
-             <Route path="staff">
-              <Route index element ={<AddStaff />} />
-            </Route>
+                    <Route path="recruiters">
+                      <Route index element={<Recruiters />} />
+                    </Route>
+                    <Route path="add-recruiter">
+                      <Route index element={<AddRecruiter />} />
+                    </Route>
+                    <Route path="updateoffer/:id">
+                      <Route index element={<UpdateOffer />} />
+                    </Route>
 
 
-         {/*    <Route path="/addoffer" element={<AddOffer />} />
+                    {/*   <Route path="AddCandidate">
+              <Route index element ={<Candidate />} />
+            </Route> */}
+                    <Route path="evenements">
+                      <Route index element={<Evenement />} />
+                    </Route>
+                    <Route path="add-event">
+                      <Route index element={<AddEvent />} />
+                    </Route>
+                    <Route path="admin/*">
+                      <Route index element={<Admin />} />
+                    </Route>
+                    <Route path="offers">
+                      <Route index element={<UpdateOffer />} />
+                    </Route>
+                    <Route path="AddStudent">
+                      <Route index element={<AddStudent />} />
+                    </Route>
+                    <Route path="Students">
+                      <Route index element={<Student />} />
+                    </Route>
+                    <Route path="AddAlumni">
+                      <Route index element={<AddAlumni />} />
+                    </Route>
+                    <Route path="Alumnis">
+                      <Route index element={<Alumni />} />
+                    </Route>
+                    <Route path="staff">
+                      <Route index element={<AddStaff />} />
+                    </Route>
+
+
+
+                    {/*    <Route path="/addoffer" element={<AddOffer />} />
+
           <Route path="/HomeP" element={<HomeP />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/recruiters" element={<Recruiters />} />
@@ -169,24 +173,26 @@ useTitle('Talent Hub')
            <Route path="/evenements" element={<Evenement />} />
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
-          <Route path="/offers" element={<OfferList />} /> */}
+          <Route path="/offers" element={<OfferList />} /> */} 
 
 
 
 
 
 
-            </Route>  {/* End Dash */}  
-            </Route> 
-            </Route> 
-            </Route>  {/* End Protected Routes */}     
+
+
+                  </Route>  {/* End Dash */}
+                </Route>
+              </Route>
+            </Route>  {/* End Protected Routes */}
 
 
           </Route>
-           
 
 
-    
+
+
 
         </Routes>
       </Suspense>

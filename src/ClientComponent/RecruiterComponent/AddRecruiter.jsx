@@ -36,7 +36,7 @@ function AddRecruiter() {
         try {
             const response = await axios.post('http://localhost:3500/recruiters', formData);
             console.log(response.data);
-            navigate('/recruiters');
+            navigate('/dash/recruiters');
         } catch (error) {
             console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
         }

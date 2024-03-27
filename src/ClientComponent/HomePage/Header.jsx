@@ -37,7 +37,9 @@ function Header() {
               </Link>
             </li>}
             <li className="nav-item text-center mx-2 mx-lg-1">
-              <Link to="./add-event" className="nav-link">                <div>
+
+              <Link to="/dash/add-event" className="nav-link">                <div>
+
                 <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
               </div>
                 Evenements
