@@ -32,7 +32,7 @@ export default function Profile() {
   const [candidate, setCandidate] = useState(null);
 
 
-export default function Profile() {
+
   return (
     <div className="full-width-header">
       <Header />
