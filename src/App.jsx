@@ -92,8 +92,8 @@ function App() {
             <Route path="updateoffer/:id">
               <Route index element ={<UpdateOffer />} />
             </Route>
-            <Route path="AddCandidate">
-              <Route index element ={<Candidate />} />
+            <Route path="/dash/AddStudent">
+              <Route index element ={<AddStudent />} />
             </Route>
             <Route path="evenements">
               <Route index element ={<Evenement />} />
@@ -113,10 +113,10 @@ function App() {
              <Route path="Students">
               <Route index element ={<Student />} />
             </Route>
-             <Route path="AddAlumni">
+             <Route path="/dash/AddAlumni">
               <Route index element ={<AddAlumni />} />
             </Route>
-           <Route path="Alumnis">
+           <Route path="/dash/Alumnis">
               <Route index element ={<Alumni />} />
             </Route>
              <Route path="staff">

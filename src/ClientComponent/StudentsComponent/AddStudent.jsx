@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import HeaderClient from '../Dashboard/HeaderClient';
-import Footer from '../Dashboard/Footer';
-import Profile from '../HomePage/Profile'; 
 
 function StudentForm() {
     const navigate = useNavigate();
@@ -39,7 +36,7 @@ function StudentForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        // Verify that all fields are filled
+        
         const areFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
         if (!areFieldsFilled) {
             alert("Please fill in all fields.");
@@ -62,8 +59,8 @@ function StudentForm() {
 
     return (
         <>
-            <HeaderClient />
-            <section className="upcoming-meetings" id="meetings">
+           
+           <section className="studentsw" >
                 <div className="container mt-5">
                     <form onSubmit={handleSubmit} className="card p-4">
                     <div className="row">
@@ -154,7 +151,7 @@ function StudentForm() {
                         <button type="submit" className="btn btn-danger">Submit</button>
                     </form>
                 </div>
-                <Footer />
+            
             </section>
         </>
     );

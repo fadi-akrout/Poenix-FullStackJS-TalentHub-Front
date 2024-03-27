@@ -8,10 +8,8 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBListGroup,
-  MDBListGroupItem
-import myImage from "./image/talenthublogo.png";
-
 } from 'mdb-react-ui-kit';
+
 
 
 
@@ -25,94 +23,6 @@ import Header from './Header';
 
 export default function Profile() {
   return (
-    <>
-    <Header />
-    <section style={{ backgroundImage: 'url("src/ClientComponent/HomePage/image/meetings-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#eee' }}>
-      <MDBContainer className="py-4">
-        <MDBRow>
-          <MDBCol lg="4">
-            <MDBCard className="mb-4 custom-card">
-              <MDBCardBody className="text-center">
-               {/*  <MDBCardImage
-                  src={myImage} // Use the imported image as src
-                  alt="avatar"
-                  className="rounded-circle"
-                  style={{ width: '150px' }}
-                  fluid
-                /> */}
-                <p className="text-white mb-1">Full Stack Developer</p>
-                <p className="text-white mb-4">Tunisia</p>
-                <div className="d-flex justify-content-center mb-2">
-
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-
-          </MDBCol>
-
-          <MDBCol lg="8">
-            <MDBCard className="mb-4 custom-card">
-              <MDBCardBody>
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Full Name</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-white">Johnatan Smith</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Email</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-white">example@example.com</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Phone</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-white">(097) 234-5678</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-white">(098) 765-4321</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Address</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-white">Bay Area, San Francisco, CA</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-              </MDBCardBody>
-            </MDBCard>
-
-            <MDBRow>
-              <MDBCol md="6">
-                <MDBCard className="mb-4 mb-md-0 custom-card">
-                  <MDBCardBody>
-                    <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status</MDBCardText>
-                    <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>Web Design</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={80} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-  return (
-
-
     <div className="full-width-header">
       <Header />
       <section style={{ backgroundImage: 'url("src/ClientComponent/HomePage/image/meetings-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#eee' }}>
@@ -121,6 +31,7 @@ export default function Profile() {
             <MDBCol lg="4">
               <MDBCard className="mb-4 custom-card bg-white">
                 <MDBCardBody className="text-center">
+                  {/* Assuming `candidate.profileImage` exists */}
                   <MDBCardImage
                     src={candidate.profileImage}
                     alt="avatar"
@@ -217,8 +128,6 @@ export default function Profile() {
         {candidate && <PDFGeneratorButton candidate={candidate} />}
       </div>
     </div>
-
-    </>
-
   );
 }
+
