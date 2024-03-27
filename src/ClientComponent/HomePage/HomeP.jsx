@@ -7,6 +7,7 @@ import Evenements from '../EventComponent/Evenement';
 function HomeP() {
   const [headerVisible, setHeaderVisible] = useState(true);
 
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;

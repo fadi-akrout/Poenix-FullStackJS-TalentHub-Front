@@ -28,7 +28,7 @@ function Evenements() {
                         <Evenement evenement={evenement} setEvenements={setEvenements} key={evenement._id} />
                     ))}
                     <div className="text-center mt-4">
-                        <Link to="/add-event" className="btn btn-danger">Ajouter un événement</Link>
+                        <Link to="/dash/add-event" className="btn btn-danger">Ajouter un événement</Link>
                     </div>
                 </div>
 

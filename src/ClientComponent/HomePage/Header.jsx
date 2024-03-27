@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faEnvelope, faBell, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 import logoImage from './image/Logo_ESPRIT_Ariana.jpg';
 import './Header.css';
-
+import useAuth from '../../hooks/useAuth'
 function Header() {
+  const { username,email, isStudent, isAdmin ,isRecruter} = useAuth()
   return (
     <nav className="navbar navbar-expand-lg" style={{ height: '80px', padding: '0', width: '100%' }}>
       <div className="container-fluid">
@@ -27,16 +28,18 @@ function Header() {
                 Home
               </Link>
             </li>
-            <li className="nav-item text-center mx-2 mx-lg-1">
-              <Link to="/addoffer" className="nav-link">
+           {(isRecruter | isAdmin ) && <li className="nav-item text-center mx-2 mx-lg-1">
+              <Link to="./addoffer" className="nav-link">
                 <div>
                   <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
                 </div>
                 Offres
               </Link>
-            </li>
+            </li>}
             <li className="nav-item text-center mx-2 mx-lg-1">
-              <Link to="/add-event" className="nav-link">                <div>
+
+              <Link to="/dash/add-event" className="nav-link">                <div>
+
                 <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
               </div>
                 Evenements
@@ -60,7 +63,7 @@ function Header() {
           </ul>
           <ul className="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
             <li className="nav-item text-center mx-2 mx-lg-1">
-              <Link to="/Profile" className="nav-link">
+              <Link to="./Profile" className="nav-link">
                 <div>
                   <FontAwesomeIcon icon={faBell} className="fa-lg mb-1" />
                   <span className="badge rounded-pill badge-notification bg-info">11</span>
