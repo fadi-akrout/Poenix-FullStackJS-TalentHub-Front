@@ -129,7 +129,7 @@ const Signup = () => {
                 <div className="col-lg-12 align-self-center">
                   <div className="row">
                     <div className="col-lg-12">
-                <p ref={usernameRef} className={errClass} aria-live="assertive">{errMsg}</p>
+                <p style={{color:'green'}} ref={usernameRef} className={errClass} aria-live="assertive">{errMsg}</p>
 
                 <form id="contact" onSubmit={handleSubmit}>
                     <label htmlFor="username">Username:</label>

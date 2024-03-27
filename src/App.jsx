@@ -46,6 +46,7 @@ const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
 const Login = lazy(() => import('./features/auth/Login'));
 const Signup = lazy(() => import('./features/auth/Signup'));
+const ResetPassword = lazy(() => import('./features/auth/resetPassword'));
 
 const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
 
@@ -89,6 +90,10 @@ useTitle('Talent Hub')
               <Route index element={<NotesList />} />
               <Route path=":id" element={<EditNote />} />
               <Route path="new" element={<NewNote />} />
+            </Route>
+
+            <Route path="reset-password">
+              <Route index element ={<ResetPassword />} />
             </Route>
 
             <Route path="addoffer">
