@@ -7,9 +7,10 @@ import OfferList from "../OfferComponent/OfferList";
 export default function Home() {
   return (
     <>
-    <div>
+  
+  <HeaderClient />
 
-      <HeaderClient />
+     
 
       <section className="section main-banner" id="top" data-section="section1">
         <video autoPlay muted loop id="bg-video">
@@ -81,12 +82,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+         <Footer />
       </section>
 
       {/* Additional sections such as "our-facts" and "contact-us" can follow here */}
 
-      <Footer />
-    </div>
+     
+    
     </>
   );
 }

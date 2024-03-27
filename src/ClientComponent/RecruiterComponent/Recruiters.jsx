@@ -81,6 +81,7 @@ function RecruiterDetail({ recruiter, setRecruiters }) {
                 </div>
             ) : (
                 <div className="card-body">
+                    
                     <h5 className="card-title">{recruiter.name}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">{recruiter.email}</h6>
                     <p className="card-text">{recruiter.company}</p>

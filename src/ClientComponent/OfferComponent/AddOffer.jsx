@@ -119,6 +119,7 @@ function AddOffer() {
                     <fieldset>
                       <button type="submit" id="form-submit" className="button">Add offer</button>
                     </fieldset>
+                    
                   </div>
                 </div>
               </form>
@@ -128,8 +129,12 @@ function AddOffer() {
        
       </div>
     </div>
-   
+    
 
+
+  </section>
+  <section className="upcoming-meetings" id="meetings">
+    <Footer />
   </section>
     </>
   );

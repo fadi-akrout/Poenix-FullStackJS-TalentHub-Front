@@ -1,5 +1,7 @@
 import React, { useState, Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { BrowserRouter,Routes, Route ,Navigate } from 'react-router-dom';
+
 import useTitle from './hooks/useTitle';
 
 import HomeP from './ClientComponent/HomePage/HomeP';
@@ -56,6 +58,7 @@ const OfferList = lazy(() => import('./ClientComponent/OfferComponent/OfferList'
 const UpdateOffer = lazy(() => import('./ClientComponent/OfferComponent/UpdateOffer'));
 const Login = lazy(() => import('./features/auth/Login'));
 const Signup = lazy(() => import('./features/auth/Signup'));
+const ResetPassword = lazy(() => import('./features/auth/resetPassword'));
 
 const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
 
@@ -77,16 +80,22 @@ function App() {
           <Route path="/" element={<Layout />}>
             {/* public routes */}
             <Route index element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />}></Route>
+
+            <Route path="/login" element={<Login  />}/>
+            <Route path="/signup" element={<Signup />}/>
+
+         
+
 
             {/* Protected Routes */}
             <Route element={<PersistLogin />}>
+
               <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}>
                 <Route element={<Prefetch />}>
                   <Route path='dash' element={<DashLayout />}>
-                    <Route index element={<HomeP />} />
-
+                    <Route path="*" element={<Navigate to="/dash" />} />
+              <Route index element={<HomeP />} />
+                
                     <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                       <Route path="users">
                         <Route index element={<UsersList />} />
@@ -101,9 +110,14 @@ function App() {
                       <Route path="new" element={<NewNote />} />
                     </Route>
 
-                    <Route path="addoffer">
-                      <Route index element={<AddOffer />} />
-                    </Route>
+                   <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter]} />}>
+            <Route path="addoffer">
+              <Route index element ={<AddOffer />} />
+            </Route>
+            </Route>
+<Route path="reset-password">
+              <Route index element ={<ResetPassword />} />
+            </Route>
                     <Route path="recruiters">
                       <Route index element={<Recruiters />} />
                     </Route>
@@ -147,7 +161,9 @@ function App() {
                     </Route>
 
 
+
                     {/*    <Route path="/addoffer" element={<AddOffer />} />
+
           <Route path="/HomeP" element={<HomeP />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/recruiters" element={<Recruiters />} />
@@ -157,7 +173,8 @@ function App() {
            <Route path="/evenements" element={<Evenement />} />
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
-          <Route path="/offers" element={<OfferList />} /> */}
+          <Route path="/offers" element={<OfferList />} /> */} 
+
 
 
 

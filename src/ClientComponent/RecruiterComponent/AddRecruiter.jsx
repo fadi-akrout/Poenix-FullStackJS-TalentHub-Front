@@ -45,9 +45,16 @@ function AddRecruiter() {
     return (
         <>
             <HeaderClient />
-            <section className="upcoming-meetings" id="meetings">
-                <div className="container mt-5"> {/* Utilisez les classes de Bootstrap pour le positionnement */}
-                    <form onSubmit={handleSubmit} className="card p-4">
+            <section className="contact-us" id="contact">
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-12 align-self-center">
+          <div className="row">
+            <div className="col-lg-12">
+                    <form onSubmit={handleSubmit} id="contact">
+                    <div className="col-lg-12">
+                    <h2>Register as recruiter</h2>
+                  </div>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">Nom du recruteur:</label>
                             <input type="text" id="name" className="form-control" name="name" value={formData.name} onChange={handleChange} required />
@@ -68,6 +75,11 @@ function AddRecruiter() {
                     </form>
                 </div>
                 <Footer />
+                </div>
+                </div>
+                </div>
+                </div>
+
             </section>
         </>
     );

@@ -61,7 +61,7 @@ function StaffForm() {
                     <form onSubmit={handleSubmit} id="contact" >
                     <div className="row">
                     <div className="col-lg-12">
-                    <h2>Add Staff</h2>
+                    <h2>Register as Staff</h2>
                   </div>
                             <div className="col-md-6">
                                 <div className="mb-3">
