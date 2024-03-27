@@ -74,7 +74,7 @@ const Login = () => {
           <div className="row">
             <div className="col-lg-12">
           
-                <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
+                <p style={{color:'white'}} ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
 
                 <form id="contact" onSubmit={handleSubmit}>
                     <label htmlFor="email">Email:</label>
