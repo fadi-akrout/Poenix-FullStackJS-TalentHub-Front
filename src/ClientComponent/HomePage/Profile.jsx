@@ -11,12 +11,9 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBListGroup,
-  MDBListGroupItem
+
 } from 'mdb-react-ui-kit';
-//import myImage from "D:/Pics/7609904.png"
 
-
-import myImage from "./image/talenthublogo.png";
 
 
 
@@ -34,26 +31,9 @@ export default function Profile() {
 
   const [candidate, setCandidate] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3500/candidates');
-        setCandidate(response.data[0]);
-      } catch (error) {
-        console.error('Error fetching candidate data:', error);
-      }
-    };
 
-    fetchData();
-  }, []);
-
-  if (!candidate) {
-    return null;
-  }
-
+export default function Profile() {
   return (
-
-
     <div className="full-width-header">
       <Header />
       <section style={{ backgroundImage: 'url("src/ClientComponent/HomePage/image/meetings-bg.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#eee' }}>
@@ -62,6 +42,7 @@ export default function Profile() {
             <MDBCol lg="4">
               <MDBCard className="mb-4 custom-card bg-white">
                 <MDBCardBody className="text-center">
+                  {/* Assuming `candidate.profileImage` exists */}
                   <MDBCardImage
                     src={candidate.profileImage}
                     alt="avatar"
@@ -160,3 +141,4 @@ export default function Profile() {
     </div>
   );
 }
+
