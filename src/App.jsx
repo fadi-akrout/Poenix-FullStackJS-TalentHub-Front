@@ -173,7 +173,6 @@ useTitle('Talent Hub')
 
 
 
-          <Route path="/updateoffer/:id" element={<UpdateOffer />} />
 
 
 
