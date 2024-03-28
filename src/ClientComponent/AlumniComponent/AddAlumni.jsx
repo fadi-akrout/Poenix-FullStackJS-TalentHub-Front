@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
+import Header from '../HomePage/Header';
 
 
 function AlumniForm() {
@@ -60,7 +61,7 @@ function AlumniForm() {
 
     return (
         <>
-            <HeaderClient />
+            <Header />
             <section className="upcoming-meetings" id="meetings">
                 <div className="container mt-5">
                     <form onSubmit={handleSubmit} className="card p-4">
@@ -158,8 +159,11 @@ function AlumniForm() {
                         <button type="submit" className="btn btn-danger">Submit</button>
                     </form>
                 </div>
-                <Footer />
+                
     </section>
+    <section className="upcoming-meetings" id="meetings">
+        <Footer />
+      </section>
 
         </>
     );

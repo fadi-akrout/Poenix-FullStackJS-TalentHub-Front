@@ -124,9 +124,10 @@ function StaffForm() {
                         <button type="submit" className="btn btn-danger">Submit</button>
                     </form>
                 </div>
-                <Footer/>
             </section>
-        
+            <section className="upcoming-meetings" id="meetings">
+                <Footer />
+            </section>
         </>
     );
 }
