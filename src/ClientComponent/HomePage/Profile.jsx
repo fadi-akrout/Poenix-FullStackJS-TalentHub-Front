@@ -30,7 +30,6 @@ import Footer from '../Dashboard/Footer';
 export default function Profile() {
 
   const [candidate, setCandidate] = useState(null);
-
   return (
     <div className="full-width-header">
       <Header />
