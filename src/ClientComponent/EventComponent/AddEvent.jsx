@@ -1,75 +1,95 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'bootstrap';
-
 import Footer from '../Dashboard/Footer';
 import Header from '../HomePage/Header';
 
-
 function EvenementForm() {
     const navigate = useNavigate();
+    const formatDateTimeLocal = (date) => {
+        const ten = (i) => (i < 10 ? '0' : '') + i;
+        return `${date.getFullYear()}-${ten(date.getMonth() + 1)}-${ten(date.getDate())}T${ten(date.getHours())}:${ten(date.getMinutes())}`;
+    };
     const [formData, setFormData] = useState({
         nom: '',
         adresse: '',
-        dateDebut: '',
+        dateDebut: formatDateTimeLocal(new Date()),
         dateFin: '',
         description: '',
         image: ''
     });
+    const [errors, setErrors] = useState({});
+
+    // Function to validate individual fields
+    const validateForm = () => {
+        let newErrors = {};
+        if (!formData.nom.trim()) newErrors.nom = "Le nom de l'événement est requis.";
+        if (!formData.adresse.trim()) newErrors.adresse = "L'adresse est requise.";
+        if (!formData.dateDebut) newErrors.dateDebut = "La date de début est requise.";
+        if (!formData.dateFin) newErrors.dateFin = "La date de fin est requise.";
+        if (new Date(formData.dateDebut) >= new Date(formData.dateFin)) {
+            newErrors.dateFin = "La date de fin doit être après la date de début.";
+        }
+        if (!formData.description.trim()) newErrors.description = "La description est requise.";
+
+        setErrors(newErrors); // Use setErrors to update the state
+        return Object.keys(newErrors).length === 0;
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+        setFormData({ ...formData, [name]: value });
+
+        // Optionally, you could validate individual fields on change here as well
+    };
+
+    const handleBlur = () => {
+        validateForm();
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            // Perform validation checks here if needed, for example:
+            // Check the file size
+            if (file.size > 1024 * 1024 * 5) { // for 5MB
+                setErrors(prevErrors => ({ ...prevErrors, image: 'File size should not exceed 5MB.' }));
+                return;
+            }
+
+            // Check the file type
+            if (!file.type.match('image.*')) {
+                setErrors(prevErrors => ({ ...prevErrors, image: 'Please select a valid image.' }));
+                return;
+            }
+
+            // If no errors, clear any existing error message for image
+            setErrors(prevErrors => ({ ...prevErrors, image: '' }));
+
+            const reader = new FileReader();
+            reader.onload = (upload) => {
+                setFormData(prev => ({ ...prev, image: upload.target.result }));
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // If no file is selected, set an error
+            setErrors(prevErrors => ({ ...prevErrors, image: 'Please select an image.' }));
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Vérifiez que tous les champs sont remplis
-        const areFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
-        if (!areFieldsFilled) {
-            alert("Veuillez remplir tous les champs.");
-            return;
-        }
-
-        // Vérifiez que la date de début est antérieure à la date de fin
-        if (new Date(formData.dateDebut).getTime() >= new Date(formData.dateFin).getTime()) {
-            alert("La date de début doit être antérieure à la date de fin.");
-            return;
-        }
-
-        // Si les vérifications sont passées, continuez avec la soumission
-        try {
-            const response = await axios.post('http://localhost:3500/evenements', formData);
-            console.log(response.data);
-            navigate('/dash');
-        } catch (error) {
-            console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
+        if (validateForm()) {
+            try {
+                const response = await axios.post('http://localhost:3500/evenements', formData);
+                console.log(response.data);
+                navigate('/dash');
+            } catch (error) {
+                console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
+            }
         }
     };
-    const handleImageChange = e => {
-        // Assuming you want to store the image file in state
-        const file = e.target.files[0];
-        if (file) {
-            // Create a new FileReader object
-            const reader = new FileReader();
-
-            // Define what happens on file load
-            reader.onload = (upload) => {
-                // You can either set the image data in state directly,
-                // or perhaps upload it to a server, etc.
-                setFormData(prev => ({ ...prev, image: upload.target.result }));
-            };
-
-            // Read the file as a Data URL (base64 encoded string)
-            reader.readAsDataURL(file);
-        }
-    };
-
     return (
         <>
             <Header />
@@ -86,27 +106,38 @@ function EvenementForm() {
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="nom" className="form-label">Nom de l'événement:</label>
-                                                <input type="text" id="nom" className="form-control" name="nom" value={formData.nom} onChange={handleChange} required />
+                                                <input type="text" id="nom" className="form-control" name="nom"
+                                                    value={formData.nom} onChange={handleChange} onBlur={handleBlur} required />
+                                                {errors.nom && <div className="text-danger">{errors.nom}</div>}
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="adresse" className="form-label">Adresse:</label>
-                                                <input type="text" id="adresse" className="form-control" name="adresse" value={formData.adresse} onChange={handleChange} required />
+                                                <input type="text" id="adresse" className="form-control" name="adresse"
+                                                    value={formData.adresse} onChange={handleChange} onBlur={handleBlur} required />
+                                                {errors.adresse && <div className="text-danger">{errors.adresse}</div>}
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="dateDebut" className="form-label">Date de début:</label>
-                                                <input type="datetime-local" id="dateDebut" className="form-control" name="dateDebut" value={formData.dateDebut} onChange={handleChange} required />
+                                                <input type="datetime-local" id="dateDebut" name="dateDebut" className="form-control"
+                                                    value={formData.dateDebut} onChange={handleChange} required />
+                                                {errors.dateDebut && <div className="text-danger">{errors.dateDebut}</div>}
                                             </div>
                                             <div className="mb-3">
-                                                <label htmlFor="dateFin" className="form-label">Date de fin:</label>
-                                                <input type="datetime-local" id="dateFin" className="form-control" name="dateFin" value={formData.dateFin} onChange={handleChange} required />
+                                                <label htmlFor="dateFin" className="form-label">Date Fin:</label>
+                                                <input type="datetime-local" id="dateFin" className="form-control" name="dateFin"
+                                                    value={formData.dateFin} onChange={handleChange} onBlur={handleBlur} required />
+                                                {errors.dateFin && <div className="text-danger">{errors.dateFin}</div>}
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="description" className="form-label">Description:</label>
-                                                <textarea id="description" className="form-control" name="description" value={formData.description} onChange={handleChange} required />
+                                                <textarea id="description" className="form-control" name="description"
+                                                    value={formData.description} onChange={handleChange} onBlur={handleBlur} required />
+                                                {errors.description && <div className="text-danger">{errors.description}</div>}
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="imageUpload" className="form-label">Image</label>
                                                 <input className="form-control" type="file" id="imageUpload" accept="image/*" onChange={handleImageChange} />
+                                                {errors.image && <div className="text-danger">{errors.image}</div>}
                                             </div>
                                             <button type="submit" className="btn btn-primary">Ajouter l'événement</button>
                                         </div>
@@ -115,7 +146,6 @@ function EvenementForm() {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section>
             <section className="upcoming-meetings" id="meetings">
