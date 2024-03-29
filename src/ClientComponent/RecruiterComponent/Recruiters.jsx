@@ -6,6 +6,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
+import Header from '../HomePage/Header';
 
 function Recruiters() {
     const [recruiters, setRecruiters] = useState([]);
@@ -18,7 +19,7 @@ function Recruiters() {
 
     return (
         <>
-            <HeaderClient />
+            <Header />
             <section className="upcoming-meetings" id="meetings">
                 <div className="container my-5">
                     <h1 className="text-center mb-4">Liste des Recruteurs</h1>
@@ -29,6 +30,9 @@ function Recruiters() {
                         <Link to="/dash/add-recruiter" className="btn btn-primary">Ajouter un recruteur</Link>
                     </div>
                 </div>
+
+            </section>
+            <section className="upcoming-meetings" id="meetings">
                 <Footer />
             </section>
         </>
@@ -81,7 +85,7 @@ function RecruiterDetail({ recruiter, setRecruiters }) {
                 </div>
             ) : (
                 <div className="card-body">
-                    
+
                     <h5 className="card-title">{recruiter.name}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">{recruiter.email}</h6>
                     <p className="card-text">{recruiter.company}</p>

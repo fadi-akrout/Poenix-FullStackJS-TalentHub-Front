@@ -32,6 +32,7 @@ import Prefetch from './features/auth/Prefetch';
 import PersistLogin from './features/auth/PersistLogin';
 import RequireAuth from './features/auth/RequireAuth'
 import { ROLES } from './config/roles'
+import ForgotPassword from './features/auth/forgotPassword';
 
 
 
@@ -61,6 +62,7 @@ const Signup = lazy(() => import('./features/auth/Signup'));
 const ResetPassword = lazy(() => import('./features/auth/resetPassword'));
 
 const AddStaff = lazy(() => import('./ClientComponent/StaffComponent/AddStaff'));
+const VerifyEmail = lazy(() => import('./features/auth/verifyEmail'));
 
 
 function App() {
@@ -83,6 +85,12 @@ function App() {
 
             <Route path="/login" element={<Login  />}/>
             <Route path="/signup" element={<Signup />}/>
+            <Route path="/forgot-password" element={<ForgotPassword />}/>
+            <Route path="/reset-password">
+              <Route index element ={<ResetPassword />} />
+            </Route>
+            <Route path="/verify-email/:userId" element={<VerifyEmail />}/>
+           
 
          
 
@@ -115,9 +123,7 @@ function App() {
               <Route index element ={<AddOffer />} />
             </Route>
             </Route>
-<Route path="reset-password">
-              <Route index element ={<ResetPassword />} />
-            </Route>
+
                     <Route path="recruiters">
                       <Route index element={<Recruiters />} />
                     </Route>
