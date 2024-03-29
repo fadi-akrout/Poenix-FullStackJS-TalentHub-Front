@@ -103,6 +103,7 @@ function Evenement({ evenement, setEvenements }) {
 
 
     return (
+
         <div key={evenement._id} className="card mb-3">
             {enEdition ? (
                 <div className="card-body">
@@ -119,18 +120,38 @@ function Evenement({ evenement, setEvenements }) {
                     <button className="btn btn-secondary" onClick={desactiverEdition}>Annuler</button>
                 </div>
             ) : (
-                <div className="card-body">
-                    <h5 className="card-title">{evenement.nom}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">{evenement.adresse}</h6>
-                    <p className="card-text">Début: {new Date(evenement.dateDebut).toLocaleDateString()}</p>
-                    <p className="card-text">Fin: {new Date(evenement.dateFin).toLocaleDateString()}</p>
-                    <p className="card-text">{evenement.description}</p>
-                    {evenement.image && <img src={evenement.image} className="card-img-bottom" alt="Event" style={{ maxWidth: '20%', height: 'auto' }} />}
-                    <MdDeleteForever onClick={handleDelete} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
+                <div key={evenement._id} className="card mb-3">
+                    <div className="card-body">
+                        <div className="row">
+                            {/* Event Image */}
+                            {evenement.image && (
+                                <div className="col-lg-12">
+                                    <img src={evenement.image} className="card-img-top mb-3" alt="Event" style={{ width: '100%', height: 'auto' }} />
+                                </div>
+                            )}
 
-                    <FaEdit onClick={activerEdition} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
+                            {/* Event Details */}
+                            <div className="col-lg-12">
+                                <h5 className="card-title">{evenement.nom}</h5>
+                                <p className="card-text">
+                                    <strong>Adresse:</strong> {evenement.adresse}
+                                </p>
+                                <p className="card-text">
+                                    <strong>Période:</strong> {new Date(evenement.dateDebut).toLocaleDateString()} - {new Date(evenement.dateFin).toLocaleDateString()}
+                                </p>
+                                <p className="card-text">{evenement.description}</p>
+                            </div>
+                        </div>
+
+                        {/* Event Actions */}
+                        <div className="card-footer">
+                            <FaEdit onClick={activerEdition} style={{ cursor: 'pointer', color: '#0d6efd', marginRight: '10px' }} />
+                            <MdDeleteForever onClick={handleDelete} style={{ cursor: 'pointer', color: 'red' }} />
+                        </div>
+                    </div>
                 </div>
             )}
+
         </div>
     );
 }
