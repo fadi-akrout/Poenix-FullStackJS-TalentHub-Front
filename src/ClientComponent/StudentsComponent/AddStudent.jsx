@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Header from '../HomePage/Header';
+import Footer from '../Dashboard/Footer';
 
 function StudentForm() {
     const navigate = useNavigate();
@@ -59,8 +61,8 @@ function StudentForm() {
 
     return (
         <>
-           
-           <section className="studentsw" >
+           <Header />
+           <section className="upcoming-meetings" id="meetings">
                 <div className="container mt-5">
                     <form onSubmit={handleSubmit} className="card p-4">
                     <div className="row">
@@ -153,6 +155,9 @@ function StudentForm() {
                 </div>
             
             </section>
+            <section className="upcoming-meetings" id="meetings">
+        <Footer />
+      </section>
         </>
     );
 }
