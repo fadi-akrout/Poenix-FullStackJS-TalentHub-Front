@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../../config/roles"
+import Footer from "../../ClientComponent/Dashboard/Footer"
+import Header from "../../ClientComponent/HomePage/Header"
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
@@ -112,6 +114,15 @@ const EditUserForm = ({ user }) => {
 
     const content = (
         <>
+        <div>
+            <Header />
+          </div>
+          <section className="contact-us" id="contact">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 align-self-center">
+              <div className="row">
+                <div className="col-lg-12"></div>
             <p className={errClass}>{errContent}</p>
 
             <form className="form" onSubmit={e => e.preventDefault()}>
@@ -197,6 +208,14 @@ const EditUserForm = ({ user }) => {
                 </select>
 
             </form>
+            </div>
+            </div>
+            </div>
+            </div>
+            </section>
+            <section className="upcoming-meetings" id="meetings">
+        <Footer />
+      </section>
         </>
     )
 

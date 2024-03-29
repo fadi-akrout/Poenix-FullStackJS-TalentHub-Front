@@ -5,6 +5,8 @@ import usePersist from "../../hooks/usePersist"
 import { useSelector } from 'react-redux'
 import { selectCurrentToken } from "./authSlice"
 import PulseLoader from 'react-spinners/PulseLoader'
+import Header from "../../ClientComponent/HomePage/Header"
+import Footer from "../../ClientComponent/Dashboard/Footer"
 
 const PersistLogin = () => {
 
@@ -59,10 +61,29 @@ const PersistLogin = () => {
         } else if (isError) { //persist: yes, token: no
         console.log('error')
         content = (
-            <p className='errmsg'>
+            <>
+            <div>
+            <Header />
+          </div>
+          <section className="contact-us" id="contact">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 align-self-center">
+              <div className="row">
+                <div className="col-lg-12"></div>
+            <p style={{color:'white'}} className='errmsg' >
                 {`${error?.data?.message} - `}
                 <Link to="/login">Please login again</Link>.
             </p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+      <section className="upcoming-meetings" id="meetings">
+        <Footer />
+      </section>
+      </>
         )
     } else if (isSuccess && trueSuccess) { //persist: yes, token: yes
         console.log('success')
