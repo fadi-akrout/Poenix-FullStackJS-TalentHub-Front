@@ -11,7 +11,7 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBListGroup,
-
+  MDBListGroupItem
 } from 'mdb-react-ui-kit';
 
 
@@ -30,6 +30,22 @@ import Footer from '../Dashboard/Footer';
 export default function Profile() {
 
   const [candidate, setCandidate] = useState(null);
+
+  useEffect(() => {
+    // Example API call
+    axios.get('api/candidate/profile')
+      .then(response => {
+        setCandidate(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching candidate profile:', error);
+      });
+  }, []);
+
+  if (!candidate) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="full-width-header">
       <Header />

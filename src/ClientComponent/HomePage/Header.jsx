@@ -63,7 +63,7 @@ function Header() {
           </ul>
           <ul className="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
             <li className="nav-item text-center mx-2 mx-lg-1">
-              <Link to="./Profile" className="nav-link">
+              <Link to="/dash/Profile" className="nav-link">
                 <div>
                   <FontAwesomeIcon icon={faBell} className="fa-lg mb-1" />
                   <span className="badge rounded-pill badge-notification bg-info">11</span>

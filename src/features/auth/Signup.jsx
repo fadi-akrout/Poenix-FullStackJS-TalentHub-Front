@@ -8,7 +8,7 @@ import usePersist from '../../hooks/usePersist'
 import { ROLES } from "../../config/roles"
 import PulseLoader from 'react-spinners/PulseLoader'
 import HeaderClient from '../../ClientComponent/Dashboard/HeaderClient'
-import Footer from '../../ClientComponent/Dashboard/Footer'
+
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!#$%])[A-Za-z\d@!#$%]{8,}$/
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -129,15 +129,9 @@ const Signup = () => {
                 <div className="col-lg-12 align-self-center">
                   <div className="row">
                     <div className="col-lg-12">
-
                 <p style={{color:'green'}} ref={usernameRef} className={errClass} aria-live="assertive">{errMsg}</p>
 
-
                 <form id="contact" onSubmit={handleSubmit}>
-                    
-                <div className="col-lg-12">
-                    <h2>Sign Up</h2>
-                  </div>
                     <label htmlFor="username">Username:</label>
                     <input
                          className={`form__input ${validUserClass}`}
@@ -172,14 +166,21 @@ const Signup = () => {
                         onChange={handlePasswordInput}
                         required
                     />
-                <fieldset>
-                <label htmlFor="JobType" className="form-label">Role:</label>
-                <select id="roles" name="roles" className={`form-control ${validRolesClass}`} value={roles} onChange={onRolesChanged} >
+
+                        <label className="form__label" htmlFor="roles">
+                    ASSIGNED ROLES:</label>
+                <select
+                    id="roles"
+                    name="roles"
+                    className={`form__select ${validRolesClass}`}
+                    multiple={true}
+                    size="5"
+                    value={roles}
+                    onChange={onRolesChanged}
+                >
                     {options}
                 </select>
-                </fieldset>
-            
-                    
+
                     <button className="form__submit-button">Sign Up</button>
 
                     
@@ -190,9 +191,6 @@ const Signup = () => {
           </div>
           </div>
         </section>
-        <section className="upcoming-meetings" id="meetings">
-              <Footer />
-          </section>
         </>
     )
 
