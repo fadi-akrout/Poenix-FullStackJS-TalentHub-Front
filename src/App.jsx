@@ -176,8 +176,7 @@ function App() {
           <Route path="/offers" element={<OfferList />} /> */} 
 
 
-
-
+            
 
 
 
