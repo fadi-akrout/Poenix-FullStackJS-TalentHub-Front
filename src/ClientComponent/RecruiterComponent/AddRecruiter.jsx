@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
+import Header from '../HomePage/Header';
 
 function AddRecruiter() {
     const navigate = useNavigate();
@@ -44,7 +45,7 @@ function AddRecruiter() {
 
     return (
         <>
-            <HeaderClient />
+            <Header />
             <section className="contact-us" id="contact">
     <div className="container">
       <div className="row">
@@ -74,13 +75,16 @@ function AddRecruiter() {
                         <button type="submit" className="btn btn-primary">Ajouter le recruteur</button>
                     </form>
                 </div>
-                <Footer />
+                
                 </div>
                 </div>
                 </div>
                 </div>
 
             </section>
+            <section className="upcoming-meetings" id="meetings">
+             <Footer />
+           </section>
         </>
     );
 }

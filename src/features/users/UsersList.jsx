@@ -1,7 +1,7 @@
 import { useGetUsersQuery } from "./usersApiSlice"
 import User from './User'
 import PulseLoader from 'react-spinners/PulseLoader'
-
+import Footer from "../../ClientComponent/Dashboard/Footer"
 const UsersList = () => {
 
     const {
@@ -28,6 +28,8 @@ const UsersList = () => {
         const tableContent = ids?.length && ids.map(userId => <User key={userId} userId={userId} />)
 
         content = (
+            <>
+            <section className="upcoming-meetings" id="meetings">
             <table className="table table--users">
                 <thead className="">
                     <tr>
@@ -41,6 +43,11 @@ const UsersList = () => {
                     {tableContent}
                 </tbody>
             </table>
+            </section>
+             <section className="upcoming-meetings" id="meetings">
+             <Footer />
+           </section>
+           </>
         )
     }
 

@@ -3,6 +3,7 @@ import HeaderClient from '../../ClientComponent/Dashboard/HeaderClient'
 import queryString from 'query-string'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Footer from '../../ClientComponent/Dashboard/Footer'
 
 const PWD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!#$%])[A-Za-z\d@!#$%]{8,}$/
 const baseUrl= 'http://localhost:3500/auth'
@@ -161,6 +162,9 @@ if(busy) return (
           </div>
           </div>
         </section>
+        <section className="upcoming-meetings" id="meetings">
+    <Footer />
+  </section>
         </>
   )
 }
