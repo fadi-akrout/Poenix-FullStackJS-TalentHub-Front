@@ -6,6 +6,7 @@ import { MdDeleteForever } from 'react-icons/md'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
+import useAuth from '../../hooks/useAuth'
 
 function Evenements() {
     const [evenements, setEvenements] = useState([]);
@@ -43,6 +44,8 @@ function Evenement({ evenement, setEvenements }) {
 
     const activerEdition = () => setEnEdition(true);
     const desactiverEdition = () => setEnEdition(false);
+    const { username,email, isTeacher,isStudent,isAdmin ,isRecruter} = useAuth()
+
 
     useEffect(() => {
         const fetchEvenements = async () => {
@@ -145,9 +148,13 @@ function Evenement({ evenement, setEvenements }) {
 
                         {/* Event Actions */}
                         <div className="card-footer">
+                        {( isAdmin || isRecruter || isTeacher) &&
                             <FaEdit onClick={activerEdition} style={{ cursor: 'pointer', color: '#0d6efd', marginRight: '10px' }} />
-                            <MdDeleteForever onClick={handleDelete} style={{ cursor: 'pointer', color: 'red' }} />
-                        </div>
+                         }
+                          {( isAdmin || isRecruter || isTeacher) &&
+                          <MdDeleteForever onClick={handleDelete} style={{ cursor: 'pointer', color: 'red' }} />
+                            }
+                              </div>
                     </div>
                 </div>
             )}

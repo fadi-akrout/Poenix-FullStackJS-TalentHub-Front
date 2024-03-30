@@ -3,8 +3,12 @@ import axios from 'axios';
 import { Link ,useNavigate} from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md'
+import useAuth from '../../hooks/useAuth'
+
 function Offers() {
   const [offers, setOffers] = useState([]);
+  const { username,email,isAlumni, isStudent, isAdmin ,isRecruter} = useAuth()
+
   const navigate = useNavigate();
   useEffect(() => {
     axios
@@ -62,9 +66,15 @@ const navigateToUpdateOffer = (offerId) => {
                       <strong>Job City:</strong> {offer.JobCity}
                     </li>
                   </ul>
-                  <Link to="/CandidatsP" className="btn btn-danger mt-3">Postulez Maintenant</Link>
+                  {( isStudent || isAlumni) &&
+                  <Link to="./AddStudent" className="btn btn-danger mt-3">Postulez Maintenant</Link>
+                  }
+                  {( isAdmin || isRecruter) &&
                   <MdDeleteForever onClick={(e) => handleDelete(offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
+                 }
+                  {( isAdmin || isRecruter) &&
                  <FaEdit onClick={() => navigateToUpdateOffer(offer._id)} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
+}
                 </div>
               </div>
             </div>
