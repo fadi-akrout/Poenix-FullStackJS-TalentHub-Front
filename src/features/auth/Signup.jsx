@@ -57,7 +57,7 @@ const Signup = () => {
         e.preventDefault()
         if (canSave) {
         try {
-            const { accessToken } = await signup({
+            const { accessToken,userId } = await signup({
                 username,
                 email,
                 password,
@@ -68,7 +68,8 @@ const Signup = () => {
             setEmail('')
             setPassword('')
             setRoles([])
-            navigate('/login')
+            console.log(userId);
+            navigate(`/verify-email/${userId}`)
         } catch (err) {
             if (!err.status) {
                 setErrMsg('No Server Response');
@@ -118,83 +119,80 @@ const Signup = () => {
 
     const content = (
         <>
-     
-
-        <HeaderClient />
-        
-             
-                <section className="contact-us" id="contact">
+          <HeaderClient />
+          <section className="contact-us" id="contact">
             <div className="container">
               <div className="row">
                 <div className="col-lg-12 align-self-center">
                   <div className="row">
                     <div className="col-lg-12">
-
-                <p style={{color:'green'}} ref={usernameRef} className={errClass} aria-live="assertive">{errMsg}</p>
-
-
-                <form id="contact" onSubmit={handleSubmit}>
-                    
-                <div className="col-lg-12">
-                    <h2>Sign Up</h2>
+                      <p style={{ color: 'green' }} ref={usernameRef} className={errClass} aria-live="assertive">{errMsg}</p>
+                      <form id="contact" onSubmit={handleSubmit}>
+                        <div className="col-lg-12">
+                          <h2>Sign Up</h2>
+                        </div>
+                        <label htmlFor="username">Username:</label>
+                        <input
+                          className={`form__input ${validUserClass}`}
+                          type="text"
+                          id="username"
+                          ref={usernameRef}
+                          value={username}
+                          onChange={handleUsernameInput}
+                          autoComplete="off"
+                          required
+                          aria-invalid={!validUsername && username.length > 0 ? 'true' : 'false'}
+                        />
+                        {!validUsername && username.length > 0 && <p className="form__input--error">Username must be between 3 and 20 characters and contain only letters.</p>}
+      
+                        <label htmlFor="email">Email:</label>
+                        <input
+                          className={`form__input ${validEmailClass}`}
+                          type="email"
+                          id="email"
+                          ref={emailRef}
+                          value={email}
+                          onChange={handleEmailInput}
+                          autoComplete="on"
+                          required
+                          aria-invalid={!validEmail && email.length > 0 ? 'true' : 'false'}
+                        />
+                        {!validEmail && email.length > 0 && <p className="form__input--error">Please enter a valid email address.</p>}
+      
+                        <label htmlFor="password">Password:</label>
+                        <input
+                          className={`form__input ${validPwdClass}`}
+                          type="password"
+                          id="password"
+                          ref={passwordRef}
+                          value={password}
+                          onChange={handlePasswordInput}
+                          required
+                          aria-invalid={!validPassword && password.length > 0 ? 'true' : 'false'}
+                        />
+                        {!validPassword && password.length > 0 && <p className="form__input--error">Password must be at least 8 characters and contain at least one letter, one number, and one special character.</p>}
+      
+                        <fieldset>
+                          <label htmlFor="JobType" className="form-label">Role:</label>
+                          <select id="roles" name="roles" className={`form-control ${validRolesClass}`} value={roles} onChange={onRolesChanged}>
+                            {options}
+                          </select>
+                        </fieldset>
+                        {roles.length === 0 && <p className="form__input--error">Please select at least one role.</p>}
+      
+                        <button className="form__submit-button">Sign Up</button>
+                      </form>
+                    </div>
                   </div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                         className={`form__input ${validUserClass}`}
-                        type="text"
-                        id="username"
-                        ref={usernameRef}
-                        value={username}
-                        onChange={handleUsernameInput}
-                        autoComplete="off"
-                        required
-                    />
-
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        className={`form__input ${validEmailClass}`}
-                        type="email"
-                        id="email"
-                        ref={emailRef}
-                        value={email}
-                        onChange={handleEmailInput}
-                        autoComplete="on"
-                        required
-                    />
-
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        className={`form__input ${validPwdClass}`}
-                        type="password"
-                        id="password"
-                        ref={passwordRef}
-                        value={password}
-                        onChange={handlePasswordInput}
-                        required
-                    />
-                <fieldset>
-                <label htmlFor="JobType" className="form-label">Role:</label>
-                <select id="roles" name="roles" className={`form-control ${validRolesClass}`} value={roles} onChange={onRolesChanged} >
-                    {options}
-                </select>
-                </fieldset>
-            
-                    
-                    <button className="form__submit-button">Sign Up</button>
-
-                    
-                </form>
                 </div>
-          </div>
-          </div>
-          </div>
-          </div>
-        </section>
-        <section className="upcoming-meetings" id="meetings">
-              <Footer />
+              </div>
+            </div>
+          </section>
+          <section className="upcoming-meetings" id="meetings">
+            <Footer />
           </section>
         </>
-    )
+      )
 
     return content
 }

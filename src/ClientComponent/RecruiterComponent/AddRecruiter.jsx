@@ -14,6 +14,7 @@ function AddRecruiter() {
         company: '',
         phoneNumber: '',
     });
+    const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,21 +24,25 @@ function AddRecruiter() {
         }));
     };
 
+    const validateForm = () => {
+        let newErrors = {};
+        if (!formData.name.trim()) newErrors.name = "Le nom du recruteur est requis.";
+        if (!formData.email.trim()) newErrors.email = "L'email est requis.";
+        if (!formData.company.trim()) newErrors.company = "Le nom de l'entreprise est requis.";
+        if (!formData.phoneNumber.trim()) newErrors.phoneNumber = "Le numéro de téléphone est requis.";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateForm()) return;
 
-        // Vérifiez que tous les champs sont remplis
-        const areFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
-        if (!areFieldsFilled) {
-            alert("Veuillez remplir tous les champs.");
-            return;
-        }
-
-        // Si les vérifications sont passées, continuez avec la soumission
         try {
             const response = await axios.post('http://localhost:3500/recruiters', formData);
             console.log(response.data);
-            navigate('/recruiters');
+            navigate('/dash/recruiters');
         } catch (error) {
             console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
         }
@@ -47,39 +52,42 @@ function AddRecruiter() {
         <>
             <Header />
             <section className="contact-us" id="contact">
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12 align-self-center">
-          <div className="row">
-            <div className="col-lg-12">
-                    <form onSubmit={handleSubmit} id="contact">
-                    <div className="col-lg-12">
-                    <h2>Register as recruiter</h2>
-                  </div>
-                        <div className="mb-3">
-                            <label htmlFor="name" className="form-label">Nom du recruteur:</label>
-                            <input type="text" id="name" className="form-control" name="name" value={formData.name} onChange={handleChange} required />
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12 align-self-center">
+                            <form onSubmit={handleSubmit} className="card p-4">
+                                <div className="col-lg-12">
+                                    <h2>Register as Recruiter</h2>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="name" className="form-label">Nom du recruteur:</label>
+                                    <input type="text" id="name" className="form-control" name="name" value={formData.name} onChange={handleChange} required />
+                                    {errors.name && <div className="text-danger">{errors.name}</div>}
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="email" className="form-label">Email:</label>
+                                    <input type="email" id="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
+                                    {errors.email && <div className="text-danger">{errors.email}</div>}
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="company" className="form-label">Entreprise:</label>
+                                    <input type="text" id="company" className="form-control" name="company" value={formData.company} onChange={handleChange} required />
+                                    {errors.company && <div className="text-danger">{errors.company}</div>}
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="phoneNumber" className="form-label">Numéro de téléphone:</label>
+                                    <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
+                                    {errors.phoneNumber && <div className="text-danger">{errors.phoneNumber}</div>}
+                                </div>
+                                <button type="submit" className="btn btn-primary">Ajouter le recruteur</button>
+                            </form>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email:</label>
-                            <input type="email" id="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="company" className="form-label">Entreprise:</label>
-                            <input type="text" id="company" className="form-control" name="company" value={formData.company} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="phoneNumber" className="form-label">Numero de télephone:</label>
-                            <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Ajouter le recruteur</button>
-                    </form>
+                    </div>
                 </div>
-                
-                </div>
-                </div>
-                </div>
-                </div>
+
+            </section>
+            <section className="upcoming-meetings" id="meetings">
+                <Footer />
 
             </section>
             <section className="upcoming-meetings" id="meetings">

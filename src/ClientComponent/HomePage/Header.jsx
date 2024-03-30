@@ -1,13 +1,128 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faEnvelope, faBell, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
+import { faFileCirclePlus,
+  faFilePen,
+  faUserGear,
+  faUserPlus,
+  faRightFromBracket } from "@fortawesome/free-solid-svg-icons"
 import logoImage from './image/Logo_ESPRIT_Ariana.jpg';
 import './Header.css';
 import useAuth from '../../hooks/useAuth'
+import { useSendLogoutMutation } from '../../features/auth/authApiSlice';
+const DASH_REGEX = /^\/dash(\/)?$/
+const NOTES_REGEX = /^\/dash\/notes(\/)?$/
+const USERS_REGEX = /^\/dash\/users(\/)?$/
 function Header() {
   const { username,email, isStudent, isAdmin ,isRecruter} = useAuth()
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
+
+  const [sendLogout, {
+    isLoading,
+    isSuccess,
+    isError,
+    error
+}] = useSendLogoutMutation()
+
+useEffect(() => {
+  if (isSuccess) navigate('/dash')
+}, [isSuccess, navigate])
+
+const onNewNoteClicked = () => navigate('/dash/notes/new')
+    const onNewUserClicked = () => navigate('/dash/users/new')
+    const onNotesClicked = () => navigate('/dash/notes')
+    const onUsersClicked = () => navigate('/dash/users')
+
+    let dashClass = null
+    if (!DASH_REGEX.test(pathname) && !NOTES_REGEX.test(pathname) && !USERS_REGEX.test(pathname)) {
+        dashClass = "dash-header__container--small"
+    }
+
+    let newNoteButton = null
+    if (NOTES_REGEX.test(pathname)) {
+        newNoteButton = (
+            <button
+                className="icon-button"
+                title="New Note"
+                onClick={onNewNoteClicked}
+            >
+                <FontAwesomeIcon icon={faFileCirclePlus} />
+            </button>
+        )
+    }
+
+    let newUserButton = null
+    if (USERS_REGEX.test(pathname)) {
+        newUserButton = (
+            <button
+                className="icon-button"
+                title="New User"
+                onClick={onNewUserClicked}
+            >
+                <FontAwesomeIcon icon={faUserPlus} />
+            </button>
+        )
+    }
+
+    let userButton = null
+    if ( isAdmin) {
+        if (!USERS_REGEX.test(pathname) && pathname.includes('/dash')) {
+            userButton = (
+                <button
+                    className="icon-button"
+                    title="Users"
+                    onClick={onUsersClicked}
+                >
+                    <FontAwesomeIcon icon={faUserGear} />
+                </button>
+            )
+        }
+    }
+
+    let notesButton = null
+    if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
+        notesButton = (
+            <button
+                className="icon-button"
+                title="Notes"
+                onClick={onNotesClicked}
+            >
+                <FontAwesomeIcon icon={faFilePen} />
+            </button>
+        )
+    }
+
+    const logoutButton = (
+        <button
+            className="icon-button"
+            title="Logout"
+            onClick={sendLogout}
+        >
+            <FontAwesomeIcon icon={faRightFromBracket} />
+        </button>
+    )
+
+    const errClass = isError ? "errmsg" : "offscreen"
+    let buttonContent
+    if (isLoading) {
+        buttonContent = <PulseLoader color={"#FFF"} />
+    } else {
+        buttonContent = (
+            <>
+                {newNoteButton}
+                {newUserButton}
+                {notesButton}
+                {userButton}
+                {logoutButton}
+            </>
+        )
+    }
+
   return (
+    <>
+    <p className={errClass}>{error?.data?.message}</p>
     <nav className="navbar navbar-expand-lg" style={{ height: '80px', padding: '0', width: '100%' }}>
       <div className="container-fluid">
         <a className="navbar" href="#">
@@ -18,18 +133,18 @@ function Header() {
           aria-label="Toggle navigation">
           <i className="fas fa-bars text-light"></i>
         </button>
-        <div className="collapse navbar-collapse rounded-pill" id="navbarSupportedContent" style={{ backgroundColor: '#fff', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
+        <div className={`collapse navbar-collapse rounded-pill ${dashClass} `} id="navbarSupportedContent" style={{ backgroundColor: '#fff', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
           <ul className="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
             <li className="nav-item text-center mx-2 mx-lg-1">
-              <Link to="/HomeP" className="nav-link">
+              <Link to="/dash" className="nav-link">
                 <div>
                   <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
                 </div>
                 Home
               </Link>
             </li>
-           {(isRecruter | isAdmin ) && <li className="nav-item text-center mx-2 mx-lg-1">
-              <Link to="./addoffer" className="nav-link">
+            {( isAdmin || isRecruter) && <li className="nav-item text-center mx-2 mx-lg-1">
+             <Link to="./addoffer" className="nav-link">
                 <div>
                   <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
                 </div>
@@ -37,7 +152,9 @@ function Header() {
               </Link>
             </li>}
             <li className="nav-item text-center mx-2 mx-lg-1">
-              <Link to="./add-event" className="nav-link">                <div>
+
+              <Link to="/dash/add-event" className="nav-link">                <div>
+
                 <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
               </div>
                 Evenements
@@ -69,6 +186,7 @@ function Header() {
                 Profile
               </Link>
             </li>
+            {buttonContent}
             <li className="nav-item text-center mx-2 mx-lg-1">
               <a className="nav-link" href="#!">
                 <div>
@@ -88,6 +206,7 @@ function Header() {
         </div>
       </div>
     </nav>
+    </>
   );
 }
 
