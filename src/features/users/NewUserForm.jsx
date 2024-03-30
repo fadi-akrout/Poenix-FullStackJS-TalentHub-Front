@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../../config/roles"
+import Header from '../../ClientComponent/HomePage/Header';
+import Footer from '../../ClientComponent/Dashboard/Footer';
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
@@ -89,10 +91,15 @@ const NewUserForm = () => {
 
     const content = (
         <>     
+       <div>
+        <Header />
+      </div>
+      <section className="contact-us" id="contact">
         <div className="container">
           <div className="row">
-
-            <div className="col-lg-12">
+            <div className="col-lg-12 align-self-center">
+              <div className="row">
+                <div className="col-lg-12">
             <p className={errClass}>{error?.data?.message}</p>
 
             <form className="form" onSubmit={onSaveUserClicked}>
@@ -158,7 +165,19 @@ const NewUserForm = () => {
 
             </form>
             
-            </div></div></div>
+            </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </section>
+      <section className="upcoming-meetings" id="meetings">
+        <Footer />
+      </section>
          
         </>
     )
