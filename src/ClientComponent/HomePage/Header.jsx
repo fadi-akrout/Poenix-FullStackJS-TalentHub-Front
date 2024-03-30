@@ -148,7 +148,7 @@ const onNewNoteClicked = () => navigate('/dash/notes/new')
                 <div>
                   <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
                 </div>
-                Offres
+                  Offres
               </Link>
             </li>}
             <li className="nav-item text-center mx-2 mx-lg-1">

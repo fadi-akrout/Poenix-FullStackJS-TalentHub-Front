@@ -1,6 +1,7 @@
 import { useGetUsersQuery } from "./usersApiSlice"
 import User from './User'
 import PulseLoader from 'react-spinners/PulseLoader'
+
 import Header from "../../ClientComponent/HomePage/Header"
 import Footer from "../../ClientComponent/Dashboard/Footer"
 
@@ -31,6 +32,7 @@ const UsersList = () => {
 
         content = (
             <>
+
             <div>
             <Header />
           </div>
@@ -53,7 +55,7 @@ const UsersList = () => {
                     {tableContent}
                 </tbody>
             </table>
-            
+ 
             </div>
             </div>
             </div>
