@@ -32,13 +32,13 @@ function HomeP() {
   };
 
   const sidebarStyle = {
-    flex: '1',
-    overflowY: 'auto', 
+    flex: '2',
+    overflowY: 'auto',
   };
 
   const contentStyle = {
-    flex: '3', 
-    padding: '30px', 
+    flex: '2',
+    padding: '10px',
   };
 
   const backgroundImageStyle = {
@@ -49,36 +49,36 @@ function HomeP() {
   };
   const handleLogin = async () => {
     try {
-        const response = await axios.post('http://localhost:3500/Loginn', { email, password });
-        if (response.data.Status === 'Success') {
-            // Redirect to appropriate page based on user role
-            if (response.data.role === 'Admin') {
-                navigate('/admin-dashboard');
-            } else if (response.data.role === 'Teacher' || response.data.role === 'Student' || response.data.role === 'Recruiter') {
-                navigate('/user-dashboard');
-            }
-        } else {
-            alert('Login failed');
+      const response = await axios.post('http://localhost:3500/Loginn', { email, password });
+      if (response.data.Status === 'Success') {
+        // Redirect to appropriate page based on user role
+        if (response.data.role === 'Admin') {
+          navigate('/admin-dashboard');
+        } else if (response.data.role === 'Teacher' || response.data.role === 'Student' || response.data.role === 'Recruiter') {
+          navigate('/user-dashboard');
         }
+      } else {
+        alert('Login failed');
+      }
     } catch (error) {
-        console.error('Error logging in:', error);
+      console.error('Error logging in:', error);
     }
-};
+  };
 
-const handleLogout = async () => {
+  const handleLogout = async () => {
     try {
-        await axios.get('http://localhost:3500/logout');
-        // Clear user session and redirect to login page
-        sessionStorage.removeItem('userRole');
-        navigate('/login');
+      await axios.get('http://localhost:3500/logout');
+      // Clear user session and redirect to login page
+      sessionStorage.removeItem('userRole');
+      navigate('/login');
     } catch (error) {
-        console.error('Error logging out:', error);
+      console.error('Error logging out:', error);
     }
-};
+  };
 
   return (
     <div className="App">
-      <Header /> 
+      <Header />
       <div style={backgroundImageStyle}>
         <div className="container" style={containerStyle}>
           <div style={contentStyle}>
