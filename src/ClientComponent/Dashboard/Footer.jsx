@@ -4,24 +4,14 @@ import useAuth from "../../hooks/useAuth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHouse } from "@fortawesome/free-solid-svg-icons"
 function Footer() {
-  const { username, status } = useAuth()
+  const { userId,username,email, status } = useAuth()
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
 
     const onGoHomeClicked = () => navigate('/dash')
-    let goHomeButton = null
-    if (pathname !== '/dash') {
-        goHomeButton = (
-            <button
-                className="dash-footer__button icon-button"
-                title="Home"
-                onClick={onGoHomeClicked}
-            >
-                <FontAwesomeIcon icon={faHouse} />
-            </button>
-        )
-    }
+    
+    
 
   return (
      <div className="footer">
@@ -32,9 +22,12 @@ function Footer() {
        
       </p>
       <div>
-      {goHomeButton}
+      
             <p>Current User: {username} </p>
             <p>Status: {status} </p>
+            <p>Email: {email} </p>
+            <p>userId: {userId} </p>
+            
       </div>
   </div>
   )

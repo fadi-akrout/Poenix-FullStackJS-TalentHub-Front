@@ -4,9 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
 import Header from '../HomePage/Header';
+import useAuth from '../../hooks/useAuth'
 
 
 function AlumniForm() {
+    const { userId } = useAuth()
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
@@ -48,11 +51,15 @@ function AlumniForm() {
             alert("Please fill in all fields.");
             return;
         }
-
+        const formDataWithUserId = {
+            ...formData,
+            user: userId // assuming userId is the correct property name
+        };
 
         try {
-            const response = await axios.post('http://localhost:3500/alumnis', formData);
+            const response = await axios.post('http://localhost:3500/alumnis', formDataWithUserId);
             console.log(response.data);
+            navigate('/dash');
         } catch (error) {
             console.error("There was a problem with form submission:", error);
         }

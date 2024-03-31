@@ -5,7 +5,7 @@ import { BrowserRouter,Routes, Route ,Navigate } from 'react-router-dom';
 import useTitle from './hooks/useTitle';
 
 import HomeP from './ClientComponent/HomePage/HomeP';
-import Profile from './ClientComponent/HomePage/Profile';
+import Profile from './features/auth/profile';
 import SignUpp from './ClientComponent/HomePage/SignUpp';
 import Loginn from './ClientComponent/HomePage/Loginn';
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
@@ -178,6 +178,9 @@ function App() {
                     </Route>
                     <Route path="staff">
                       <Route index element={<AddStaff />} />
+                    </Route>
+                    <Route path="Profile">
+                      <Route index element={<Profile />} />
                     </Route>
                   
                    

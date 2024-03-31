@@ -3,9 +3,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Dashboard/Footer';
 import Header from '../HomePage/Header';
+import useAuth from '../../hooks/useAuth'
 
 
 function StaffForm() {
+    const { userId } = useAuth()
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
@@ -40,13 +43,18 @@ function StaffForm() {
             alert("Please fill in all fields.");
             return;
         }
+        const formDataWithUserId = {
+            ...formData,
+            user: userId // assuming userId is the correct property name
+        };
 
         // If all checks pass, proceed with submission
         try {
-            const response = await axios.post('http://localhost:3500/staff', formData);
+            const response = await axios.post('http://localhost:3500/staff', formDataWithUserId);
             console.log(response.data);
             // Redirect to the Profile component and pass the staff data
-            navigate('/HomeP', { state: { staff: formData } });
+            navigate('/dash');
+
         } catch (error) {
             console.error("There was a problem with form submission:", error);
         }
