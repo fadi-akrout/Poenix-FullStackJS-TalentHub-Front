@@ -6,7 +6,11 @@ import { MdDeleteForever } from 'react-icons/md';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
+
 import './Event.css'
+
+import useAuth from '../../hooks/useAuth'
+
 
 function Evenements() {
     const [evenements, setEvenements] = useState([]);
@@ -46,6 +50,8 @@ function Evenement({ evenement, setEvenements }) {
 
     const activerEdition = () => setEnEdition(true);
     const desactiverEdition = () => setEnEdition(false);
+    const { username, email, isTeacher, isStudent, isAdmin, isRecruter } = useAuth()
+
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -105,6 +111,7 @@ function Evenement({ evenement, setEvenements }) {
                 <div className="card">
                     <img className="card-img-top" src={evenement.image} alt={evenement.nom} />
                     <div className="card-body">
+
                         <h5 className="card-title">{evenement.nom}</h5>
                         <p className="card-text">{evenement.adresse}</p>
                         <p className="card-text">
@@ -113,8 +120,13 @@ function Evenement({ evenement, setEvenements }) {
                         <p className="card-text">{evenement.description}</p>
                     </div>
                     <div className="card-footer">
-                        <FaEdit onClick={activerEdition} style={{ cursor: 'pointer', color: '#0d6efd', marginRight: '10px' }} />
-                        <MdDeleteForever onClick={handleDelete} style={{ cursor: 'pointer', color: 'red' }} />
+                        {(isAdmin || isRecruter || isTeacher) &&
+                            <FaEdit onClick={activerEdition} style={{ cursor: 'pointer', color: '#0d6efd', marginRight: '10px' }} />
+                        }
+                        {(isAdmin || isRecruter || isTeacher) &&
+                            <MdDeleteForever onClick={handleDelete} style={{ cursor: 'pointer', color: 'red' }} />
+                        }
+
                     </div>
                 </div>
             )}

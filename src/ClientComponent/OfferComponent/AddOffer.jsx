@@ -17,6 +17,27 @@ function AddOffer() {
     JobCity: '',
 
   });
+  const [errors, setErrors] = useState({});
+    // Function to validate individual fields
+    const validateForm = () => {
+      let newErrors = {};
+      if (!formData.Title.trim()) newErrors.Title = "Title is required .";
+      if (!formData.Experience_required.trim()) newErrors.Experience_required = "Experience required.";
+      if (!formData.Domain.trim()) newErrors.Domain = "Domain is required.";
+      if (!formData.Mission.trim()) newErrors.Mission = "Mission is required.";
+      if (!formData.Salary) newErrors.Salary = "Salary is required.";
+      if (!formData.Speciality.trim()) newErrors.Speciality = "Speciality is required.";
+      if (!formData.JobType.trim()) newErrors.JobType = "Job Type is required.";
+      if (!formData.JobCity.trim()) newErrors.JobCity = "Job City is required.";
+
+
+      setErrors(newErrors); // Use setErrors to update the state
+      return Object.keys(newErrors).length === 0;
+  };
+
+  const handleBlur = () => {
+    validateForm();
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,42 +85,56 @@ function AddOffer() {
                       </div>
                       <div className="col-lg-4">
                         <label htmlFor="Title" className="form-label">Title:</label>
-                        <input type="text" id="Title" className="form-control" name="Title" value={formData.Title} onChange={handleChange} required />
+                        <input type="text" id="Title" className="form-control" name="Title" value={formData.Title} onChange={handleChange}  onBlur={handleBlur} required />
+                        {errors.Title && <div className="text-danger">{errors.Title}</div>}
+
                       </div>
                       <div className="col-lg-4">
                         <fieldset>
                           <label htmlFor="Experience_required" className="form-label">Experience required:</label>
-                          <input type="text" id="Experience_required" className="form-control" name="Experience_required" value={formData.Experience_required} onChange={handleChange} required />
+                          <input type="text" id="Experience_required" className="form-control" name="Experience_required" value={formData.Experience_required} onChange={handleChange}  onBlur={handleBlur} required />
+                                                  {errors.Experience_required && <div className="text-danger">{errors.Experience_required}</div>}
+
                         </fieldset>
                       </div>
                       <div className="col-lg-4">
                         <fieldset>
                           <label htmlFor="Domain" className="form-label">Domain:</label>
-                          <input type="text" id="Domain" className="form-Domain" name="Domain" value={formData.Domain} onChange={handleChange} required />
+                          <input type="text" id="Domain" className="form-Domain" name="Domain" value={formData.Domain} onChange={handleChange} onBlur={handleBlur}  required />
+                                                  {errors.Domain && <div className="text-danger">{errors.Domain}</div>}
+
                         </fieldset>
                       </div>
                       <div className="col-lg-4">
                         <fieldset>
                           <label htmlFor="Mission" className="form-label">Mission:</label>
-                          <input type="text" id="Mission" className="form-control" name="Mission" value={formData.Mission} onChange={handleChange} required />
+                          <input type="text" id="Mission" className="form-control" name="Mission" value={formData.Mission} onChange={handleChange} onBlur={handleBlur}  required />
+                                                  {errors.Mission && <div className="text-danger">{errors.Mission}</div>}
+
                         </fieldset>
                       </div>
                       <div className="col-lg-4">
                         <fieldset>
                           <label htmlFor="Salary" className="form-label">Salary:</label>
-                          <input type="number" id="Salary" className="form-control" name="Salary" value={formData.Salary} onChange={handleChange} required />
+                          <input type="number" id="Salary" className="form-control" name="Salary" value={formData.Salary} onChange={handleChange}  onBlur={handleBlur} required />
+                                                  {errors.Salary && <div className="text-danger">{errors.Salary}</div>}
+
                         </fieldset>
                       </div>
                       <div className="col-lg-4">
                         <fieldset>
                           <label htmlFor="Speciality" className="form-label">Speciality:</label>
-                          <input type="text" id="Speciality" className="form-control" name="Speciality" value={formData.Speciality} onChange={handleChange} required />
+                          <input type="text" id="Speciality" className="form-control" name="Speciality" value={formData.Speciality} onChange={handleChange}  onBlur={handleBlur} required />
+                                                  {errors.Speciality && <div className="text-danger">{errors.Speciality}</div>}
+
                         </fieldset>
                       </div>
                       <div className="col-lg-4">
                         <fieldset>
                           <label htmlFor="JobType" className="form-label">JobType:</label>
-                          <select id="JobType" className="form-control" name="JobType" value={formData.JobType} onChange={handleChange} required>
+                          <select id="JobType" className="form-control" name="JobType" value={formData.JobType} onChange={handleChange}  onBlur={handleBlur} required>
+                                                    {errors.JobType && <div className="text-danger">{errors.JobType}</div>}
+
                             <option value="">Select Job Type</option>
                             <option value="Full Time">Full Time</option>
                             <option value="Part Time">Part Time</option>
@@ -112,7 +147,9 @@ function AddOffer() {
                       <div className="col-lg-4">
                         <fieldset>
                           <label htmlFor="JobCity" className="form-label">JobCity:</label>
-                          <input type="text" id="JobCity" className="form-control" name="JobCity" value={formData.JobCity} onChange={handleChange} required />
+                          <input type="text" id="JobCity" className="form-control" name="JobCity" value={formData.JobCity} onChange={handleChange} onBlur={handleBlur}  required />
+                                                  {errors.JobCity && <div className="text-danger">{errors.JobCity}</div>}
+
                         </fieldset>
                       </div>
                       <div className="col-lg-12">

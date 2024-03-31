@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import useAuth from "../../hooks/useAuth"
+import Footer from "../../ClientComponent/Dashboard/Footer"
+import Header from "../../ClientComponent/HomePage/Header"
 
 const EditNoteForm = ({ note, users }) => {
 
@@ -93,6 +95,15 @@ const EditNoteForm = ({ note, users }) => {
 
     const content = (
         <>
+         <div>
+            <Header />
+          </div>
+          <section className="contact-us" id="contact">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 align-self-center">
+              <div className="row">
+                <div className="col-lg-12"></div>
             <p className={errClass}>{errContent}</p>
 
             <form className="form" onSubmit={e => e.preventDefault()}>
@@ -163,6 +174,14 @@ const EditNoteForm = ({ note, users }) => {
                     </div>
                 </div>
             </form>
+            </div>
+            </div>
+            </div>
+            </div>
+            </section>
+            <section className="upcoming-meetings" id="meetings">
+        <Footer />
+      </section>
         </>
     )
 
