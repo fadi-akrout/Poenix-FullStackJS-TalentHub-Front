@@ -14,7 +14,7 @@ import useAuth from '../../hooks/useAuth'
 
 function Evenements() {
     const [evenements, setEvenements] = useState([]);
-
+    const {isAdmin, isRecruter, isTeacher } = useAuth()
     useEffect(() => {
         axios.get('http://localhost:3500/evenements')
             .then(response => setEvenements(response.data))
@@ -26,7 +26,7 @@ function Evenements() {
 
             <section className="upcoming-meetings" id="meetings">
                 <div className="container my-5">
-                    <h1 className="text-center mb-4">Liste des Événements</h1>
+                    <h1 style={{color:'white'}} className="text-center mb-4">Liste des Événements</h1>
                     <div className="row">
                         {evenements.map(evenement => (
                             <div className="col-md-6 col-lg-4 mb-3" key={evenement._id}>
@@ -35,7 +35,7 @@ function Evenements() {
                         ))}
                     </div>
                     <div className="text-center mt-4">
-                        <Link to="/dash/add-event" className="btn btn-danger">Ajouter un événement</Link>
+                    {(isAdmin || isRecruter || isTeacher) &&  <Link to="/dash/add-event" className="btn btn-danger">Ajouter un événement</Link>}
                     </div>
                 </div>
             </section>
