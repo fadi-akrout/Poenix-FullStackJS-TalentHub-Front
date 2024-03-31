@@ -1,12 +1,75 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faEnvelope, faBell, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons';
 import logoImage from './image/Logo_ESPRIT_Ariana.jpg';
 import './Header.css';
 import useAuth from '../../hooks/useAuth'
 function Header() {
-  const { username,email, isStudent, isAdmin ,isRecruter} = useAuth()
+
+  const { username, email, isStudent, isAdmin, isRecruter } = useAuth()
+  const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate();
+
+  // A mock function to simulate getting search suggestions
+  // This should be replaced with a real search suggestion function
+  const getSearchSuggestions = (value) => {
+    // Here you would typically make an API call to get suggestions
+    // For the purposes of this example, we'll use static data
+    const allSuggestions = [
+      'ajout evenements',
+      'ajout offer',
+      'tous les evenements'
+      // ... more suggestions
+    ];
+    return allSuggestions.filter(suggestion =>
+      suggestion.toLowerCase().includes(value.toLowerCase())
+    );
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    if (value.length > 1) {
+      setSuggestions(getSearchSuggestions(value));
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleSelectSuggestion = (suggestion) => {
+    setSearchTerm(suggestion);
+    setSuggestions([]);
+    // Here you would navigate based on the suggestion
+    // For example:
+    if (suggestion === 'ajout event') {
+      navigate('/dash/add-event');
+    } else if (suggestion === 'ajout offer') {
+      navigate('/dash/addoffer');
+    }
+    else if (suggestion === 'evenements') {
+      navigate('/dash/evenements');
+    }
+    // Add more conditions for different suggestions and routes here
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSuggestions([]);
+    // Navigate based on the search term
+    // Example logic (needs to be adapted to your actual search routes)
+    if (searchTerm.toLowerCase().includes('ajout event')) {
+      navigate('/dash/add-event');
+    } else if (searchTerm.toLowerCase().includes('ajout offer')) {
+      navigate('/dash/addoffer');
+    }
+    else if (searchTerm.toLowerCase().includes('evenements')) {
+      navigate('/dash/evenements');
+    }
+    // Add more conditions for different search terms and routes here
+    setSearchTerm(''); // Clear the search input after navigation
+  };
   return (
     <nav className="navbar navbar-expand-lg" style={{ height: '80px', padding: '0', width: '100%' }}>
       <div className="container-fluid">
@@ -28,7 +91,8 @@ function Header() {
                 Home
               </Link>
             </li>
-           {(isRecruter | isAdmin ) && <li className="nav-item text-center mx-2 mx-lg-1">
+
+            {(isRecruter | isAdmin) && <li className="nav-item text-center mx-2 mx-lg-1">
               <Link to="./addoffer" className="nav-link">
                 <div>
                   <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
@@ -60,6 +124,32 @@ function Header() {
                 <li><a className="dropdown-item" href="#">Add Candidate</a></li>
               </ul>
             </li>
+            <li className="nav-item text-center mx-2 mx-lg-1">
+              <form className="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0" onSubmit={handleSearch}>
+                <input
+                  type="search"
+                  className="form-control"
+                  placeholder="Search"
+                  aria-label="Search"
+                  value={searchTerm}
+                  onChange={handleChange}
+                />
+                <button className="btn btn-primary" type="submit">
+                  Search
+                </button>
+                <div className="search-suggestions">
+                  {suggestions.map((suggestion, index) => (
+                    <div
+                      key={index}
+                      onClick={() => handleSelectSuggestion(suggestion)}
+                      className="suggestion"
+                    >
+                      {suggestion}
+                    </div>
+                  ))}
+                </div>
+              </form>
+            </li>
           </ul>
           <ul className="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
             <li className="nav-item text-center mx-2 mx-lg-1">
@@ -81,12 +171,7 @@ function Header() {
               </a>
             </li>
           </ul>
-          <form className="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
-            <input type="search" className="form-control" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-primary" type="button" data-mdb-ripple-color="dark">
-              Search
-            </button>
-          </form>
+         
         </div>
       </div>
     </nav>
