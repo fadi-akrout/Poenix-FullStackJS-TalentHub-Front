@@ -32,28 +32,36 @@ const VerifyEmail = () => {
 
     return (
         <>
-          <HeaderClient />
+        <div> <HeaderClient /> </div>
+         
 
           <section className="contact-us" id="contact">
             <div className="container">
               <div className="row">
                 <div className="col-lg-12 align-self-center">
                   <div className="row">
-                    <div className="col-lg-12"></div>
-        <div>
-            <h2 style={{ color: 'white' }}>Email Verification</h2>
+                    <div className="col-lg-12">
+                    <form id="contact" >
+                    <div className="row">
+                      <div className="col-lg-12">
+                        <h2>Email Verification</h2>
+                      </div>
+           
             
-            <label htmlFor="otp" style={{ color: 'white' }}>Enter OTP:</label>
+            <label htmlFor="otp" >Enter OTP:</label>
+            <div className="col-lg-4">
             <input
                 type="text"
                 id="otp"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
-            />
+            /> </div>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            <button onClick={handleVerify}>Verify</button>
-        </div>
-        
+            <div className="col-lg-4"> <button onClick={handleVerify}>Verify</button>
+            </div>
+          </div>
+            </form>
+            </div>
                   </div>
                 </div>
               </div>

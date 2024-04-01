@@ -3,8 +3,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
+import useAuth from '../../hooks/useAuth'
+
 
 function StudentForm() {
+    const { userId, isStudent, isAdmin, isRecruter } = useAuth()
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
@@ -45,13 +48,16 @@ function StudentForm() {
             return;
         }
     
-        
+        const formDataWithUserId = {
+            ...formData,
+            user: userId // assuming userId is the correct property name
+        };
         try {
-            const response = await axios.post('http://localhost:3500/students', formData);
+            const response = await axios.post('http://localhost:3500/students', formDataWithUserId);
             console.log(response.data);
             
             
-            navigate('/Profile', { student: formData }); 
+            navigate('/dash'); 
 
         } catch (error) {
             console.error("There was a problem with form submission:", error);

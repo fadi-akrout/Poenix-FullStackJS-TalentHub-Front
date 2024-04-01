@@ -5,12 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
 import Header from '../HomePage/Header';
+import useAuth from '../../hooks/useAuth'
+
 
 function AddRecruiter() {
+    const { userId } = useAuth()
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
-        email: '',
         company: '',
         phoneNumber: '',
     });
@@ -27,7 +30,6 @@ function AddRecruiter() {
     const validateForm = () => {
         let newErrors = {};
         if (!formData.name.trim()) newErrors.name = "Le nom du recruteur est requis.";
-        if (!formData.email.trim()) newErrors.email = "L'email est requis.";
         if (!formData.company.trim()) newErrors.company = "Le nom de l'entreprise est requis.";
         if (!formData.phoneNumber.trim()) newErrors.phoneNumber = "Le numéro de téléphone est requis.";
 
@@ -38,11 +40,15 @@ function AddRecruiter() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
+        const formDataWithUserId = {
+            ...formData,
+            user: userId // assuming userId is the correct property name
+        };
 
         try {
-            const response = await axios.post('http://localhost:3500/recruiters', formData);
+            const response = await axios.post('http://localhost:3500/recruiters', formDataWithUserId);
             console.log(response.data);
-            navigate('/dash/recruiters');
+            navigate('/dash');
         } catch (error) {
             console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
         }
@@ -64,11 +70,7 @@ function AddRecruiter() {
                                     <input type="text" id="name" className="form-control" name="name" value={formData.name} onChange={handleChange} required />
                                     {errors.name && <div className="text-danger">{errors.name}</div>}
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">Email:</label>
-                                    <input type="email" id="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
-                                    {errors.email && <div className="text-danger">{errors.email}</div>}
-                                </div>
+            
                                 <div className="mb-3">
                                     <label htmlFor="company" className="form-label">Entreprise:</label>
                                     <input type="text" id="company" className="form-control" name="company" value={formData.company} onChange={handleChange} required />
@@ -84,10 +86,11 @@ function AddRecruiter() {
                         </div>
                     </div>
                 </div>
+
             </section>
             <section className="upcoming-meetings" id="meetings">
-                <Footer />
-            </section>
+             <Footer />
+           </section>
         </>
     );
 }

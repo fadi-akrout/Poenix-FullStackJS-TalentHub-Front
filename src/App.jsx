@@ -5,7 +5,7 @@ import { BrowserRouter,Routes, Route ,Navigate } from 'react-router-dom';
 import useTitle from './hooks/useTitle';
 
 import HomeP from './ClientComponent/HomePage/HomeP';
-import Profile from './ClientComponent/HomePage/Profile';
+import Profile from './features/auth/profile';
 import SignUpp from './ClientComponent/HomePage/SignUpp';
 import Loginn from './ClientComponent/HomePage/Loginn';
 import Recruiters from './ClientComponent/RecruiterComponent/Recruiters';
@@ -102,7 +102,7 @@ function App() {
                 <Route element={<Prefetch />}>
                   <Route path='dash' element={<DashLayout />}>
                     <Route path="*" element={<Navigate to="/dash" />} />
-              <Route index element={<HomeP />} />
+                    <Route index element={<HomeP />} />
                 
                     <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                       <Route path="users">
@@ -110,31 +110,39 @@ function App() {
                         <Route path=":id" element={<EditUser />} />
                         <Route path="new" element={<NewUserForm />} />
                       </Route>
-                    </Route>
 
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                     <Route path="notes">
                       <Route index element={<NotesList />} />
                       <Route path=":id" element={<EditNote />} />
                       <Route path="new" element={<NewNote />} />
                     </Route>
+                    </Route>
 
                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter]} />}>
-            <Route path="addoffer">
-              <Route index element ={<AddOffer />} />
-            </Route>
-            </Route>
-                    <Route path="Profile">
-                      <Route index element={<Profile />} />
+                      <Route path="addoffer">
+                      <Route index element ={<AddOffer />} />
+                      </Route>
+                      </Route>
+                      <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter]} />}>
+
+                      <Route path="updateoffer/:id">
+                      <Route index element={<UpdateOffer />} />
                     </Route>
+                    </Route>
+
+                      <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                     <Route path="recruiters">
                       <Route index element={<Recruiters />} />
                     </Route>
+                    </Route>
+
                     <Route path="add-recruiter">
                       <Route index element={<AddRecruiter />} />
                     </Route>
-                    <Route path="updateoffer/:id">
-                      <Route index element={<UpdateOffer />} />
-                    </Route>
+
+                 
 
 
                     {/*   <Route path="AddCandidate">
@@ -143,9 +151,13 @@ function App() {
                     <Route path="evenements">
                       <Route index element={<Evenement />} />
                     </Route>
+
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter,ROLES.Teacher]} />}>
                     <Route path="add-event">
                       <Route index element={<AddEvent />} />
                     </Route>
+                    </Route>
+
                     <Route path="admin/*">
                       <Route index element={<Admin />} />
                     </Route>
@@ -167,13 +179,23 @@ function App() {
                     <Route path="staff">
                       <Route index element={<AddStaff />} />
                     </Route>
+                    <Route path="Profile">
+                      <Route index element={<Profile />} />
+                    </Route>
+                  
+                   
 
 
+                    {/*  
+                    
+                    <Route path="Profile">
+                      <Route index element={<Profile />} />
+                    </Route>
 
-                    {/*    <Route path="/addoffer" element={<AddOffer />} />
+
 
           <Route path="/HomeP" element={<HomeP />} />
-          <Route path="/Profile" element={<Profile />} />
+         <Route path="/addoffer" element={<AddOffer />} />
           <Route path="/recruiters" element={<Recruiters />} />
           <Route path="/add-recruiter" element={<AddRecruiter />} />
           <Route path="/addoffer" element={<AddOffer />} />
@@ -184,7 +206,7 @@ function App() {
           <Route path="/offers" element={<OfferList />} /> */} 
 
 
-
+            
 
 
 
