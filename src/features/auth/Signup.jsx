@@ -8,7 +8,7 @@ import usePersist from '../../hooks/usePersist'
 import { ROLES } from "../../config/roles"
 import PulseLoader from 'react-spinners/PulseLoader'
 import HeaderClient from '../../ClientComponent/Dashboard/HeaderClient'
-
+import Footer from '../../ClientComponent/Dashboard/Footer'
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!#$%])[A-Za-z\d@!#$%]{8,}$/
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

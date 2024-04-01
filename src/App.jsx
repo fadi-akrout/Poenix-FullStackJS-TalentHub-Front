@@ -123,7 +123,9 @@ function App() {
               <Route index element ={<AddOffer />} />
             </Route>
             </Route>
-
+                    <Route path="Profile">
+                      <Route index element={<Profile />} />
+                    </Route>
                     <Route path="recruiters">
                       <Route index element={<Recruiters />} />
                     </Route>

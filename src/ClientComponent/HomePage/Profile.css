@@ -1,3 +1,22 @@
 .custom-card {
   background-color: #767676d2; /* Set the background color to grey */
 }
+.profile-container {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.profile-info {
+  margin-top: 15px;
+}
+
+.profile-info p {
+  margin: 5px 0;
+}
+
+.profile-info strong {
+  font-weight: bold;
+}
