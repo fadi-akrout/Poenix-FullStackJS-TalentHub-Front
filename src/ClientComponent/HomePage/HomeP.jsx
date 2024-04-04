@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import backgroundImage from './image/meetings-bg.jpg';
 import Offers from './Offers';
-import Evenements from '../EventComponent/Evenement';
+import Evenements from '../EventComponent/EventPreview';
 
 function HomeP() {
   const [headerVisible, setHeaderVisible] = useState(true);
@@ -79,7 +79,7 @@ function HomeP() {
   return (
     <div className="App">
       <Header />
-      <div style={backgroundImageStyle}>
+      <section className="upcoming-meetings" id="meetings">
         <div className="container" style={containerStyle}>
           <div style={contentStyle}>
             <div style={{ position: 'relative', zIndex: 2 }}>
@@ -90,7 +90,7 @@ function HomeP() {
             <Evenements />
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

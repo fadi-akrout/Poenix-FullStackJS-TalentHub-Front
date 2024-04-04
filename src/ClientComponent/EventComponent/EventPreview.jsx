@@ -1,20 +1,16 @@
-/* import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa';
-import { MdDeleteForever } from 'react-icons/md';
+import { MdDeleteForever } from 'react-icons/md'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
-
-import './Event.css'
-
 import useAuth from '../../hooks/useAuth'
-
 
 function Evenements() {
     const [evenements, setEvenements] = useState([]);
-    const {isAdmin, isRecruter, isTeacher } = useAuth()
+
     useEffect(() => {
         axios.get('http://localhost:3500/evenements')
             .then(response => setEvenements(response.data))
@@ -22,24 +18,22 @@ function Evenements() {
     }, []);
 
     return (
+
         <>
+
 
             <section className="upcoming-meetings" id="meetings">
                 <div className="container my-5">
-                    <h1 style={{color:'white'}} className="text-center mb-4">Liste des Événements</h1>
-                    <div className="row">
-                        {evenements.map(evenement => (
-                            <div className="col-md-6 col-lg-4 mb-3" key={evenement._id}>
-                                <Evenement evenement={evenement} setEvenements={setEvenements} />
-                            </div>
-                        ))}
-                    </div>
+                    <h1 className="text-center mb-4">Liste des Événements</h1>
+                    {evenements.map(evenement => (
+                        <Evenement evenement={evenement} setEvenements={setEvenements} key={evenement._id} />
+                    ))}
                     <div className="text-center mt-4">
-                    {(isAdmin || isRecruter || isTeacher) &&  <Link to="/dash/add-event" className="btn btn-danger">Ajouter un événement</Link>}
+                        <Link to="/dash/add-event" className="btn btn-danger">Ajouter un événement</Link>
                     </div>
                 </div>
-            </section>
 
+            </section>
         </>
     );
 }
@@ -50,24 +44,18 @@ function Evenement({ evenement, setEvenements }) {
 
     const activerEdition = () => setEnEdition(true);
     const desactiverEdition = () => setEnEdition(false);
-    const { username, email, isTeacher, isStudent, isAdmin, isRecruter } = useAuth()
+    const { username,email, isTeacher,isStudent,isAdmin ,isRecruter} = useAuth()
 
 
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setDonneesEdition(prev => ({ ...prev, [name]: value }));
-    };
+    useEffect(() => {
+        const fetchEvenements = async () => {
+            const result = await axios('http://localhost:3500/evenements');
+            setEvenements(result.data);
+        };
 
-    const handleImageChange = e => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (upload) => {
-                setDonneesEdition(prev => ({ ...prev, image: upload.target.result }));
-            };
-            reader.readAsDataURL(file);
-        }
-    };
+        fetchEvenements();
+    }, []);
+
 
     const sauvegarder = () => {
         axios.patch(`http://localhost:3500/evenements/${evenement._id}`, donneesEdition)
@@ -78,11 +66,34 @@ function Evenement({ evenement, setEvenements }) {
             .catch(error => console.error("Erreur lors de la mise à jour", error));
     };
 
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setDonneesEdition(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleImageChange = e => {
+        // Assuming you want to store the image file in state
+        const file = e.target.files[0];
+        if (file) {
+            // Create a new FileReader object
+            const reader = new FileReader();
+
+            // Define what happens on file load
+            reader.onload = (upload) => {
+                // You can either set the image data in state directly,
+                // or perhaps upload it to a server, etc.
+                setDonneesEdition(prev => ({ ...prev, image: upload.target.result }));
+            };
+
+            // Read the file as a Data URL (base64 encoded string)
+            reader.readAsDataURL(file);
+        }
+    };
     const handleDelete = async () => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer cet événement ?")) {
             try {
                 const response = await axios.delete(`http://localhost:3500/evenements/${evenement._id}`);
-                if (response.status === 200 || response.status === 204) {
+                if (response.status === 200 || response.status === 204) { // Status 204 est aussi un succès, mais sans contenu.
                     setEvenements(prevEvenements => prevEvenements.filter(ev => ev._id !== evenement._id));
                 }
             } catch (error) {
@@ -91,8 +102,12 @@ function Evenement({ evenement, setEvenements }) {
         }
     };
 
+
+
+
     return (
-        <div className="card h-100">
+
+        <div key={evenement._id} className="card mb-1">
             {enEdition ? (
                 <div className="card-body">
                     <input className="form-control mb-2" name="nom" placeholder="Nom" value={donneesEdition.nom} onChange={handleChange} />
@@ -108,31 +123,46 @@ function Evenement({ evenement, setEvenements }) {
                     <button className="btn btn-secondary" onClick={desactiverEdition}>Annuler</button>
                 </div>
             ) : (
-                <div className="card">
-                    <img className="card-img-top" src={evenement.image} alt={evenement.nom} />
+                <div key={evenement._id} className="card mb-1">
                     <div className="card-body">
+                        <div className="row">
+                            {/* Event Image */}
+                            {evenement.image && (
+                                <div className="col-lg-12">
+                                    <img src={evenement.image} className="card-img-top mb-2" alt="Event" style={{ width: '100%', height: 'auto' }} />
+                                </div>
+                            )}
 
-                        <h5 className="card-title">{evenement.nom}</h5>
-                        <p className="card-text">{evenement.adresse}</p>
-                        <p className="card-text">
-                            Période: {new Date(evenement.dateDebut).toLocaleDateString()} - {new Date(evenement.dateFin).toLocaleDateString()}
-                        </p>
-                        <p className="card-text">{evenement.description}</p>
-                    </div>
-                    <div className="card-footer">
-                        {(isAdmin || isRecruter || isTeacher) &&
+                            {/* Event Details */}
+                            <div className="col-lg-12">
+                                <h5 className="card-title">{evenement.nom}</h5>
+                                <p className="card-text">
+                                    <strong>Adresse:</strong> {evenement.adresse}
+                                </p>
+                                <p className="card-text">
+                                    <strong>Période:</strong> {new Date(evenement.dateDebut).toLocaleDateString()} - {new Date(evenement.dateFin).toLocaleDateString()}
+                                </p>
+                                <p className="card-text">{evenement.description}</p>
+                            </div>
+                        </div>
+
+                        {/* Event Actions */}
+                        <div className="card-footer">
+                        {( isAdmin || isRecruter || isTeacher) &&
                             <FaEdit onClick={activerEdition} style={{ cursor: 'pointer', color: '#0d6efd', marginRight: '10px' }} />
-                        }
-                        {(isAdmin || isRecruter || isTeacher) &&
-                            <MdDeleteForever onClick={handleDelete} style={{ cursor: 'pointer', color: 'red' }} />
-                        }
-
+                         }
+                          {( isAdmin || isRecruter || isTeacher) &&
+                          <MdDeleteForever onClick={handleDelete} style={{ cursor: 'pointer', color: 'red' }} />
+                            }
+                              </div>
                     </div>
                 </div>
             )}
+
         </div>
     );
 }
 
+
+
 export default Evenements;
- */
