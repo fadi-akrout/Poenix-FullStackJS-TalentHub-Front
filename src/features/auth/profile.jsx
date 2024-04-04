@@ -9,22 +9,14 @@ function profile() {
     const [hasUserRelation, setHasUserRelation] = useState(false);
 
     useEffect(() => {
-        const fetchDataRecruiter = async () => {
-            try {
-                const response = await axios.get(`http://localhost:3500/recruiters/${userId}`);
-                setHasUserRelation(response.data.hasUserRelation);
-                console.log("recruiters",response.data.hasUserRelation);
-                if(response.data.hasUserRelation && isRecruter) navigate('/dash')
-            } catch (error) {
-                console.error('Error fetching recruiter:', error);
-            }
-        };
+       
         const fetchDataStudent = async () => {
             try {
                 const response = await axios.get(`http://localhost:3500/students/${userId}`);
                 setHasUserRelation(response.data.hasUserRelation);
                 console.log("students",response.data.hasUserRelation);
-                if(response.data.hasUserRelation && isStudent) navigate('/dash')
+                let id = response1.data.student._id;
+                if(response.data.hasUserRelation && isStudent) navigate(`/dash/ProfileStudent/${id}`)
             } catch (error) {
                 console.error('Error fetching recruiter:', error);
             }

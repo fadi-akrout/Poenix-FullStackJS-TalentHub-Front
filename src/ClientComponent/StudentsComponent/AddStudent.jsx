@@ -21,6 +21,7 @@ function StudentForm() {
         dateOfBirth: '',
         address: '',
         city: '',
+
         phoneNumber: '',
         skills: '',
         languages: '',
@@ -36,6 +37,16 @@ function StudentForm() {
             [name]: value
         }));
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+
+        const areFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
+        if (!areFieldsFilled) {
+            alert("Please fill in all fields.");
+            return;
+        }
 
     const validateForm = () => {
         let newErrors = {};
@@ -76,25 +87,37 @@ function StudentForm() {
         try {
             const response = await axios.post('http://localhost:3500/Students', formDataWithUserId);
             console.log(response.data);
-            navigate('/dash');
+
+
+
+            const response1 = await axios.get(`http://localhost:3500/students/${userId}`);
+            console.log("students", response1.data.hasUserRelation);
+            let id = response1.data.student._id;
+            console.log(id)
+            if (response1.data.hasUserRelation) navigate(`/dash/ProfileStudent/${id}`)
+
+
         } catch (error) {
             console.error("Il y a eu un problème avec l'envoi du formulaire :", error);
         }
     };
-    
+
 
     return (
         <>
-           <Header />
-           <section className="contact-us" id="contact">    
+
+            <Header />
+            <section className="contact-us" id="contact">
                 <div className="container mt-5">
                     <form onSubmit={handleSubmit} id="contact">
-                    <div className="row">   
-                        <div className="col-lg-12">
-                            <h2>Register As Student</h2>
+                        <div className="row">
+
+                            <div className="col-lg-12">
+                                <h2>Register As Student</h2>
+                            </div>
+
                         </div>
-                    </div>
-                    <div className="row">
+                        <div className="row">
                             <div className="col-md-6">
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name:</label>
@@ -132,6 +155,7 @@ function StudentForm() {
                                     {errors.lastPostOccupied && <div className="text-danger">{errors.lastPostOccupied}</div>}
                                 </div>
                                 <div className="mb-3">
+
                                     <label htmlFor="cv" className="form-label">CV  (PDF only):</label><br/>
                                     <input type="file" accept=".pdf" name="cv" id="cv" className="form-control" onChange={handleChange} onBlur={handleBlur} required />
                                     {errors.cv && <div className="text-danger">{errors.cv}</div>}
@@ -144,7 +168,7 @@ function StudentForm() {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                
+
                                 <div className="mb-3">
                                     <label htmlFor="address" className="form-label">Address:</label>
                                     <input type="text" id="address" className="form-control" name="address" value={formData.address} onChange={handleChange} onBlur={handleBlur} required />
@@ -152,11 +176,14 @@ function StudentForm() {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="city" className="form-label">City:</label>
+
                                     <input type="text" id="city" className="form-control" name="city" value={formData.city} onChange={handleChange} onBlur={handleBlur} required />
                                     {errors.city && <div className="text-danger">{errors.city}</div>}
+
                                 </div>
                                
                                 <div className="mb-3">
+
                                     <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
                                     <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} onBlur={handleBlur} required />
                                     {errors.phoneNumber && <div className="text-danger">{errors.phoneNumber}</div>}
@@ -186,11 +213,11 @@ function StudentForm() {
                         <button type="submit" className="btn btn-danger">Complete your profile</button>
                     </form>
                 </div>
-            
+
             </section>
             <section className="upcoming-meetings" id="meetings">
-        <Footer />
-      </section>
+                <Footer />
+            </section>
         </>
     );
 }

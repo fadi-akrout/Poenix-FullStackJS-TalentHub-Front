@@ -1,6 +1,6 @@
 import React, { useState, Suspense, lazy } from 'react';
 
-import { BrowserRouter,Routes, Route ,Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import useTitle from './hooks/useTitle';
 
@@ -33,6 +33,7 @@ import PersistLogin from './features/auth/PersistLogin';
 import RequireAuth from './features/auth/RequireAuth'
 import { ROLES } from './config/roles'
 import ForgotPassword from './features/auth/forgotPassword';
+import StudentProfile from './ClientComponent/StudentsComponent/StudentProfile';
 
 
 
@@ -85,16 +86,16 @@ function App() {
             {/* public routes */}
             <Route index element={<Home />} />
 
-            <Route path="/login" element={<Login  />}/>
-            <Route path="/signup" element={<Signup />}/>
-            <Route path="/forgot-password" element={<ForgotPassword />}/>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password">
-              <Route index element ={<ResetPassword />} />
+              <Route index element={<ResetPassword />} />
             </Route>
-            <Route path="/verify-email/:userId" element={<VerifyEmail />}/>
-           
+            <Route path="/verify-email/:userId" element={<VerifyEmail />} />
 
-         
+
+
 
 
             {/* Protected Routes */}
@@ -105,7 +106,7 @@ function App() {
                   <Route path='dash' element={<DashLayout />}>
                     <Route path="*" element={<Navigate to="/dash" />} />
                     <Route index element={<HomeP />} />
-                
+
                     <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                       <Route path="users">
                         <Route index element={<UsersList />} />
@@ -115,39 +116,39 @@ function App() {
 
                     </Route>
                     <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-                    <Route path="notes">
-                      <Route index element={<NotesList />} />
-                      <Route path=":id" element={<EditNote />} />
-                      <Route path="new" element={<NewNote />} />
-                    </Route>
+                      <Route path="notes">
+                        <Route index element={<NotesList />} />
+                        <Route path=":id" element={<EditNote />} />
+                        <Route path="new" element={<NewNote />} />
+                      </Route>
                     </Route>
 
-                   <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter]} />}>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Recruter]} />}>
                       <Route path="addoffer">
-                      <Route index element ={<AddOffer />} />
+                        <Route index element={<AddOffer />} />
                       </Route>
-                      </Route>
-                      <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter]} />}>
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Recruter]} />}>
 
                       <Route path="updateoffer/:id">
-                      <Route index element={<UpdateOffer />} />
-                    </Route>
+                        <Route index element={<UpdateOffer />} />
+                      </Route>
                     </Route>
                     <Route path="apply/:id">
                       <Route index element={<Apply />} />
                     </Route>
 
-                      <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-                    <Route path="recruiters">
-                      <Route index element={<Recruiters />} />
-                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                      <Route path="recruiters">
+                        <Route index element={<Recruiters />} />
+                      </Route>
                     </Route>
 
                     <Route path="add-recruiter">
                       <Route index element={<AddRecruiter />} />
                     </Route>
 
-                 
+
 
 
                     {/*   <Route path="AddCandidate">
@@ -157,10 +158,10 @@ function App() {
                       <Route index element={<Evenement />} />
                     </Route>
 
-                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.Recruter,ROLES.Teacher]} />}>
-                    <Route path="add-event">
-                      <Route index element={<AddEvent />} />
-                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Recruter, ROLES.Teacher]} />}>
+                      <Route path="add-event">
+                        <Route index element={<AddEvent />} />
+                      </Route>
                     </Route>
 
                     <Route path="admin/*">
@@ -171,6 +172,9 @@ function App() {
                     </Route>
                     <Route path="AddStudent">
                       <Route index element={<AddStudent />} />
+                    </Route>
+                    <Route path="ProfileStudent/:id">
+                      <Route index element={<StudentProfile />} />
                     </Route>
                     <Route path="Students">
                       <Route index element={<Student />} />
@@ -187,8 +191,8 @@ function App() {
                     <Route path="Profile">
                       <Route index element={<Profile />} />
                     </Route>
-                  
-                   
+
+
 
 
                     {/*  
@@ -208,10 +212,10 @@ function App() {
            <Route path="/evenements" element={<Evenement />} />
           <Route path="/add-event" element={<AddEvent />} />
           <Route path="/admin/*" element={<Admin />} />
-          <Route path="/offers" element={<OfferList />} /> */} 
+          <Route path="/offers" element={<OfferList />} /> */}
 
 
-            
+
 
 
 
