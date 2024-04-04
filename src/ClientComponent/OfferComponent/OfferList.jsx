@@ -40,23 +40,21 @@ function OfferList() {
         navigate(`/updateoffer/${offerId}`);
     }
 
-
+  // Slice the offers array to display only the first four offers
+  const displayedOffers = offers.slice(0, 4);
     return (
         <>
             <section className="upcoming-meetings" id="meetings">
                 <div className="container">
                     <div className="row">
-                        {offers.map(offer => (
-                            <div key={offer._id} className="col-lg-4 col-md-6 col-sm-12">
+                        {displayedOffers.map(offer => (
+                            <div key={offer._id} className="col-lg-6 col-md-6 col-sm-12">
                                 <div className="meeting-item">
                                     <div className="thumb">
                                         <div className="price"></div>
                                         <img src="assets/images/meeting-01.jpg" alt="New Lecturer Meeting" />
                                     </div>
                                     <div className="down-content">
-                                        <div className="date">
-                                            <h6>Mar <span>10</span></h6>
-                                        </div>
                                         <div className="job-offer">
                                             <h4 className="job-title">{offer.Title}</h4>
                                             <div className="job-details">

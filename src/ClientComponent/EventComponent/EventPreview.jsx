@@ -10,6 +10,7 @@ import useAuth from '../../hooks/useAuth'
 
 function Evenements() {
     const [evenements, setEvenements] = useState([]);
+    const { username,email, isTeacher,isStudent,isAdmin ,isRecruter} = useAuth()
 
     useEffect(() => {
         axios.get('http://localhost:3500/evenements')
@@ -24,13 +25,14 @@ function Evenements() {
 
             <section className="upcoming-meetings" id="meetings">
                 <div className="container my-5">
-                    <h1 className="text-center mb-4">Liste des Événements</h1>
+                    <h1 className="text-center mb-4" style={{ color: 'white' }}>Events</h1>
                     {evenements.map(evenement => (
                         <Evenement evenement={evenement} setEvenements={setEvenements} key={evenement._id} />
                     ))}
+                     {( isAdmin || isRecruter || isTeacher) &&
                     <div className="text-center mt-4">
-                        <Link to="/dash/add-event" className="btn btn-danger">Ajouter un événement</Link>
-                    </div>
+                        <Link to="/dash/add-event" className="btn btn-danger">Add event</Link>
+                    </div>}
                 </div>
 
             </section>
@@ -90,7 +92,7 @@ function Evenement({ evenement, setEvenements }) {
         }
     };
     const handleDelete = async () => {
-        if (window.confirm("Êtes-vous sûr de vouloir supprimer cet événement ?")) {
+        if (window.confirm("ARE YOU SURE YOU WANT TO DELETE THIS EVENT")) {
             try {
                 const response = await axios.delete(`http://localhost:3500/evenements/${evenement._id}`);
                 if (response.status === 200 || response.status === 204) { // Status 204 est aussi un succès, mais sans contenu.
@@ -110,10 +112,10 @@ function Evenement({ evenement, setEvenements }) {
         <div key={evenement._id} className="card mb-1">
             {enEdition ? (
                 <div className="card-body">
-                    <input className="form-control mb-2" name="nom" placeholder="Nom" value={donneesEdition.nom} onChange={handleChange} />
+                    <input className="form-control mb-2" name="nom" placeholder="Name" value={donneesEdition.nom} onChange={handleChange} />
                     <input className="form-control mb-2" name="adresse" placeholder="Adresse" value={donneesEdition.adresse} onChange={handleChange} />
-                    <input className="form-control mb-2" type="date" name="dateDebut" value={donneesEdition.dateDebut.split('T')[0]} onChange={handleChange} />
-                    <input className="form-control mb-2" type="date" name="dateFin" value={donneesEdition.dateFin.split('T')[0]} onChange={handleChange} />
+                    <input className="form-control mb-2" type="date" name="Starting date" value={donneesEdition.dateDebut.split('T')[0]} onChange={handleChange} />
+                    <input className="form-control mb-2" type="date" name="Ending date" value={donneesEdition.dateFin.split('T')[0]} onChange={handleChange} />
                     <textarea className="form-control mb-2" name="description" placeholder="Description" value={donneesEdition.description} onChange={handleChange} />
                     <div className="mb-2">
                         <label htmlFor="imageUpload" className="form-label">Image</label>
@@ -140,7 +142,7 @@ function Evenement({ evenement, setEvenements }) {
                                     <strong>Adresse:</strong> {evenement.adresse}
                                 </p>
                                 <p className="card-text">
-                                    <strong>Période:</strong> {new Date(evenement.dateDebut).toLocaleDateString()} - {new Date(evenement.dateFin).toLocaleDateString()}
+                                    <strong>Periode:</strong> {new Date(evenement.dateDebut).toLocaleDateString()} - {new Date(evenement.dateFin).toLocaleDateString()}
                                 </p>
                                 <p className="card-text">{evenement.description}</p>
                             </div>
