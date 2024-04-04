@@ -7,23 +7,20 @@ import OfferList from "../OfferComponent/OfferList";
 export default function Home() {
   return (
     <>
-
       <HeaderClient />
       <section className="section main-banner" id="top" data-section="section1">
-
         <img className="card-img-top" src="assets/images/background1.jpeg" />
-
         <div className="video-overlay header-text">
           <div className="container">
-            <div className="row">
+            <div className="row align-items-center">
               <div className="col-lg-12">
                 <div className="caption">
                   <h6>Hello Job Seekers</h6>
-                  <h2>Bienvenue sur TALENTHUB</h2>
-                  <p>Talent Hub est une plateforme innovante qui révolutionne la gestion des opportunités professionnelles...
-                    C'est une plateforme conviviale qui simplifie la recherche d'emploi et la gestion des candidatures tant pour les individus que pour les organisations.</p>
+                  <h2>Welcome to TALENTHUB</h2>
+                  <p>Talent Hub is an innovative platform that revolutionizes the management of professional opportunities...
+                      It's a user-friendly platform that simplifies job search and application management for both individuals and organizations.</p>
                   <div className="main-button-red">
-                    <a href="#contact" className="scroll-to-section">Rejoignez-nous dès maintenant !</a>
+                      <a href="#contact" className="scroll-to-section">Join us now!</a>
                   </div>
                 </div>
               </div>
@@ -80,11 +77,6 @@ export default function Home() {
         </div>
         <Footer />
       </section>
-
-      {/* Additional sections such as "our-facts" and "contact-us" can follow here */}
-
-
-
     </>
   );
 }

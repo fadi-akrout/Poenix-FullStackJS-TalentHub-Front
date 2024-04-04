@@ -43,7 +43,7 @@ const navigateToApply = (offerId) => {
       <div className="container">
         <div className="row justify-content-center">
           {offers.map((offer) => (
-            <div key={offer._id} className="justify-content-center col-lg-8 col-md-4 col-sm-8 mb-6"> {/* Adjusted col widths */}
+            <div key={offer._id} className="justify-content-center col-lg-10 col-md-6 col-sm-8 mb-6"> {/* Adjusted col widths */}
               <div className="card h-100"> 
                 <img src="assets/images/meeting-01.jpg" className="card-img-top" alt="Offer" />
                 <div className="card-body">
