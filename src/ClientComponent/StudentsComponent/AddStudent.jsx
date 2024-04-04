@@ -21,8 +21,7 @@ function StudentForm() {
         dateOfBirth: '',
         address: '',
         city: '',
-        postalCode: '',
-        country: '',
+       
         phoneNumber: '',
         skills: '',
         languages: '',
@@ -68,12 +67,13 @@ function StudentForm() {
     return (
         <>
            <Header />
-           <section className="upcoming-meetings" id="meetings">
+           <section className="contact-us" id="contact">    
                 <div className="container mt-5">
-                    <form onSubmit={handleSubmit} className="card p-4">
+                    <form onSubmit={handleSubmit} id="contact">
                     <div className="row">
-                        <div className="col-12 text-center">
-                            <h1 style={{ color: 'Black' }}>Register As Student</h1>
+                      
+                        <div className="col-lg-12">
+                            <h2>Register As Student</h2>
                         </div>
                     </div>
                     <div className="row">
@@ -126,14 +126,7 @@ function StudentForm() {
                                     <label htmlFor="city" className="form-label">City:</label>
                                     <input type="text" id="city" className="form-control" name="city" value={formData.city} onChange={handleChange} required />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="postalCode" className="form-label">Postal Code:</label>
-                                    <input type="text" id="postalCode" className="form-control" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="country" className="form-label">Country:</label>
-                                    <input type="text" id="country" className="form-control" name="country" value={formData.country} onChange={handleChange} required />
-                                </div>
+                               
                                 <div className="mb-3">
                                     <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
                                     <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
