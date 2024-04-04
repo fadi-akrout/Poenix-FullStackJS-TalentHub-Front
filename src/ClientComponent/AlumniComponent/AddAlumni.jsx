@@ -190,7 +190,7 @@ function StudentForm() {
                         </div>
                         </div>
                         </div>
-                        <button type="submit" className="btn btn-danger">Submit</button>
+                        <button type="submit" className="btn btn-danger">Complete your profile</button>
                     </form>
                 </div>
             

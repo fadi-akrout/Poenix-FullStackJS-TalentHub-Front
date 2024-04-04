@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth'
 
 function Offers() {
   const [offers, setOffers] = useState([]);
-  const { username,email,isAlumni, isStudent, isAdmin ,isRecruter} = useAuth()
+  const { userId,email,isAlumni, isStudent, isAdmin ,isRecruter} = useAuth()
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -33,6 +33,9 @@ function Offers() {
 }
 const navigateToUpdateOffer = (offerId) => {
     navigate(`./updateoffer/${offerId}`);
+}
+const navigateToApply = (offerId) => {
+  navigate(`./apply/${offerId}`);
 }
 
   return (
@@ -67,7 +70,9 @@ const navigateToUpdateOffer = (offerId) => {
                     </li>
                   </ul>
                   {( isStudent || isAlumni) &&
-                  <Link to="./AddStudent" className="btn btn-danger mt-3">Postulez Maintenant</Link>
+                 
+                  <button type="submit" className="btn btn-danger" onClick={(e) => navigateToApply(offer._id)}>Apply now</button>
+
                   }
                   {( isAdmin || isRecruter) &&
                   <MdDeleteForever onClick={(e) => handleDelete(offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />

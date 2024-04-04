@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <HeaderClient />
       <section className="section main-banner" id="top" data-section="section1">
-        <img className="card-img-top" src="assets/images/talenthublogo.png" />
+        <img className="card-img-top" src="assets/images/background1.jpeg" />
         <div className="video-overlay header-text">
           <div className="container">
             <div className="row align-items-center">
