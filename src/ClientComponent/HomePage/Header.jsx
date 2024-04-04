@@ -25,6 +25,18 @@ function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        // Assuming 768px is your breakpoint for the mobile menu
+        setSuggestions([]); // Hide suggestions when resizing to a wider screen
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
 
   // A mock function to simulate getting search suggestions
   // This should be replaced with a real search suggestion function
@@ -209,17 +221,16 @@ function Header() {
           <a className="navbar" href="#">
             <img src={logoImage} alt="Logo" className="logo-img" style={{ width: '100px', height: 'auto' }} />
           </a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <i className="fas fa-bars text-light"></i>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span> {/* This will render the hamburger icon */}
           </button>
-          <div className={`collapse navbar-collapse rounded-pill ${dashClass} `} id="navbarSupportedContent" style={{ backgroundColor: '#a12c2f', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
+
+          <div className={`collapse navbar-collapse  ${dashClass} `} id="navbarSupportedContent" style={{ backgroundColor: '#a12c2f', width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
             <ul className="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
               <li className="nav-item text-center mx-2 mx-lg-1">
                 <Link to="/dash" className="nav-link">
                   <div>
-                    <FontAwesomeIcon icon={faHome} className="fa-lg mb-1" />
+                    <FontAwesomeIcon icon={faHome} className="fa-lg" />
 
                   </div>
                   Home
@@ -230,7 +241,7 @@ function Header() {
                 <Link to="/dash/addoffer" className="nav-link">
 
                   <div>
-                    <FontAwesomeIcon icon={faBriefcase} className="fa-lg mb-1" />
+                    <FontAwesomeIcon icon={faBriefcase} className="fa-lg" />
                   </div>
                   Add Offer
                 </Link>
@@ -240,12 +251,12 @@ function Header() {
 
                   <Link to="/dash/add-event" className="nav-link">                <div>
 
-                    <FontAwesomeIcon icon={faCalendarDays} className="fa-lg mb-1" />
+                    <FontAwesomeIcon icon={faCalendarDays} className="fa-lg" />
                   </div>
                     Add Events
                   </Link>
                 </li>}
-              <li className="nav-item text-center mx-2 mx-lg-1">
+              {/*               <li className="nav-item text-center mx-2 mx-lg-1">
                 <form className="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0" onSubmit={handleSearch}>
                   <input
                     type="search"
@@ -270,58 +281,27 @@ function Header() {
                     ))}
                   </div>
                 </form>
-              </li>
-              {/* <li className="nav-item dropdown text-center mx-2 mx-lg-1">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
-                aria-expanded="false">
-                <div>
-                  <FontAwesomeIcon icon={faEnvelope} className="fa-lg mb-1" />
-                  <span className="badge rounded-pill badge-notification bg-primary">11</span>
-                </div>
-                More
-              </a>
-              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                <li><a className="dropdown-item" href="#">Add Event</a></li>
-                <li><a className="dropdown-item" href="#">Add Offer</a></li>
-                <li><a className="dropdown-item" href="#">Add Candidate</a></li>
-              </ul>
+              </li> */}
 
-            </li>
-      
-=======
-            </li>  */}
 
             </ul>
             <ul className="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
               <li className="nav-item text-center mx-2 mx-lg-1">
                 <Link to="/dash/Profile" className="nav-link">
                   <div>
-                    <FontAwesomeIcon icon={faIdCard} className="fa-lg mb-1" />
+                    <FontAwesomeIcon icon={faIdCard} className="fa-lg" />
 
                   </div>
                   Profile
                 </Link>
               </li>
               {buttonContent}
-              {/*  <li className="nav-item text-center mx-2 mx-lg-1">
-              <a className="nav-link" href="#!">
-                <div>
-                  <FontAwesomeIcon icon={faGlobeAmericas} className="fa-lg mb-1" />
-                  <span className="badge rounded-pill badge-notification bg-success">11</span>
-                </div>
-                Notifications
-              </a>
-            </li> */}
+
             </ul>
 
 
 
-            {/*   <form className="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
-            <input type="search" className="form-control" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-primary" type="button" data-mdb-ripple-color="dark">
-              Search
-            </button>
-          </form> */}
+
 
           </div>
         </div>
