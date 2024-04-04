@@ -19,6 +19,20 @@ function StaffForm() {
         address: '',
         phoneNumber: ''
     });
+    const [errors, setErrors] = useState({});
+    const validateForm = () => {
+        let newErrors = {};
+        if (!formData.name.trim()) newErrors.name = "Name is required";
+        if (!formData.lastname.trim()) newErrors.lastname = "Lastname name is required";
+        if (!formData.email.trim()) newErrors.email = "Email is required";
+        if (!formData.actualPost.trim()) newErrors.actualPost = "actualPost is required";
+        if (!formData.nbrYearsOfExperience.trim()) newErrors.nbrYearsOfExperience = "Years of experience is required";
+        if (!formData.address.trim()) newErrors.address = "Address is required";
+        if (!formData.phoneNumber.trim()) newErrors.phoneNumber = "Phone number is required";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,6 +40,9 @@ function StaffForm() {
             ...prevState,
             [name]: value
         }));
+    };
+    const handleBlur = () => {
+        validateForm();
     };
 
     const handleSubmit = async (e) => {
@@ -68,25 +85,35 @@ function StaffForm() {
                             <div className="col-md-6">
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name:</label>
-                                    <input type="text" id="name" className="form-control" name="name" value={formData.name} onChange={handleChange} required />
+                                    <input type="text" id="name" className="form-control" name="name" value={formData.name} onChange={handleChange}  onBlur={handleBlur} required />
+                                    {errors.name && <div className="text-danger">{errors.name}</div>}
+
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="lastname" className="form-label">Lastname:</label>
-                                    <input type="text" id="lastname" className="form-control" name="lastname" value={formData.lastname} onChange={handleChange} required />
+                                    <input type="text" id="lastname" className="form-control" name="lastname" value={formData.lastname} onChange={handleChange}  onBlur={handleBlur}  required />
+                                    {errors.lastname && <div className="text-danger">{errors.lastname}</div>}
+
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email:</label>
-                                    <input type="email" id="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
+                                    <input type="email" id="email" className="form-control" name="email" value={formData.email} onChange={handleChange}  onBlur={handleBlur} required />
+                                    {errors.email && <div className="text-danger">{errors.email}</div>}
+
                                 </div>
                                
                                 <div className="mb-3">
                                     <label htmlFor="nbrYearsOfExperience" className="form-label">Number of Years of Experience:</label>
-                                    <input type="number" id="nbrYearsOfExperience" className="form-control" name="nbrYearsOfExperience" value={formData.nbrYearsOfExperience} onChange={handleChange} required />
+                                    <input type="number" id="nbrYearsOfExperience" className="form-control" name="nbrYearsOfExperience" value={formData.nbrYearsOfExperience} onChange={handleChange}  onBlur={handleBlur} required />
+                                    {errors.nbrYearsOfExperience && <div className="text-danger">{errors.nbrYearsOfExperience}</div>}
+
                                 </div>
                               
                                 <div className="mb-3">
                                     <label htmlFor="actualPost" className="form-label">Actual Post:</label>
-                                    <input type="text" id="actualPost" className="form-control" name="actualPost" value={formData.actualPost} onChange={handleChange} required />
+                                    <input type="text" id="actualPost" className="form-control" name="actualPost" value={formData.actualPost} onChange={handleChange}  onBlur={handleBlur} required />
+                                    {errors.actualPost && <div className="text-danger">{errors.actualPost}</div>}
+
                                 </div>
                                 
                             </div>
@@ -94,17 +121,21 @@ function StaffForm() {
                                 
                                 <div className="mb-3">
                                     <label htmlFor="address" className="form-label">Address:</label>
-                                    <input type="text" id="address" className="form-control" name="address" value={formData.address} onChange={handleChange} required />
+                                    <input type="text" id="address" className="form-control" name="address" value={formData.address} onChange={handleChange}  onBlur={handleBlur}  required />
+                                    {errors.address && <div className="text-danger">{errors.address}</div>}
+
                                 </div>
                               
                             
                                 <div className="mb-3">
                                     <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
-                                    <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
+                                    <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange}  onBlur={handleBlur} required />
+                                    {errors.phoneNumber && <div className="text-danger">{errors.phoneNumber}</div>}
+
                                  </div>
                             </div>
                      </div>
-                        <button type="submit" className="btn btn-danger">Submit</button>
+                        <button type="submit" className="btn btn-danger">Complete your profile</button>
                     </form>
                 </div>
 
