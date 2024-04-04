@@ -7,15 +7,11 @@ import OfferList from "../OfferComponent/OfferList";
 export default function Home() {
   return (
     <>
-  
-  <HeaderClient />
 
-     
-
+      <HeaderClient />
       <section className="section main-banner" id="top" data-section="section1">
-        <video autoPlay muted loop id="bg-video">
-          <source src="assets/images/course-video.mp4" type="video/mp4" />
-        </video>
+
+        <img className="card-img-top" src="assets/images/talenthublogo.png" />
 
         <div className="video-overlay header-text">
           <div className="container">
@@ -82,13 +78,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-         <Footer />
+        <Footer />
       </section>
 
       {/* Additional sections such as "our-facts" and "contact-us" can follow here */}
 
-     
-    
+
+
     </>
   );
 }

@@ -1,3 +1,15 @@
+.fa-lg {
+    font-size: 1.5em;
+    /* Adjust the size as needed */
+    color: #333;
+    /* Change color for better contrast if necessary */
+}
+
+#navbarSupportedContent {
+    z-index: 1050;
+    /* Bootstrap's navbar z-index, adjust as necessary */
+}
+
 .btn {
     padding: .55rem 1.5rem .45rem;
 }
@@ -21,4 +33,15 @@
 
 .suggestion:hover {
     background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .search-suggestions {
+        width: 100%;
+        /* Ensure it spans the full width of its container */
+    }
+    .navbar-collapse {
+        background-color: #a12c2f;
+        /* Match your navbar color for a seamless look */
+    }
 }
