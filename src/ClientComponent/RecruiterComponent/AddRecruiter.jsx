@@ -29,9 +29,9 @@ function AddRecruiter() {
 
     const validateForm = () => {
         let newErrors = {};
-        if (!formData.name.trim()) newErrors.name = "Le nom du recruteur est requis.";
-        if (!formData.company.trim()) newErrors.company = "Le nom de l'entreprise est requis.";
-        if (!formData.phoneNumber.trim()) newErrors.phoneNumber = "Le numéro de téléphone est requis.";
+        if (!formData.name.trim()) newErrors.name = "Name is required";
+        if (!formData.company.trim()) newErrors.company = "Company name is required";
+        if (!formData.phoneNumber.trim()) newErrors.phoneNumber = "Phone number is required";
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -66,22 +66,22 @@ function AddRecruiter() {
                                     <h2>Register as Recruiter</h2>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="name" className="form-label">Nom du recruteur:</label>
+                                    <label htmlFor="name" className="form-label">Name</label>
                                     <input type="text" id="name" className="form-control" name="name" value={formData.name} onChange={handleChange} required />
                                     {errors.name && <div className="text-danger">{errors.name}</div>}
                                 </div>
             
                                 <div className="mb-3">
-                                    <label htmlFor="company" className="form-label">Entreprise:</label>
+                                    <label htmlFor="company" className="form-label">Company:</label>
                                     <input type="text" id="company" className="form-control" name="company" value={formData.company} onChange={handleChange} required />
                                     {errors.company && <div className="text-danger">{errors.company}</div>}
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="phoneNumber" className="form-label">Numéro de téléphone:</label>
+                                    <label htmlFor="phoneNumber" className="form-label">Phone number</label>
                                     <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
                                     {errors.phoneNumber && <div className="text-danger">{errors.phoneNumber}</div>}
                                 </div>
-                                <button type="submit" className="btn btn-primary">Ajouter le recruteur</button>
+                                <button type="submit" className="btn btn-primary">Complete your profile</button>
                             </form>
                         </div>
                     </div>

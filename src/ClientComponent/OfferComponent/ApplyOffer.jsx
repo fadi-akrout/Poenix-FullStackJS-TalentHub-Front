@@ -3,8 +3,9 @@ import axios from 'axios';
 import { Link ,useParams ,useNavigate} from 'react-router-dom';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
+import useAuth from '../../hooks/useAuth'
 
-function UpdateOffer() {
+function ApplyOffer() {
   const navigate = useNavigate();
  const{id}=useParams()
  const [Title,SetTitle]=useState()
@@ -15,6 +16,8 @@ function UpdateOffer() {
  const [Speciality,SetSpeciality]=useState()
  const [JobType,SetJobType]=useState()
  const [JobCity,SetJobCity]=useState()
+ const { userId } = useAuth()
+
 
 
         useEffect(() => {
@@ -42,7 +45,11 @@ function UpdateOffer() {
 
         const Update = (e) => {
           e.preventDefault();
-          axios.patch('http://localhost:3500/offers/'+id,{Title,Experience_required,Domain,Mission,Salary,Speciality,JobType,JobCity})
+          const formDataWithUserId = {
+           
+            user: userId // assuming  is the correct property name
+        };
+          axios.patch('http://localhost:3500/offers/'+id,formDataWithUserId)
           .then(result=> {
             console.log(result)
             navigate('/dash')
@@ -65,47 +72,45 @@ function UpdateOffer() {
         <div className="col-lg-12">
           <form  id="contact" on onSubmit={Update}>
             <div className="row">
-              <div className="col-lg-12">
-                <h2>Add an offer</h2>
-              </div>
+            
               <div className="col-lg-4">
               <label htmlFor="Title" className="form-label">Title:</label>
-                <input type="text" id="Title" className="form-control" name="Title" value={Title} onChange={(e)=>SetTitle(e.target.value)} required />
+                <input type="text" id="Title" className="form-control" name="Title" value={Title} onChange={(e)=>SetTitle(e.target.value)} required disabled/>
               </div>
               <div className="col-lg-4">
                 <fieldset>
                 <label htmlFor="Experience_required" className="form-label">Experience_required:</label>
-                <input type="text" id="Experience_required" className="form-control" name="Experience_required" value={Experience_required} onChange={(e)=>SetExperience_required(e.target.value)} required />
+                <input type="text" id="Experience_required" className="form-control" name="Experience_required" value={Experience_required} onChange={(e)=>SetExperience_required(e.target.value)} required disabled/>
               </fieldset>
               </div>
               <div className="col-lg-4">
                 <fieldset>
                 <label htmlFor="Domain" className="form-label">Domain:</label>
-                <input type="text" id="Domain" className="form-Domain" name="Domain" value={Domain} onChange={(e)=>SetDomain(e.target.value)} required />
+                <input type="text" id="Domain" className="form-Domain" name="Domain" value={Domain} onChange={(e)=>SetDomain(e.target.value)} required disabled/>
                 </fieldset>
               </div>
               <div className="col-lg-4">
                 <fieldset>
                 <label htmlFor="Mission" className="form-label">Mission:</label>
-                <input type="text" id="Mission" className="form-control" name="Mission" value={Mission} onChange={(e)=>SetMission(e.target.value)} required />
+                <input type="text" id="Mission" className="form-control" name="Mission" value={Mission} onChange={(e)=>SetMission(e.target.value)} required disabled/>
                 </fieldset>
               </div>
               <div className="col-lg-4">
                 <fieldset>
                 <label htmlFor="Salary" className="form-label">Salary:</label>
-                <input type="number" id="Salary" className="form-control" name="Salary" value={Salary} onChange={(e)=>SetSalary(e.target.value)} required />
+                <input type="number" id="Salary" className="form-control" name="Salary" value={Salary} onChange={(e)=>SetSalary(e.target.value)} required disabled/>
                 </fieldset>
               </div>
               <div className="col-lg-4">
                 <fieldset>
                 <label htmlFor="Speciality" className="form-label">Speciality:</label>
-                <input type="text" id="Speciality" className="form-control" name="Speciality" value={Speciality} onChange={(e)=>SetSpeciality(e.target.value)} required />
+                <input type="text" id="Speciality" className="form-control" name="Speciality" value={Speciality} onChange={(e)=>SetSpeciality(e.target.value)} required disabled />
                 </fieldset>
               </div>
               <div className="col-lg-4">
                 <fieldset>
                     <label htmlFor="JobType" className="form-label">JobType:</label>
-                    <select id="JobType" className="form-control" name="JobType" value={JobType} onChange={(e)=>SetJobType(e.target.value)} required>
+                    <select id="JobType" className="form-control" name="JobType" value={JobType} onChange={(e)=>SetJobType(e.target.value)} required disabled>
                     <option value="">Select Job Type</option>
                     <option value="Full Time">Full Time</option>
                     <option value="Part Time">Part Time</option>
@@ -118,12 +123,12 @@ function UpdateOffer() {
               <div className="col-lg-4">
                 <fieldset>
                 <label htmlFor="JobCity" className="form-label">JobCity:</label>
-                <input type="text" id="JobCity" className="form-control" name="JobCity" value={JobCity} onChange={(e)=>SetJobCity(e.target.value)} required />
+                <input type="text" id="JobCity" className="form-control" name="JobCity" value={JobCity} onChange={(e)=>SetJobCity(e.target.value)} required disabled />
                 </fieldset>
               </div>
               <div className="col-lg-12">
                 <fieldset>
-                  <button type="submit" id="form-submit" className="button">Update offer</button>
+                  <button type="submit" id="form-submit" className="button">Apply Now</button>
                 </fieldset>
               </div>
             </div>
@@ -144,4 +149,4 @@ function UpdateOffer() {
   );
 }
 
-export default UpdateOffer;
+export default ApplyOffer;

@@ -23,14 +23,14 @@ function EvenementForm() {
     // Function to validate individual fields
     const validateForm = () => {
         let newErrors = {};
-        if (!formData.nom.trim()) newErrors.nom = "Le nom de l'événement est requis.";
-        if (!formData.adresse.trim()) newErrors.adresse = "L'adresse est requise.";
-        if (!formData.dateDebut) newErrors.dateDebut = "La date de début est requise.";
-        if (!formData.dateFin) newErrors.dateFin = "La date de fin est requise.";
+        if (!formData.nom.trim()) newErrors.nom = "Event name is required";
+        if (!formData.adresse.trim()) newErrors.adresse = "Adress is required";
+        if (!formData.dateDebut) newErrors.dateDebut = "Starting date is required";
+        if (!formData.dateFin) newErrors.dateFin = "Ending date is required";
         if (new Date(formData.dateDebut) >= new Date(formData.dateFin)) {
-            newErrors.dateFin = "La date de fin doit être après la date de début.";
+            newErrors.dateFin = "The starting date must be before the ending date";
         }
-        if (!formData.description.trim()) newErrors.description = "La description est requise.";
+        if (!formData.description.trim()) newErrors.description = "Description is required";
 
         setErrors(newErrors); // Use setErrors to update the state
         return Object.keys(newErrors).length === 0;
@@ -105,31 +105,31 @@ function EvenementForm() {
                                                 <h2>Add an Event</h2>
                                             </div>
                                             <div className="mb-3">
-                                                <label htmlFor="nom" className="form-label">Nom de l'événement:</label>
+                                                <label htmlFor="nom" className="form-label">Event name</label>
                                                 <input type="text" id="nom" className="form-control" name="nom"
                                                     value={formData.nom} onChange={handleChange} onBlur={handleBlur} required />
                                                 {errors.nom && <div className="text-danger">{errors.nom}</div>}
                                             </div>
                                             <div className="mb-3">
-                                                <label htmlFor="adresse" className="form-label">Adresse:</label>
+                                                <label htmlFor="adresse" className="form-label">Adress </label>
                                                 <input type="text" id="adresse" className="form-control" name="adresse"
                                                     value={formData.adresse} onChange={handleChange} onBlur={handleBlur} required />
                                                 {errors.adresse && <div className="text-danger">{errors.adresse}</div>}
                                             </div>
                                             <div className="mb-3">
-                                                <label htmlFor="dateDebut" className="form-label">Date de début:</label>
+                                                <label htmlFor="dateDebut" className="form-label">Starting date </label>
                                                 <input type="datetime-local" id="dateDebut" name="dateDebut" className="form-control"
                                                     value={formData.dateDebut} onChange={handleChange} required />
                                                 {errors.dateDebut && <div className="text-danger">{errors.dateDebut}</div>}
                                             </div>
                                             <div className="mb-3">
-                                                <label htmlFor="dateFin" className="form-label">Date Fin:</label>
+                                                <label htmlFor="dateFin" className="form-label">Ending date</label>
                                                 <input type="datetime-local" id="dateFin" className="form-control" name="dateFin"
                                                     value={formData.dateFin} onChange={handleChange} onBlur={handleBlur} required />
                                                 {errors.dateFin && <div className="text-danger">{errors.dateFin}</div>}
                                             </div>
                                             <div className="mb-3">
-                                                <label htmlFor="description" className="form-label">Description:</label>
+                                                <label htmlFor="description" className="form-label">Description</label>
                                                 <textarea id="description" className="form-control" name="description"
                                                     value={formData.description} onChange={handleChange} onBlur={handleBlur} required />
                                                 {errors.description && <div className="text-danger">{errors.description}</div>}
@@ -139,7 +139,7 @@ function EvenementForm() {
                                                 <input className="form-control" type="file" id="imageUpload" accept="image/*" onChange={handleImageChange} />
                                                 {errors.image && <div className="text-danger">{errors.image}</div>}
                                             </div>
-                                            <button type="submit" className="btn btn-primary">Ajouter l'événement</button>
+                                            <button type="submit" className="btn btn-primary">Add event </button>
                                         </div>
                                     </form>
                                 </div>

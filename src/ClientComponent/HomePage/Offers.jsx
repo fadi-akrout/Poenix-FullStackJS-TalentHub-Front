@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth'
 
 function Offers() {
   const [offers, setOffers] = useState([]);
-  const { username,email,isAlumni, isStudent, isAdmin ,isRecruter} = useAuth()
+  const { userId,email,isAlumni, isStudent, isAdmin ,isRecruter} = useAuth()
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -34,13 +34,16 @@ function Offers() {
 const navigateToUpdateOffer = (offerId) => {
     navigate(`./updateoffer/${offerId}`);
 }
+const navigateToApply = (offerId) => {
+  navigate(`./apply/${offerId}`);
+}
 
   return (
     <section className="upcoming-meetings" id="meetings">
       <div className="container">
         <div className="row justify-content-center">
           {offers.map((offer) => (
-            <div key={offer._id} className="justify-content-center col-lg-8 col-md-4 col-sm-8 mb-6"> {/* Adjusted col widths */}
+            <div key={offer._id} className="justify-content-center col-lg-10 col-md-6 col-sm-8 mb-6"> {/* Adjusted col widths */}
               <div className="card h-100"> 
                 <img src="assets/images/meeting-01.jpg" className="card-img-top" alt="Offer" />
                 <div className="card-body">
@@ -67,7 +70,9 @@ const navigateToUpdateOffer = (offerId) => {
                     </li>
                   </ul>
                   {( isStudent || isAlumni) &&
-                  <Link to="./AddStudent" className="btn btn-danger mt-3">Postulez Maintenant</Link>
+                 
+                  <button type="submit" className="btn btn-danger" onClick={(e) => navigateToApply(offer._id)}>Apply now</button>
+
                   }
                   {( isAdmin || isRecruter) &&
                   <MdDeleteForever onClick={(e) => handleDelete(offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />

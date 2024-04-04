@@ -7,7 +7,6 @@ import Evenements from '../EventComponent/EventPreview';
 function HomeP() {
   const [headerVisible, setHeaderVisible] = useState(true);
 
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -29,51 +28,26 @@ function HomeP() {
     position: 'relative',
     minHeight: '100vh',
     display: 'flex',
-  };
-
-  const sidebarStyle = {
-    flex: '2',
-    overflowY: 'auto',
-  };
-
-  const contentStyle = {
-    flex: '2',
-    padding: '10px',
-  };
-
-  const backgroundImageStyle = {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '-250px', 
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    minHeight: '100vh',
-  };
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post('http://localhost:3500/Loginn', { email, password });
-      if (response.data.Status === 'Success') {
-        // Redirect to appropriate page based on user role
-        if (response.data.role === 'Admin') {
-          navigate('/admin-dashboard');
-        } else if (response.data.role === 'Teacher' || response.data.role === 'Student' || response.data.role === 'Recruiter') {
-          navigate('/user-dashboard');
-        }
-      } else {
-        alert('Login failed');
-      }
-    } catch (error) {
-      console.error('Error logging in:', error);
-    }
   };
 
-  const handleLogout = async () => {
-    try {
-      await axios.get('http://localhost:3500/logout');
-      // Clear user session and redirect to login page
-      sessionStorage.removeItem('userRole');
-      navigate('/login');
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
+  const offersContainerStyle = {
+    flex: '1', 
+    maxWidth: '800px', 
+    margin: '0 auto', 
+    zIndex: 2,
+  };
+
+  const sidebarStyle = {
+    flex: '1', 
+    maxWidth: '300px', 
+    padding: '10px',
+    marginTop: '-100px', 
   };
 
   return (
@@ -81,10 +55,8 @@ function HomeP() {
       <Header />
       <section className="upcoming-meetings" id="meetings">
         <div className="container" style={containerStyle}>
-          <div style={contentStyle}>
-            <div style={{ position: 'relative', zIndex: 2 }}>
-              <Offers />
-            </div>
+          <div style={offersContainerStyle}>
+            <Offers />
           </div>
           <div style={sidebarStyle}>
             <Evenements />

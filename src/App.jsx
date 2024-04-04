@@ -50,6 +50,8 @@ const Alumni = lazy(() => import('./ClientComponent/AlumniComponent/Alumni'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
+const Apply = lazy(() => import('./ClientComponent/OfferComponent/ApplyOffer'));
+
 
 
 //const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
@@ -131,6 +133,9 @@ function App() {
                       <Route path="updateoffer/:id">
                         <Route index element={<UpdateOffer />} />
                       </Route>
+                    </Route>
+                    <Route path="apply/:id">
+                      <Route index element={<Apply />} />
                     </Route>
 
                     <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
