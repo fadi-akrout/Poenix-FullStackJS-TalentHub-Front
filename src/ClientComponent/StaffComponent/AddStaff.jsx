@@ -14,15 +14,9 @@ function StaffForm() {
         name: '',
         lastname: '',
         email: '',
-        diploma: '',
         actualPost: '',
         nbrYearsOfExperience: '',
-        lastPostOccupied: '',
-        dateOfBirth: '',
         address: '',
-        city: '',
-        postalCode: '',
-        country: '',
         phoneNumber: ''
     });
 
@@ -67,10 +61,10 @@ function StaffForm() {
             <section className="contact-us" id="contact">
                 <div className="container mt-5">
                     <form onSubmit={handleSubmit} id="contact" >
-                    <div className="row">
-                    <div className="col-lg-12">
-                    <h2>Register as Staff</h2>
-                  </div>
+                      <div className="row">
+                      <div className="col-lg-12">
+                     <h2>Register as Staff</h2>
+                     </div>
                             <div className="col-md-6">
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name:</label>
@@ -84,26 +78,17 @@ function StaffForm() {
                                     <label htmlFor="email" className="form-label">Email:</label>
                                     <input type="email" id="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="diploma" className="form-label">Diploma:</label>
-                                    <input type="text" id="diploma" className="form-control" name="diploma" value={formData.diploma} onChange={handleChange} required />
-                                </div>
+                               
                                 <div className="mb-3">
                                     <label htmlFor="nbrYearsOfExperience" className="form-label">Number of Years of Experience:</label>
                                     <input type="number" id="nbrYearsOfExperience" className="form-control" name="nbrYearsOfExperience" value={formData.nbrYearsOfExperience} onChange={handleChange} required />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="lastPostOccupied" className="form-label">Last Post Occupied:</label>
-                                    <input type="text" id="lastPostOccupied" className="form-control" name="lastPostOccupied" value={formData.lastPostOccupied} onChange={handleChange} required />
-                                </div>
+                              
                                 <div className="mb-3">
                                     <label htmlFor="actualPost" className="form-label">Actual Post:</label>
                                     <input type="text" id="actualPost" className="form-control" name="actualPost" value={formData.actualPost} onChange={handleChange} required />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="dateOfBirth" className="form-label">Date of Birth:</label>
-                                    <input type="date" id="dateOfBirth" className="form-control" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} required />
-                                </div>
+                                
                             </div>
                             <div className="col-md-6">
                                 
@@ -111,24 +96,14 @@ function StaffForm() {
                                     <label htmlFor="address" className="form-label">Address:</label>
                                     <input type="text" id="address" className="form-control" name="address" value={formData.address} onChange={handleChange} required />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="city" className="form-label">City:</label>
-                                    <input type="text" id="city" className="form-control" name="city" value={formData.city} onChange={handleChange} required />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="postalCode" className="form-label">Postal Code:</label>
-                                    <input type="text" id="postalCode" className="form-control" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="country" className="form-label">Country:</label>
-                                    <input type="text" id="country" className="form-control" name="country" value={formData.country} onChange={handleChange} required />
-                                </div>
+                              
+                            
                                 <div className="mb-3">
                                     <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
                                     <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
                                  </div>
-                        </div>
-                        </div>
+                            </div>
+                     </div>
                         <button type="submit" className="btn btn-danger">Submit</button>
                     </form>
                 </div>

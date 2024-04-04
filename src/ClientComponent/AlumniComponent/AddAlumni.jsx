@@ -23,15 +23,14 @@ function AlumniForm() {
         dateOfBirth: '',
         address: '',
         city: '',
-        postalCode: '',
-        country: '',
+       
         phoneNumber: '',
         skills: '',
         languages: '',
         linkedinProfile: '',
         profileImage: null,
         graduationYear: '',
-        achievements: ''
+        
     });
 
     const handleChange = (e) => {
@@ -69,12 +68,12 @@ function AlumniForm() {
     return (
         <>
             <Header />
-            <section className="upcoming-meetings" id="meetings">
+            <section className="contact-us" id="contact">    
                 <div className="container mt-5">
-                    <form onSubmit={handleSubmit} className="card p-4">
+                    <form onSubmit={handleSubmit}  id="contact" >
                     <div className="row">
-                        <div className="col-12 text-center">
-                            <h1 style={{ color: 'Black' }}>Register As Alumni</h1>
+                    <div className="col-lg-12">
+                            <h2>Register As Alumni</h2>
                         </div>
                     </div>
                         <div className="row">
@@ -125,14 +124,7 @@ function AlumniForm() {
                                     <label htmlFor="city" className="form-label">City:</label>
                                     <input type="text" id="city" className="form-control" name="city" value={formData.city} onChange={handleChange} required />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="postalCode" className="form-label">Postal Code:</label>
-                                    <input type="text" id="postalCode" className="form-control" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="country" className="form-label">Country:</label>
-                                    <input type="text" id="country" className="form-control" name="country" value={formData.country} onChange={handleChange} required />
-                                </div>
+                               
                                 <div className="mb-3">
                                     <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
                                     <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
@@ -157,10 +149,7 @@ function AlumniForm() {
                                     <label htmlFor="graduationYear" className="form-label">Graduation Year:</label>
                                     <input type="number"id="graduationYear" className="form-control" name="graduationYear" value={formData.graduationYear} onChange={handleChange} required />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="achievements" className="form-label">Achievements:</label>
-                                    <input type="text" id="achievements" className="form-control" name="achievements" value={formData.achievements} onChange={handleChange} />
-                                </div>
+                              
                             </div>
                         </div>
                         <button type="submit" className="btn btn-danger">Submit</button>
