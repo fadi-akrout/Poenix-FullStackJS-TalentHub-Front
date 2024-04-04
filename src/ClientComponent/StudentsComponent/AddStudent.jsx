@@ -21,8 +21,7 @@ function StudentForm() {
         dateOfBirth: '',
         address: '',
         city: '',
-        postalCode: '',
-        country: '',
+
         phoneNumber: '',
         skills: '',
         languages: '',
@@ -40,14 +39,14 @@ function StudentForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        
+
+
         const areFieldsFilled = Object.values(formData).every(value => value.trim() !== '');
         if (!areFieldsFilled) {
             alert("Please fill in all fields.");
             return;
         }
-    
+
         const formDataWithUserId = {
             ...formData,
             user: userId // assuming userId is the correct property name
@@ -55,28 +54,33 @@ function StudentForm() {
         try {
             const response = await axios.post('http://localhost:3500/students', formDataWithUserId);
             console.log(response.data);
-            
-            
-            navigate('/dash'); 
+
+
+            const response1 = await axios.get(`http://localhost:3500/students/${userId}`);
+            console.log("students", response1.data.hasUserRelation);
+            let id = response1.data.student._id;
+            console.log(id)
+            if (response1.data.hasUserRelation) navigate(`/dash/ProfileStudent/${id}`)
 
         } catch (error) {
             console.error("There was a problem with form submission:", error);
         }
     };
-    
+
 
     return (
         <>
-           <Header />
-           <section className="upcoming-meetings" id="meetings">
+            <Header />
+            <section className="contact-us" id="contact">
                 <div className="container mt-5">
-                    <form onSubmit={handleSubmit} className="card p-4">
-                    <div className="row">
-                        <div className="col-12 text-center">
-                            <h1 style={{ color: 'Black' }}>Register As Student</h1>
+                    <form onSubmit={handleSubmit} id="contact">
+                        <div className="row">
+
+                            <div className="col-lg-12">
+                                <h2>Register As Student</h2>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
+                        <div className="row">
                             <div className="col-md-6">
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name:</label>
@@ -107,9 +111,9 @@ function StudentForm() {
                                     <input type="text" id="lastPostOccupied" className="form-control" name="lastPostOccupied" value={formData.lastPostOccupied} onChange={handleChange} required />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="cv" className="form-label">CV  (PDF only):</label><br/>
+                                    <label htmlFor="cv" className="form-label">CV  (PDF only):</label><br />
                                     <input type="file" accept=".pdf" name="cv" id="cv" className="form-control" onChange={handleChange} required />
-                             
+
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="dateOfBirth" className="form-label">Date of Birth:</label>
@@ -117,7 +121,7 @@ function StudentForm() {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                
+
                                 <div className="mb-3">
                                     <label htmlFor="address" className="form-label">Address:</label>
                                     <input type="text" id="address" className="form-control" name="address" value={formData.address} onChange={handleChange} required />
@@ -126,44 +130,37 @@ function StudentForm() {
                                     <label htmlFor="city" className="form-label">City:</label>
                                     <input type="text" id="city" className="form-control" name="city" value={formData.city} onChange={handleChange} required />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="postalCode" className="form-label">Postal Code:</label>
-                                    <input type="text" id="postalCode" className="form-control" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="country" className="form-label">Country:</label>
-                                    <input type="text" id="country" className="form-control" name="country" value={formData.country} onChange={handleChange} required />
-                                </div>
+
                                 <div className="mb-3">
                                     <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
                                     <input type="text" id="phoneNumber" className="form-control" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="skills" className="form-label">Skills (comma-separated):</label>
-                            <input type="text" id="skills" className="form-control" name="skills" value={formData.skills} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="languages" className="form-label">Languages (comma-separated):</label>
-                            <input type="text" id="languages" className="form-control" name="languages" value={formData.languages} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="linkedinProfile" className="form-label">LinkedIn Profile:</label>
-                            <input type="text" id="linkedinProfile" className="form-control" name="linkedinProfile" value={formData.linkedinProfile} onChange={handleChange} required />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="profileImage" className="form-label">Profile Image:</label>
-                            <input type="file" accept=".png, .jpg, .jpeg" id="profileImage" className="form-control" name="profileImage" onChange={handleChange} />
-                        </div>
-                        </div>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="skills" className="form-label">Skills (comma-separated):</label>
+                                    <input type="text" id="skills" className="form-control" name="skills" value={formData.skills} onChange={handleChange} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="languages" className="form-label">Languages (comma-separated):</label>
+                                    <input type="text" id="languages" className="form-control" name="languages" value={formData.languages} onChange={handleChange} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="linkedinProfile" className="form-label">LinkedIn Profile:</label>
+                                    <input type="text" id="linkedinProfile" className="form-control" name="linkedinProfile" value={formData.linkedinProfile} onChange={handleChange} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="profileImage" className="form-label">Profile Image:</label>
+                                    <input type="file" accept=".png, .jpg, .jpeg" id="profileImage" className="form-control" name="profileImage" onChange={handleChange} />
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" className="btn btn-danger">Submit</button>
                     </form>
                 </div>
-            
+
             </section>
             <section className="upcoming-meetings" id="meetings">
-        <Footer />
-      </section>
+                <Footer />
+            </section>
         </>
     );
 }
