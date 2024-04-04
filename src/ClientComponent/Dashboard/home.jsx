@@ -20,7 +20,7 @@ export default function Home() {
                   <p>Talent Hub is an innovative platform that revolutionizes the management of professional opportunities...
                       It's a user-friendly platform that simplifies job search and application management for both individuals and organizations.</p>
                   <div className="main-button-red">
-                      <a href="#contact" className="scroll-to-section">Join us now!</a>
+                      <a href="/signup" className="scroll-to-section">Join us now!</a>
                   </div>
                 </div>
               </div>
@@ -29,44 +29,24 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="services">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="owl-service-item owl-carousel">
-                <div className="item">
-                  <div className="icon">
-                    <img src="assets/images/service-icon-01.png" alt="Meilleure UX" />
-                  </div>
-                  <div className="down-content">
-                    <h4>Meilleure UX</h4>
-                    <p>La meilleure expérience utilisateur (UX) vise à offrir aux utilisateurs une interface intuitive...</p>
-                  </div>
-                </div>
-                {/* Additional items can be added here */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    
 
       <section className="upcoming-meetings" id="meetings">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="section-heading">
-                <h2>Opportunités d'emploi</h2>
+              <div className="section-heading"> 
               </div>
             </div>
             <div className="col-lg-4">
               <div className="categories">
-                <h4>Catégorie de l'emploi</h4>
+                <h4>Join our website</h4>
                 <ul>
-                  <li><a href="#">Tous les emplois</a></li>
-                  {/* Additional categories can be listed here */}
+                  <li><a href="#">Find more job offers and events</a></li>
+                 
                 </ul>
                 <div className="main-button-red">
-                  <Link to="/SignUpp">Postulez Maintenant</Link>
+                  <Link to="/signup">APPLY <i class="fa fa-newspaper-o" aria-hidden="true"></i></Link>
                 </div>
               </div>
             </div>
