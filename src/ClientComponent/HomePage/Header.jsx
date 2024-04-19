@@ -292,7 +292,7 @@ function Header() {
                     <FontAwesomeIcon icon={faIdCard} className="fa-lg" />
 
                   </div>
-                  Profile
+                   {username}
                 </Link>
               </li>}
               {buttonContent}
