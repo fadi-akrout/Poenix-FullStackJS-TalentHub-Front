@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import HeaderClient from '../Dashboard/HeaderClient';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
 import PDFGeneratorButton from '../PDFGeneratorButton';
@@ -49,6 +50,9 @@ import {
         skills: profile.skills, // Supposant que c'est déjà un tableau
         languages: profile.languages, // Supposant que c'est déjà un tableau
     };
+
+    const formattedDateOfBirth = new Date(profile.dateOfBirth).toLocaleDateString();
+
 
     return (
         <>
