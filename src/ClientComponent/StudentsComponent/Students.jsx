@@ -10,7 +10,7 @@ function Students() {
     const [students, setStudents] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3500/students')
+        axios.get('http://192.168.50.4:5000/students')
             .then(response => setStudents(response.data))
             .catch(error => console.error("Error loading students", error));
     }, []);
@@ -18,7 +18,7 @@ function Students() {
     const handleDelete = async (studentId) => {
         if (window.confirm("Are you sure you want to delete this student?")) {
             try {
-                const response = await axios.delete(`http://localhost:3500/students/${studentId}`);
+                const response = await axios.delete(`http://192.168.50.4:5000/students/${studentId}`);
                 if (response.status === 200 || response.status === 204) {
                     setStudents(prevStudents => prevStudents.filter(student => student._id !== studentId));
                 }
@@ -29,7 +29,7 @@ function Students() {
     };
 
     const handleEdit = (studentId, updatedData) => {
-        axios.patch(`http://localhost:3500/students/${studentId}`, updatedData)
+        axios.patch(`http://192.168.50.4:5000/students/${studentId}`, updatedData)
             .then(response => {
                 setStudents(prevStudents => prevStudents.map(student => {
                     if (student._id === studentId) {

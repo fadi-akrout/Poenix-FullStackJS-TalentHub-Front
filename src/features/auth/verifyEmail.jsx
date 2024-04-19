@@ -14,7 +14,7 @@ const VerifyEmail = () => {
 
     const handleVerify = async () => {
         try {
-            const response = await axios.post(`http://localhost:3500/auth/verify-email/${userId}`, {
+            const response = await axios.post(`http://192.168.50.4:5000/auth/verify-email/${userId}`, {
                 otp: otp
             });
             console.log(response.data);

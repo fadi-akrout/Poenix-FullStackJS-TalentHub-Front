@@ -11,7 +11,7 @@ function UserList() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3500/users')
+        axios.get('http://192.168.50.4:5000/users')
             .then(response => setUsers(response.data))
             .catch(error => console.error("Erreur de chargement", error));
     }, []);
@@ -45,7 +45,7 @@ function User({ user, setUsers }) {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const result = await axios('http://localhost:3500/users');
+            const result = await axios('http://192.168.50.4:5000/users');
             setUsers(result.data);
         };
 
@@ -54,7 +54,7 @@ function User({ user, setUsers }) {
 
 
     const sauvegarder = () => {
-        axios.patch(`http://localhost:3500/users/${user._id}`, donneesEdition)
+        axios.patch(`http://192.168.50.4:5000/users/${user._id}`, donneesEdition)
             .then(response => {
                 setUsers(prev => prev.map(ev => ev._id === user._id ? { ...response.data } : ev));
                 desactiverEdition();
@@ -88,7 +88,7 @@ function User({ user, setUsers }) {
     const handleDelete = async () => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer cet événement ?")) {
             try {
-                const response = await axios.delete(`http://localhost:3500/users/${user._id}`);
+                const response = await axios.delete(`http://192.168.50.4:5000/users/${user._id}`);
                 if (response.status === 200 || response.status === 204) { // Status 204 est aussi un succès, mais sans contenu.
                     setUsers(prevUsers => prevUsers.filter(ev => ev._id !== user._id));
                 }

@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     const [staffs, setStaffs] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3500/staff')
+        axios.get('http://192.168.50.4:5000/staff')
             .then(response => setStaffs(response.data))
             .catch(error => console.error("Erreur de chargement", error));
     }, []);
@@ -46,7 +46,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
     useEffect(() => {
         const fetchStaff = async () => {
-            const result = await axios('http://localhost:3500/staff');
+            const result = await axios('http://192.168.50.4:5000/staff');
             setStaffs(result.data);
         };
 
@@ -55,7 +55,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
     const sauvegarder = () => {
-        axios.patch(`http://localhost:3500/staff/${staff._id}`, donneesEdition)
+        axios.patch(`http://192.168.50.4:5000/staff/${staff._id}`, donneesEdition)
             .then(response => {
               setStaffs(prev => prev.map(ev => ev._id === staff._id ? { ...response.data } : ev));
                 desactiverEdition();
@@ -72,7 +72,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     const handleDelete = async () => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer cet événement ?")) {
             try {
-                const response = await axios.delete(`http://localhost:3500/staff/${staff._id}`);
+                const response = await axios.delete(`http://192.168.50.4:5000/staff/${staff._id}`);
                 if (response.status === 200 || response.status === 204) { // Status 204 est aussi un succès, mais sans contenu.
                   setStaffs(prevEvenements => prevEvenements.filter(ev => ev._id !== staff._id));
                 }

@@ -16,7 +16,7 @@ function Loginn() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:3500/auth', { email, password });
+      const res = await axios.post('http://192.168.50.4:5000/auth', { email, password });
       if (res.data.Status === "Success") {
         if (res.data.role === "Admin") {
           navigate('/admin/home');

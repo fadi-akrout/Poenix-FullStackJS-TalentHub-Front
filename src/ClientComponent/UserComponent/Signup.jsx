@@ -42,7 +42,7 @@ const Signup = () => {
 
       // Si les vérifications sont passées, continuez avec la soumission
       try {
-          const response = await axios.post('http://localhost:3500/auth/signup', formData);
+          const response = await axios.post('http://192.168.50.4:5000/auth/signup', formData);
           console.log(response.data);
          // toast.success('Signup successful.')
           navigate('/login');

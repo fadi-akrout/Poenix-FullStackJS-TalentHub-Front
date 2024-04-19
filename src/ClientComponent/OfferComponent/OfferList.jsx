@@ -17,7 +17,7 @@ function OfferList() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3500/offers')
+        axios.get('http://192.168.50.4:5000/offers')
             .then(response => {
                 setOffers(response.data);
             })
@@ -26,7 +26,7 @@ function OfferList() {
             });
     }, []);
     const handleDelete = (id) => {
-        axios.delete('http://localhost:3500/offers/' + id)
+        axios.delete('http://192.168.50.4:5000/offers/' + id)
             .then(response => {
                 console.log(response)
                 window.location.reload();

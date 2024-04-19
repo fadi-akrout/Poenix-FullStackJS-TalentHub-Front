@@ -13,7 +13,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3500/auth/forgot-password', { email });
+      const response = await axios.post('http://192.168.50.4:5000/auth/forgot-password', { email });
       setMessage(response.data.message);
       setError('');
     } catch (err) {
