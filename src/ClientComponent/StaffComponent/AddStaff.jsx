@@ -61,7 +61,7 @@ function StaffForm() {
 
         // If all checks pass, proceed with submission
         try {
-            const response = await axios.post('http://192.168.50.4:5000/staff', formDataWithUserId);
+            const response = await axios.post('http://localhost:3500/staff', formDataWithUserId);
             console.log(response.data);
             // Redirect to the Profile component and pass the staff data
             navigate('/dash');

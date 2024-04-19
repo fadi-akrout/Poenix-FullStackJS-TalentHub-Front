@@ -37,7 +37,7 @@ function AddOfferAdmin() {
 
       // Si les vérifications sont passées, continuez avec la soumission
       try {
-          const response = await axios.post('http://192.168.50.4:5000/offers', formData);
+          const response = await axios.post('http://localhost:3500/offers', formData);
           console.log(response.data);
           navigate('/offers');
       } catch (error) {

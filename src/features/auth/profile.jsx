@@ -11,7 +11,7 @@ function profile() {
     useEffect(() => {
         const fetchDataRecruiter = async () => {
             try {
-                const response = await axios.get(`http://192.168.50.4:5000/recruiters/${userId}`);
+                const response = await axios.get(`http://localhost:3500/recruiters/${userId}`);
                 setHasUserRelation(response.data.hasUserRelation);
                 console.log("recruiters", response.data.hasUserRelation);
                 if (response.data.hasUserRelation && isRecruter) navigate('/dash')
@@ -23,7 +23,7 @@ function profile() {
 
         const fetchDataStudent = async () => {
             try {
-                const response = await axios.get(`http://192.168.50.4:5000/students/${userId}`);
+                const response = await axios.get(`http://localhost:3500/students/${userId}`);
                 setHasUserRelation(response.data.hasUserRelation);
                 console.log("students", response.data.hasUserRelation);
                 let id = response1.data.student._id;
@@ -34,7 +34,7 @@ function profile() {
         };
         const fetchDataAlumni = async () => {
             try {
-                const response = await axios.get(`http://192.168.50.4:5000/alumnis/${userId}`);
+                const response = await axios.get(`http://localhost:3500/alumnis/${userId}`);
                 setHasUserRelation(response.data.hasUserRelation);
                 console.log("alumnis", response.data.hasUserRelation);
                 if (response.data.hasUserRelation && isAlumni) navigate('/dash')
@@ -44,7 +44,7 @@ function profile() {
         };
         const fetchDataStaff = async () => {
             try {
-                const response = await axios.get(`http://192.168.50.4:5000/staff/${userId}`);
+                const response = await axios.get(`http://localhost:3500/staff/${userId}`);
                 setHasUserRelation(response.data.hasUserRelation);
                 console.log("staff", response.data.hasUserRelation);
                 if (response.data.hasUserRelation && isTeacher) navigate('/dash')

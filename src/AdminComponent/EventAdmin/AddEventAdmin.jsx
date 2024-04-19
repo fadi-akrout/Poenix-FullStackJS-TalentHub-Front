@@ -42,7 +42,7 @@ function EvenementFormAdmin() {
 
         // Si les vérifications sont passées, continuez avec la soumission
         try {
-            const response = await axios.post('http://192.168.50.4:5000/evenements', formData);
+            const response = await axios.post('http://localhost:3500/evenements', formData);
             console.log(response.data);
             navigate('/admin/eventsAdmin');
         } catch (error) {

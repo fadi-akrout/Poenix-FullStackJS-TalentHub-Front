@@ -63,7 +63,7 @@ function RecruiterDetail({ recruiter, setRecruiters }) {
     const handleDelete = async () => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer ce recruteur ?")) {
             try {
-                const response = await axios.delete(`http://192.168.50.4:5000/recruiters/${recruiter._id}`);
+                const response = await axios.delete(`http://localhost:3500/recruiters/${recruiter._id}`);
                 if (response.status === 200 || response.status === 204) {
                     setRecruiters(prevRecruiters => prevRecruiters.filter(r => r._id !== recruiter._id));
                 }

@@ -18,7 +18,7 @@ function UpdateOffer() {
 
 
         useEffect(() => {
-            axios.get('http://192.168.50.4:5000/offers/getoffer/'+id)
+            axios.get('http://localhost:3500/offers/getoffer/'+id)
                 .then(response => { console.log(response)
                    // setOffers(response.data);
                    SetTitle(response.data.Title);
@@ -42,7 +42,7 @@ function UpdateOffer() {
 
         const Update = (e) => {
           e.preventDefault();
-          axios.patch('http://192.168.50.4:5000/offers/'+id,{Title,Experience_required,Domain,Mission,Salary,Speciality,JobType,JobCity})
+          axios.patch('http://localhost:3500/offers/'+id,{Title,Experience_required,Domain,Mission,Salary,Speciality,JobType,JobCity})
           .then(result=> {
             console.log(result)
             navigate('/dash')

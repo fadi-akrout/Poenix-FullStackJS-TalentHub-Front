@@ -10,7 +10,7 @@ function Alumni() {
     const [alumni, setAlumni] = useState([]);
 
     useEffect(() => {
-        axios.get('http://192.168.50.4:5000/alumnis')
+        axios.get('http://localhost:3500/alumnis')
             .then(response => setAlumni(response.data))
             .catch(error => console.error("Error loading alumni", error));
     }, []);
@@ -18,7 +18,7 @@ function Alumni() {
     const handleDelete = async (alumniId) => {
         if (window.confirm("Are you sure you want to delete this alumni?")) {
             try {
-                const response = await axios.delete(`http://192.168.50.4:5000/alumnis/${alumniId}`);
+                const response = await axios.delete(`http://localhost:3500/alumnis/${alumniId}`);
                 if (response.status === 200 || response.status === 204) {
                     setAlumni(prevAlumni => prevAlumni.filter(alum => alum._id !== alumniId));
                 }
@@ -29,7 +29,7 @@ function Alumni() {
     };
 
     const handleEdit = (alumniId, updatedData) => {
-        axios.patch(`http://192.168.50.4:5000/alumnis/${alumniId}`, updatedData)
+        axios.patch(`http://localhost:3500/alumnis/${alumniId}`, updatedData)
             .then(response => {
                 setAlumni(prevAlumni => prevAlumni.map(alum => {
                     if (alum._id === alumniId) {

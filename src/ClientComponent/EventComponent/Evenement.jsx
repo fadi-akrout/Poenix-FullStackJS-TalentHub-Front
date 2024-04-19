@@ -16,7 +16,7 @@ function Evenements() {
     const [evenements, setEvenements] = useState([]);
     const {isAdmin, isRecruter, isTeacher } = useAuth()
     useEffect(() => {
-        axios.get('http://192.168.50.4:5000/evenements')
+        axios.get('http://localhost:3500/evenements')
             .then(response => setEvenements(response.data))
             .catch(error => console.error("Erreur de chargement", error));
     }, []);
@@ -70,7 +70,7 @@ function Evenement({ evenement, setEvenements }) {
     };
 
     const sauvegarder = () => {
-        axios.patch(`http://192.168.50.4:5000/evenements/${evenement._id}`, donneesEdition)
+        axios.patch(`http://localhost:3500/evenements/${evenement._id}`, donneesEdition)
             .then(response => {
                 setEvenements(prev => prev.map(ev => ev._id === evenement._id ? { ...response.data } : ev));
                 desactiverEdition();
@@ -81,7 +81,7 @@ function Evenement({ evenement, setEvenements }) {
     const handleDelete = async () => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer cet événement ?")) {
             try {
-                const response = await axios.delete(`http://192.168.50.4:5000/evenements/${evenement._id}`);
+                const response = await axios.delete(`http://localhost:3500/evenements/${evenement._id}`);
                 if (response.status === 200 || response.status === 204) {
                     setEvenements(prevEvenements => prevEvenements.filter(ev => ev._id !== evenement._id));
                 }

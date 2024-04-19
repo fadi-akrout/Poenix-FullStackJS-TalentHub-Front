@@ -52,11 +52,11 @@ function StudentForm() {
             user: userId // assuming userId is the correct property name
         };
         try {
-            const response = await axios.post('http://192.168.50.4:5000/students', formDataWithUserId);
+            const response = await axios.post('http://localhost:3500/students', formDataWithUserId);
             console.log(response.data);
 
 
-            const response1 = await axios.get(`http://192.168.50.4:5000/students/${userId}`);
+            const response1 = await axios.get(`http://localhost:3500/students/${userId}`);
             console.log("students", response1.data.hasUserRelation);
             let id = response1.data.student._id;
             console.log(id)

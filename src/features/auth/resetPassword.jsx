@@ -6,7 +6,7 @@ import axios from 'axios'
 import Footer from '../../ClientComponent/Dashboard/Footer'
 
 const PWD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!#$%])[A-Za-z\d@!#$%]{8,}$/
-const baseUrl= 'http://192.168.50.4:5000/auth'
+const baseUrl= 'http://localhost:3500/auth'
 
 function forgetPassword() {
   const location = useLocation()

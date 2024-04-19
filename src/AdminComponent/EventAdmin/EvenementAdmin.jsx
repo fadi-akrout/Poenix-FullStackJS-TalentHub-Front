@@ -10,7 +10,7 @@ function EvenementsAdmin() {
     const [evenements, setEvenements] = useState([]);
 
     useEffect(() => {
-        axios.get('http://192.168.50.4:5000/evenements')
+        axios.get('http://localhost:3500/evenements')
             .then(response => setEvenements(response.data))
             .catch(error => console.error("Erreur de chargement", error));
     }, []);
@@ -45,7 +45,7 @@ function EvenementAdmin({ evenement, setEvenements }) {
 
     useEffect(() => {
         const fetchEvenements = async () => {
-            const result = await axios('http://192.168.50.4:5000/evenements');
+            const result = await axios('http://localhost:3500/evenements');
             setEvenements(result.data);
         };
 
@@ -54,7 +54,7 @@ function EvenementAdmin({ evenement, setEvenements }) {
 
 
     const sauvegarder = () => {
-        axios.patch(`http://192.168.50.4:5000/evenements/${evenement._id}`, donneesEdition)
+        axios.patch(`http://localhost:3500/evenements/${evenement._id}`, donneesEdition)
             .then(response => {
                 setEvenements(prev => prev.map(ev => ev._id === evenement._id ? { ...response.data } : ev));
                 desactiverEdition();
@@ -88,7 +88,7 @@ function EvenementAdmin({ evenement, setEvenements }) {
     const handleDelete = async () => {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer cet événement ?")) {
             try {
-                const response = await axios.delete(`http://192.168.50.4:5000/evenements/${evenement._id}`);
+                const response = await axios.delete(`http://localhost:3500/evenements/${evenement._id}`);
                 if (response.status === 200 || response.status === 204) { // Status 204 est aussi un succès, mais sans contenu.
                     setEvenements(prevEvenements => prevEvenements.filter(ev => ev._id !== evenement._id));
                 }

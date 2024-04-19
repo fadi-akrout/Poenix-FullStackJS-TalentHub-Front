@@ -21,7 +21,7 @@ function ApplyOffer() {
 
 
         useEffect(() => {
-            axios.get('http://192.168.50.4:5000/offers/getoffer/'+id)
+            axios.get('http://localhost:3500/offers/getoffer/'+id)
                 .then(response => { console.log(response)
                    // setOffers(response.data);
                    SetTitle(response.data.Title);
@@ -49,7 +49,7 @@ function ApplyOffer() {
            
             user: userId // assuming  is the correct property name
         };
-          axios.patch('http://192.168.50.4:5000/offers/'+id,formDataWithUserId)
+          axios.patch('http://localhost:3500/offers/'+id,formDataWithUserId)
           .then(result=> {
             console.log(result)
             navigate('/dash')

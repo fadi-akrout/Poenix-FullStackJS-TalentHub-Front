@@ -10,7 +10,7 @@ function StudentProfile() {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get(`http://192.168.50.4:5000/students/a/${id}`);
+                const response = await axios.get(`http://localhost:3500/students/a/${id}`);
                 setProfile(response.data);
             } catch (error) {
                 setError('Erreur lors du chargement du profil');

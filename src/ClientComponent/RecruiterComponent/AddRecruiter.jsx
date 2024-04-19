@@ -46,7 +46,7 @@ function AddRecruiter() {
         };
 
         try {
-            const response = await axios.post('http://192.168.50.4:5000/recruiters', formDataWithUserId);
+            const response = await axios.post('http://localhost:3500/recruiters', formDataWithUserId);
             console.log(response.data);
             navigate('/dash');
         } catch (error) {

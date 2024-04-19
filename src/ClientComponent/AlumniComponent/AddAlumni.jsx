@@ -76,7 +76,7 @@ function StudentForm() {
         };
 
         try {
-            const response = await axios.post('http://192.168.50.4:5000/alumnis', formDataWithUserId);
+            const response = await axios.post('http://localhost:3500/alumnis', formDataWithUserId);
             console.log(response.data);
             navigate('/dash');
         } catch (error) {
