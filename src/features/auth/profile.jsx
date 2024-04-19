@@ -26,7 +26,7 @@ function profile() {
                 const response = await axios.get(`http://localhost:3500/students/${userId}`);
                 setHasUserRelation(response.data.hasUserRelation);
                 console.log("students", response.data.hasUserRelation);
-                let id = response1.data.student._id;
+                let id = response.data.student._id;
                 if (response.data.hasUserRelation && isStudent) navigate(`/dash/ProfileStudent/${id}`)
             } catch (error) {
                 console.error('Error fetching recruiter:', error);

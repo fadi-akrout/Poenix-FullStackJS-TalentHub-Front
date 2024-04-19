@@ -26,7 +26,7 @@ function Footer() {
             <p>Current User: {username} </p>
             <p>Status: {status} </p>
             <p>Email: {email} </p>
-            <p>userId: {userId} </p>
+
             
       </div>
   </div>

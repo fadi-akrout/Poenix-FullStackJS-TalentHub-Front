@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Header from '../HomePage/Header';
+import Footer from '../Dashboard/Footer';
+import PDFGeneratorButton from '../PDFGeneratorButton';
+import {
+    MDBCol,
+    MDBRow,
+    MDBCard,
+    MDBCardText,
+    MDBCardBody,
+  } from 'mdb-react-ui-kit';
 
-function StudentProfile() {
+  function StudentProfile() {
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState('');
     const { id } = useParams(); // Récupère l'ID de l'URL
@@ -28,29 +38,154 @@ function StudentProfile() {
     if (!profile) {
         return <div>Loading profile...</div>;
     }
+    const candidate = {
+        name: profile.name,
+        lastname: profile.lastname,
+        email: profile.email,
+        phoneNumber: profile.phoneNumber,
+        linkedinProfile: profile.linkedinProfile,
+        nbrYearsOfExperience: profile.nbrYearsOfExperience,
+        diploma: profile.diploma,
+        skills: profile.skills, // Supposant que c'est déjà un tableau
+        languages: profile.languages, // Supposant que c'est déjà un tableau
+    };
 
     return (
-        <div className="profile-container">
-            <h1>Student Profile</h1>
-            <p><strong>Name:</strong> {profile.name}</p>
-            <p><strong>Lastname:</strong> {profile.lastname}</p>
-            <p><strong>Email:</strong> {profile.email}</p>
-            <p><strong>Diploma:</strong> {profile.diploma}</p>
-            <p><strong>Actual Post:</strong> {profile.actualPost}</p>
-            <p><strong>Number of Years of Experience:</strong> {profile.nbrYearsOfExperience}</p>
-            <p><strong>Last Post Occupied:</strong> {profile.lastPostOccupied}</p>
-            <p><strong>Date of Birth:</strong> {new Date(profile.dateOfBirth).toLocaleDateString()}</p>
-            <p><strong>Address:</strong> {profile.address}</p>
-            <p><strong>City:</strong> {profile.city}</p>
-            <p><strong>Postal Code:</strong> {profile.postalCode}</p>
-            <p><strong>Country:</strong> {profile.country}</p>
-            <p><strong>Phone Number:</strong> {profile.phoneNumber}</p>
-            <p><strong>Skills:</strong> {profile.skills.join(', ')}</p> {/* Si les compétences sont un tableau */}
-            <p><strong>Languages:</strong> {profile.languages.join(', ')}</p> {/* Si les langues sont un tableau */}
-            <p><strong>LinkedIn Profile:</strong> {profile.linkedinProfile}</p>
-            {/* Ici, vous pouvez ajouter plus de champs en fonction des données de votre profil */}
-        </div>
+        <>
+            <Header />
+            <section className="upcoming-meetings" id="meetings">
+                <div className="profile-container">
+                    <h1>Student Profile</h1>
+                    <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
+                        <MDBCol lg="6">
+                            <MDBCard className="mb-8">
+                        <MDBCardBody>
+                            <MDBRow>
+                                <MDBCol sm="3">
+                                    <MDBCardText><strong>Full Name</strong></MDBCardText>
+                                </MDBCol>
+                                <MDBCol sm="9">
+                                    <MDBCardText className="text-muted">{profile.name} {profile.lastname}</MDBCardText>
+                                </MDBCol>
+                            </MDBRow>
+                            <hr />
+                            <MDBRow>
+                                <MDBCol sm="3">
+                                    <MDBCardText><strong>Email</strong></MDBCardText>
+                                </MDBCol>
+                                <MDBCol sm="9">
+                                    <MDBCardText className="text-muted">{profile.email}</MDBCardText>
+                                </MDBCol>
+                            </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>Diploma</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.diploma}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>Actual Post</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.actualPost}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>Number Years Of Experience</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.nbrYearsOfExperience}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>lastPostOccupied</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.lastPostOccupied}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow><hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>Date Of Birth</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{new Date(profile.dateOfBirth).toLocaleDateString()}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>Address</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.address}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>City</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.city}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>Phone Number</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.phoneNumber}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>Skills</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.skills.join(', ')}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>Languages</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.languages.join(', ')}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <hr />
+                    <MDBRow>
+                    <MDBCol sm="3">
+                        <MDBCardText><strong>LinkedIn Profile</strong></MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="9">
+                        <MDBCardText className="text-muted">{profile.linkedinProfile}</MDBCardText>
+                    </MDBCol>
+                    </MDBRow>
+                    <PDFGeneratorButton candidate={candidate} />
+                    </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </div>
+            </div>
+        </section>
+        <section className="upcoming-meetings" id="meetings">
+                <Footer />
+        </section>
+    </>
     );
 }
-
 export default StudentProfile;
