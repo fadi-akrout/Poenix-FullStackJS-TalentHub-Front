@@ -4,6 +4,8 @@ import { Link ,useParams ,useNavigate} from 'react-router-dom';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
 import useAuth from '../../hooks/useAuth'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ApplyOffer() {
   const navigate = useNavigate();
@@ -45,16 +47,25 @@ function ApplyOffer() {
 
         const Update = (e) => {
           e.preventDefault();
-          const formDataWithUserId = {
-           
-            user: userId // assuming  is the correct property name
-        };
-          axios.patch('http://localhost:3500/offers/'+id,formDataWithUserId)
+          
+          axios.post('http://localhost:3500/offers/apply/'+userId +'/'+id)
           .then(result=> {
+            toast.success('Congratulations! Your application was successfully submitted!');
+
             console.log(result)
-            navigate('/dash')
+           // navigate('/dash')
           })
-          .catch(err => console.log(err) )
+          .catch(err => {
+            // Handle the error based on the error message
+            if (err.response && err.response.data && err.response.data.error) {
+              // Display the error message from the backend
+              toast.error(err.response.data.error);
+            } else {
+              // Display a generic error message
+              toast.error('An error occurred while applying to the offer.');
+            }
+            console.log(err);
+          });
         }
 
 
@@ -145,6 +156,7 @@ function ApplyOffer() {
 <section className="upcoming-meetings" id="meetings">
               <Footer />
           </section>
+          <ToastContainer />
 </>
   );
 }
