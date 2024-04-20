@@ -2,7 +2,9 @@ import React from 'react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
+
 const generatePDF = (candidate) => {
+
     const doc = new jsPDF();
 
     doc.text('CV', 14, 16);
@@ -52,7 +54,7 @@ const generatePDF = (candidate) => {
     });
 
     // Sauvegarder le PDF
-    doc.save('CV.pdf');
+    doc.save(`${candidate.name} ${candidate.lastname}.pdf`);
 };
 
 const PDFGeneratorButton = ({ candidate }) => {
