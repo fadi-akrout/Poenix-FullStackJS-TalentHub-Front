@@ -25,6 +25,7 @@ import Welcome from './features/auth/Welcome';
 import UsersList from './features/users/UsersList';
 import NotesList from './features/notes/NotesList';
 import EditUser from './features/users/EditUser';
+import AccountStats from './ClientComponent/UserComponent/AcountStats';
 import NewUserForm from './features/users/NewUserForm';
 import EditNote from './features/notes/EditNote';
 import NewNote from './features/notes/NewNote';
@@ -112,6 +113,12 @@ function App() {
                         <Route index element={<UsersList />} />
                         <Route path=":id" element={<EditUser />} />
                         <Route path="new" element={<NewUserForm />} />
+                      </Route>
+
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                      <Route path="stats">
+                        <Route index element={<AccountStats />} />
                       </Route>
 
                     </Route>
