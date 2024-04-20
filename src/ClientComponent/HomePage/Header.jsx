@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faEnvelope, faBell, faGlobeAmericas, faCalendarDays, faBriefcase, faIdCard } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faEnvelope, faBell, faGlobeAmericas, faCalendarDays, faBriefcase, faIdCard, faBarChart } from '@fortawesome/free-solid-svg-icons';
 import {
   faFileCirclePlus,
   faFilePen,
@@ -253,6 +253,16 @@ function Header() {
                     <FontAwesomeIcon icon={faCalendarDays} className="fa-lg" />
                   </div>
                     Add Events
+                  </Link>
+                </li>}
+                {(isAdmin || isRecruter) &&
+                <li className="nav-item text-center mx-2 mx-lg-1">
+
+                  <Link to="/dash/stats" className="nav-link">                <div>
+
+                    <FontAwesomeIcon icon={faBarChart} className="fa-lg" />
+                  </div>
+                    Statistics
                   </Link>
                 </li>}
               {/*               <li className="nav-item text-center mx-2 mx-lg-1">
