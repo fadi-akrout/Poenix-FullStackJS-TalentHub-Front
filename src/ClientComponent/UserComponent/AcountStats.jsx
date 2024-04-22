@@ -2,10 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import Header from "../../ClientComponent/HomePage/Header";
 import Footer from "../../ClientComponent/Dashboard/Footer";
+import { PiStudent } from "react-icons/pi";
+import { FaRegUserCircle, FaChalkboardTeacher } from "react-icons/fa";
+import { HiAcademicCap } from "react-icons/hi2";
+import { BsPersonWorkspace } from "react-icons/bs";
+import "./AccountStats.css";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const AcountStats = () => {
+const AccountStats = () => {
   const [accountStats, setAccountStats] = useState(null);
   const [error, setError] = useState(null);
+  const [evenementData, setEventData] = useState([]);
+
 
   useEffect(() => {
     const fetchAccountStats = async () => {
@@ -16,14 +24,16 @@ const AcountStats = () => {
         }
         const data = await response.json();
         setAccountStats(data);
+        setEventData(data.evenementData); 
       } catch (err) {
         console.error('Error fetching account stats:', err);
         setError(err.message);
       }
     };
-
+  
     fetchAccountStats();
   }, []);
+  
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -48,18 +58,49 @@ const AcountStats = () => {
       <Header />
       <section className="contact-us grid grid-cols-2 gap-4 h-[calc(100vh-4rem)]" id="contact">
         <div className="flex justify-center items-center">
-          <h1>chart</h1>
         </div>
         <div className="bg-gray-900 text-white p-8 flex flex-col justify-center">
           <h2 className="text-2xl font-bold mb-6">Account Statistics</h2>
           <div className="grid grid-cols-2 gap-4">
-            <div>
-              <h3 className="text-white">Students: {studentCount}</h3>
-              <h3 className="text-white">Users: {userCount}</h3>
-              <h3 className="text-white">Teachers: {staffCount}</h3>
-              <h3 className="text-white">Alumnis: {AlumniCount}</h3>
-              <h3 className="text-white">Recruiters: {RecruiterCount}</h3>
+          <main className='main-container'>
+            <div className='main-cardss'>
+              <div className='cards'>
+                <div className='card-inners'>
+                  <h3>STUDENTS</h3>
+                  <PiStudent className='card_icon' />
+                </div>
+                <h1>{studentCount}</h1>
+              </div>
+              <div className='cards'>
+                <div className='card-inners'>
+                  <h3>USERS</h3>
+                  <FaRegUserCircle className='card_icon' />
+                </div>
+                <h1>{userCount}</h1>
+              </div>
+              <div className='cards'>
+                <div className='card-inners'>
+                  <h3>TEACHERS</h3>
+                  <FaChalkboardTeacher className='card_icon' />
+                </div>
+                <h1>{staffCount}</h1>
+              </div>
+              <div className='cards'>
+                <div className='card-inners'>
+                  <h3>ALUMNIS</h3>
+                  <HiAcademicCap className='card_icon' />
+                </div>
+                <h1>{AlumniCount}</h1>
+              </div>
+              <div className='cards'>
+                <div className='card-inners'>
+                  <h3>RECRUITERS</h3>
+                  <BsPersonWorkspace className='card_icon' />
+                </div>
+                <h1>{RecruiterCount}</h1>
+              </div>
             </div>
+          </main>
             <div className="mt-4">
               <PieChart
                 series={[
@@ -72,6 +113,21 @@ const AcountStats = () => {
                 height={300}
               />
             </div>
+            <div>
+              <ResponsiveContainer width="100%" height={400}>
+                <LineChart
+                  data={evenementData}
+                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                >
+                  <XAxis dataKey="_id.day" />
+                  <YAxis />
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="count" stroke="#8884d8" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </div>
       </section>
@@ -82,4 +138,4 @@ const AcountStats = () => {
   );
 };
 
-export default AcountStats;
+export default AccountStats;
