@@ -4,6 +4,7 @@ import { Link ,useNavigate} from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md'
 import useAuth from '../../hooks/useAuth'
+import Feedback from './FeedBack';
 
 function Offers() {
   const [offers, setOffers] = useState([]);
@@ -67,6 +68,9 @@ const navigateToApply = (offerId) => {
                     </li>
                     <li className="list-group-item">
                       <strong>Job City:</strong> {offer.JobCity}
+                    </li>
+                    <li className="list-group-item">
+                      <Feedback offerId={offer._id} />
                     </li>
                   </ul>
                   {( isStudent || isAlumni) &&
