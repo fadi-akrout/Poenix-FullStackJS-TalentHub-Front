@@ -150,10 +150,16 @@ function App() {
                         <Route index element={<Recruiters />} />
                       </Route>
                     </Route>
-
                     <Route path="add-recruiter">
                       <Route index element={<AddRecruiter />} />
                     </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                      <Route path="Alumnis">
+                        <Route index element={<Alumni />} />
+                      </Route>
+                    </Route>
+                 
+                   
 
 
 
