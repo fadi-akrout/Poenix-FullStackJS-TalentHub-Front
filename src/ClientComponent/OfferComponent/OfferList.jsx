@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
+
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
 import { FaEdit } from 'react-icons/fa';
@@ -65,7 +66,6 @@ function OfferList() {
                                                 <p className="job-info"><span className="info-label"><strong>Speciality:</strong></span> {offer.Speciality}</p>
                                                 <p className="job-info"><span className="info-label"><strong>Job Type:</strong></span> {offer.JobType}</p>
                                                 <p className="job-info"><span className="info-label"><strong>Job City:</strong></span> {offer.JobCity}</p>
-                                                <Feedback offerId={offer._id} />
                                             </div>
                                         </div>
                                         <div className="main-button-red">
@@ -74,28 +74,6 @@ function OfferList() {
                                         {/* <MdDeleteForever onClick={(e) => handleDelete(offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
                                         <FaEdit onClick={() => navigateToUpdateOffer(offer._id)} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
                                    */}  </div>
-                                    <div className="feedback">
-                                        {[...Array(5)].map((star, index) => {
-                                            const ratingValue = index + 1;
-
-                                            return (
-                                            <label key={index}>
-                                                <input
-                                                type="radio"
-                                                name="rating"
-                                                value={ratingValue}
-                                                onClick={() => handleRating(ratingValue)}
-                                                />
-                                                <FaStar
-                                                className="star"
-                                                color={ratingValue <= (hover || rating) ? '#ffc107' : '#e4e5e9'}
-                                                onMouseEnter={() => setHover(ratingValue)}
-                                                onMouseLeave={() => setHover(null)}
-                                                />
-                                            </label>
-                                            );
-                                        })}
-                                        </div>
                                 </div>
                             </div>
                         ))}
