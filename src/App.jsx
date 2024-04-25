@@ -49,6 +49,8 @@ const Student = lazy(() => import('./ClientComponent/StudentsComponent/Students'
 const AddAlumni = lazy(() => import('./ClientComponent/AlumniComponent/AddAlumni'));
 const Alumni = lazy(() => import('./ClientComponent/AlumniComponent/Alumni'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
+const Cv = lazy(() => import('./ClientComponent/cv'));
+const Job = lazy(() => import('./ClientComponent/job'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
 const Apply = lazy(() => import('./ClientComponent/OfferComponent/ApplyOffer'));
@@ -169,6 +171,12 @@ function App() {
                       <Route path="add-event">
                         <Route index element={<AddEvent />} />
                       </Route>
+                    </Route>
+                    <Route path="cv">
+                      <Route index element={<Cv />} />
+                    </Route>
+                    <Route path="job">
+                      <Route index element={<Job />} />
                     </Route>
 
                     <Route path="admin/*">
