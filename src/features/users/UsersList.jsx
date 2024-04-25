@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useGetUsersQuery } from "./usersApiSlice";
+import React, { useState } from 'react';
+import { useGetFilteredUsersQuery } from "./usersApiSlice"; // Import the new hook
 import User from './User';
 import PulseLoader from 'react-spinners/PulseLoader';
 import Header from "../../ClientComponent/HomePage/Header";
@@ -7,21 +7,30 @@ import Footer from "../../ClientComponent/Dashboard/Footer";
 
 const UsersList = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedRole, setSelectedRole] = useState(''); // State to store selected role
     const usersPerPage = 5;
 
+    // Use useGetFilteredUsersQuery hook to fetch users based on selected role
     const {
         data: users,
         isLoading,
         isSuccess,
         isError,
         error
-    } = useGetUsersQuery('usersList', {
+    } = useGetFilteredUsersQuery(selectedRole, { // Pass the selected role as an argument
         pollingInterval: 60000,
         refetchOnFocus: true,
         refetchOnMountOrArgChange: true
     });
 
+    // Options for select dropdown
+    const roleOptions = ['Student', 'Recruiter', 'Teacher', 'Alumni', 'Admin'];
+
     let content;
+
+    const handleRoleChange = (e) => {
+        setSelectedRole(e.target.value); // Update selected role when select value changes
+    }
 
     if (isLoading) {
         content = <PulseLoader color={"#FFF"} />;
@@ -61,6 +70,14 @@ const UsersList = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12 align-self-center">
+                                <div>
+                                    <select value={selectedRole} onChange={handleRoleChange}>
+                                        <option value="">Select Role</option>
+                                        {roleOptions.map(role => (
+                                            <option key={role} value={role}>{role}</option>
+                                        ))}
+                                    </select>
+                                </div>
                                 <table className="table table--users">
                                     <thead>
                                         <tr>

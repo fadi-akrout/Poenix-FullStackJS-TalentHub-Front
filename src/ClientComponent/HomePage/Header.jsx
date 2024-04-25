@@ -317,9 +317,9 @@ function Header() {
                 <Link to="/dash/Profile" className="nav-link">
                   <div>
                     <FontAwesomeIcon icon={faIdCard} className="fa-lg" />
-
+                    
                   </div>
-                   {username}
+                   {username} 
                 </Link>
               </li>}
               {buttonContent}

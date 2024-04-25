@@ -5,6 +5,7 @@ import { FaEdit } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Footer from '../Dashboard/Footer';
+import Header from '../HomePage/Header';
 
 function Alumni() {
     const [alumni, setAlumni] = useState([]);
@@ -43,7 +44,7 @@ function Alumni() {
 
     return (
         <>
-            <HeaderClient />
+            <Header/>
             <section className="upcoming-meetings" id="meetings">
                 <div className="container my-5">
                     <h1 className="text-center mb-4">List of Alumni</h1>
