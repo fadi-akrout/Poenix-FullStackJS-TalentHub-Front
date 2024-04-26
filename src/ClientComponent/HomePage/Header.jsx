@@ -168,21 +168,37 @@ function Header() {
   }
 
   let notesButton = null
- /*  if (isAdmin) {
+   if (isAdmin) {
     if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
       notesButton = (
         <li className="nav-item text-center mx-2 mx-lg-1">
-          <Link to="/dash/notes" className="nav-link">
+          <Link to="/dash/cv" className="nav-link">
             <div>
               <FontAwesomeIcon icon={faFilePen} className="fa-lg mb-1" />
             </div>
-            Notes
+            CV Extracting
           </Link>
         </li>
       )
 
     }
-  } */
+  } 
+  let jobsButton = null
+   if (isAdmin) {
+    if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
+      jobsButton = (
+        <li className="nav-item text-center mx-2 mx-lg-1">
+          <Link to="/dash/job" className="nav-link">
+            <div>
+              <FontAwesomeIcon icon={faFilePen} className="fa-lg mb-1" />
+            </div>
+            Job Extracting
+          </Link>
+        </li>
+      )
+
+    }
+  } 
 
   const logoutButton = (
     <li className="nav-item text-center mx-2 mx-lg-1">
@@ -205,6 +221,7 @@ function Header() {
         {newNoteButton}
         {newUserButton}
         {notesButton}
+        {jobsButton}
         {userButton}
         {logoutButton}
       </>

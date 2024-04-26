@@ -8,10 +8,11 @@ import Feedback from './FeedBack';
 
 function Offers() {
   const [offers, setOffers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const { userId,email,isAlumni, isStudent, isAdmin ,isRecruter} = useAuth()
 
   const navigate = useNavigate();
-  useEffect(() => {
+/*   useEffect(() => {
     axios
       .get('http://localhost:3500/offers')
       .then((response) => {
@@ -20,7 +21,24 @@ function Offers() {
       .catch((error) => {
         console.error('There was an error!', error);
       });
-  }, []);
+  }, []); */
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch(`http://localhost:3500/offers?q=${searchQuery}`);
+        const data = await response.json();
+        setOffers(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchOffers();
+  }, [searchQuery]);
+
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
   const handleDelete = (id) => {
     axios.delete('http://localhost:3500/offers/' + id)
         .then(response => {
@@ -41,7 +59,20 @@ const navigateToApply = (offerId) => {
 
   return (
     <section className="upcoming-meetings" id="meetings">
-      <div className="container">
+       <section className="contact-us" id="contact">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 align-self-center">
+              <div className="row justify-content-center">
+                <div className="col-lg-10">
+                <input type="text" id="Search" className="form-control" name="Search"
+        value={searchQuery}
+        onChange={handleSearchInputChange}
+        placeholder="Search offers..."
+        style={{ padding: '10px', margin: '10px', marginTop: '-250px' }}
+      /> </div>
+    
+      <div className="container"style={{ padding: '10px', margin: '10px', marginTop: '-150px' }}>
         <div className="row justify-content-center">
           {offers.map((offer) => (
             <div key={offer._id} className="justify-content-center col-lg-10 col-md-6 col-sm-8 mb-6"> {/* Adjusted col widths */}
@@ -90,7 +121,9 @@ const navigateToApply = (offerId) => {
           ))}
         </div>
       </div>
-    </section>
+      </div></div></div></div>
+    </section>    </section>
+
     
   );
 }
