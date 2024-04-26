@@ -8,9 +8,10 @@ import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
 import useAuth from '../../hooks/useAuth'
 
+
 function Evenements() {
     const [evenements, setEvenements] = useState([]);
-    const { username,email, isTeacher,isStudent,isAdmin ,isRecruter} = useAuth()
+    const { userId, username, email, isTeacher, isStudent, isAdmin, isRecruter } = useAuth()
 
     useEffect(() => {
         axios.get('http://localhost:3500/evenements')
@@ -29,10 +30,10 @@ function Evenements() {
                     {evenements.map(evenement => (
                         <Evenement evenement={evenement} setEvenements={setEvenements} key={evenement._id} />
                     ))}
-                     {( isAdmin || isRecruter || isTeacher) &&
-                    <div className="text-center mt-4">
-                        <Link to="/dash/add-event" className="btn btn-danger">Add event</Link>
-                    </div>}
+                    {(isAdmin || isRecruter || isTeacher) &&
+                        <div className="text-center mt-4">
+                            <Link to="/dash/add-event" className="btn btn-danger">Add event</Link>
+                        </div>}
                 </div>
 
             </section>
@@ -46,7 +47,9 @@ function Evenement({ evenement, setEvenements }) {
 
     const activerEdition = () => setEnEdition(true);
     const desactiverEdition = () => setEnEdition(false);
-    const { username, email, isTeacher, isStudent, isAdmin, isRecruter } = useAuth()
+    const { userId, isTeacher, isAdmin, isRecruter,username, } = useAuth()
+    const [isParticipating, setIsParticipating] = useState(evenement.participants.includes(userId));
+
 
 
     useEffect(() => {
@@ -102,7 +105,40 @@ function Evenement({ evenement, setEvenements }) {
                 console.error("Erreur lors de la suppression de l'événement", error);
             }
         }
+
     };
+    const handleParticipate = async () => {
+        try {
+            const response = await axios.post(`http://localhost:3500/evenements/${evenement._id}/participate`, { userId });
+            if (response.status === 200) {
+                alert('Votre participation a été enregistrée');
+                setIsParticipating(true);
+                // Mise à jour de l'état si nécessaire...
+            } else {
+                alert('Erreur lors de la participation: Statut de réponse non réussi');
+            }
+        } catch (error) {
+            console.error('Erreur lors de la participation:', error.response || error.message);
+            alert(`Erreur lors de la participation: ${error.response?.data?.message || error.message}`);
+        }
+    };
+
+    const handleCancelParticipation = async () => {
+        try {
+            const response = await axios.post(`http://localhost:3500/evenements/${evenement._id}/annulerParticipation`, { userId });
+            if (response.status === 200) {
+                alert('Votre annulation de participation a été enregistrée');
+                setIsParticipating(false);
+                // Mise à jour de l'état si nécessaire...
+            } else {
+                alert('Erreur lors de l\'annulation de la participation: Statut de réponse non réussi');
+            }
+        } catch (error) {
+            console.error('Erreur lors de l\'annulation de la participation:', error.response || error.message);
+            alert(`Erreur lors de l'annulation de la participation: ${error.response?.data?.message || error.message}`);
+        }
+    };
+
 
 
 
@@ -156,6 +192,11 @@ function Evenement({ evenement, setEvenements }) {
                             {(isAdmin || isRecruter || isTeacher) &&
                                 <MdDeleteForever onClick={handleDelete} style={{ cursor: 'pointer', color: 'red' }} />
                             }
+ {isParticipating ? (
+                <button className="btn btn-warning" onClick={handleCancelParticipation}>Annuler la participation</button>
+            ) : (
+                <button className="btn btn-primary" onClick={handleParticipate}>Participer</button>
+            )}
                         </div>
                     </div>
                 </div>

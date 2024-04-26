@@ -54,7 +54,7 @@ const Job = lazy(() => import('./ClientComponent/job'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
 const Apply = lazy(() => import('./ClientComponent/OfferComponent/ApplyOffer'));
-
+const Question = lazy(() => import('./ClientComponent/HomePage/QuestionComponent'));
 
 
 //const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
@@ -211,6 +211,9 @@ function App() {
                     </Route>
                     <Route path="Profile">
                       <Route index element={<Profile />} />
+                    </Route>
+                    <Route path="question">
+                      <Route index element={<Question />} />
                     </Route>
 
 

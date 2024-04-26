@@ -30,24 +30,24 @@ function HomeP() {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '-250px', 
+    marginTop: '-250px',
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
 
   const offersContainerStyle = {
-    flex: '1', 
-    maxWidth: '800px', 
-    margin: '0 auto', 
+    flex: '1',
+    maxWidth: '800px',
+    margin: '0 auto',
     zIndex: 2,
   };
 
   const sidebarStyle = {
-    flex: '1', 
-    maxWidth: '300px', 
+    flex: '1',
+    maxWidth: '300px',
     padding: '10px',
-    marginTop: '-100px', 
+    marginTop: '-100px',
   };
 
   return (
