@@ -14,7 +14,6 @@ const AccountStats = () => {
   const [error, setError] = useState(null);
   const [evenementData, setEventData] = useState([]);
 
-
   useEffect(() => {
     const fetchAccountStats = async () => {
       try {
@@ -59,48 +58,48 @@ const AccountStats = () => {
       <section className="contact-us grid grid-cols-2 gap-4 h-[calc(100vh-4rem)]" id="contact">
         <div className="flex justify-center items-center">
         </div>
-        <div className="bg-gray-900 text-white p-8 flex flex-col justify-center">
-          <h2 className="text-2xl font-bold mb-6">Account Statistics</h2>
+        <div className="bg-gray-900 text-white p-8">
+          <h2 className="text-2xl font-bold mb-6 text-center">Account Statistics</h2>
           <div className="grid grid-cols-2 gap-4">
-          <main className='main-container'>
-            <div className='main-cardss'>
-              <div className='cards'>
-                <div className='card-inners'>
-                  <h3>STUDENTS</h3>
-                  <PiStudent className='card_icon' />
+            <main className='main-container'>
+              <div className='main-cardss'>
+                <div className='cards'>
+                  <div className='card-inners'>
+                    <h3>STUDENTS</h3>
+                    <PiStudent className='card_icon' />
+                  </div>
+                  <h1>{studentCount}</h1>
                 </div>
-                <h1>{studentCount}</h1>
-              </div>
-              <div className='cards'>
-                <div className='card-inners'>
-                  <h3>USERS</h3>
-                  <FaRegUserCircle className='card_icon' />
+                <div className='cards'>
+                  <div className='card-inners'>
+                    <h3>USERS</h3>
+                    <FaRegUserCircle className='card_icon' />
+                  </div>
+                  <h1>{userCount}</h1>
                 </div>
-                <h1>{userCount}</h1>
-              </div>
-              <div className='cards'>
-                <div className='card-inners'>
-                  <h3>TEACHERS</h3>
-                  <FaChalkboardTeacher className='card_icon' />
+                <div className='cards'>
+                  <div className='card-inners'>
+                    <h3>TEACHERS</h3>
+                    <FaChalkboardTeacher className='card_icon' />
+                  </div>
+                  <h1>{staffCount}</h1>
                 </div>
-                <h1>{staffCount}</h1>
-              </div>
-              <div className='cards'>
-                <div className='card-inners'>
-                  <h3>ALUMNIS</h3>
-                  <HiAcademicCap className='card_icon' />
+                <div className='cards'>
+                  <div className='card-inners'>
+                    <h3>ALUMNIS</h3>
+                    <HiAcademicCap className='card_icon' />
+                  </div>
+                  <h1>{AlumniCount}</h1>
                 </div>
-                <h1>{AlumniCount}</h1>
-              </div>
-              <div className='cards'>
-                <div className='card-inners'>
-                  <h3>RECRUITERS</h3>
-                  <BsPersonWorkspace className='card_icon' />
+                <div className='cards'>
+                  <div className='card-inners'>
+                    <h3>RECRUITERS</h3>
+                    <BsPersonWorkspace className='card_icon' />
+                  </div>
+                  <h1>{RecruiterCount}</h1>
                 </div>
-                <h1>{RecruiterCount}</h1>
               </div>
-            </div>
-          </main>
+            </main>
             <div className="mt-4">
               <PieChart
                 series={[
@@ -113,11 +112,14 @@ const AccountStats = () => {
                 height={300}
               />
             </div>
-            <div>
+          </div>
+          <div className="flex justify-center"><h3>Events</h3></div>
+          <div className="line-chart-wrapper">
+            <div className="line-chart-container">
               <ResponsiveContainer width="100%" height={400}>
-                <LineChart
+                <LineChart 
                   data={evenementData}
-                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                  margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
                 >
                   <XAxis dataKey="_id.day" />
                   <YAxis />

@@ -52,3 +52,18 @@
   height: 300px;
 }
   
+
+.line-chart-container {
+  margin-top: 8rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.line-chart-wrapper {
+  width: 80%;
+  margin: 0 auto; /* Centers the container horizontally */
+}
+.text-center {
+  text-align: center;
+}
