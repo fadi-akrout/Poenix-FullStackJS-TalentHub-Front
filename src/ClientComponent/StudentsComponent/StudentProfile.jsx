@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import HeaderClient from '../Dashboard/HeaderClient';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
@@ -17,7 +17,13 @@ import {
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState('');
     const { id } = useParams(); // Récupère l'ID de l'URL
-
+const IA= async()=>{
+    try {
+        const response = await axios.get('http://localhost:3500/IA/processCV');
+    } catch (error) {
+        console.error('Erreur IA', error);
+    }
+}
     useEffect(() => {
         const fetchProfile = async () => {
             try {
@@ -180,6 +186,8 @@ import {
                     </MDBCol>
                     </MDBRow>
                     <PDFGeneratorButton candidate={candidate} />
+                
+                    <br></br>  <Link to="/dash/cv" className="btn btn-danger">Extract data from CV</Link>
                     </MDBCardBody>
                     </MDBCard>
                 </MDBCol>

@@ -3,7 +3,7 @@ import Header from './Header';
 import backgroundImage from './image/meetings-bg.jpg';
 import Offers from './Offers';
 import Evenements from '../EventComponent/EventPreview';
-
+import Chatbot from '../Chatbot/Chatbot';
 function HomeP() {
   const [headerVisible, setHeaderVisible] = useState(true);
 
@@ -61,6 +61,7 @@ function HomeP() {
           <div style={sidebarStyle}>
             <Evenements />
           </div>
+          <div> <Chatbot /> </div>
         </div>
       </section>
     </div>

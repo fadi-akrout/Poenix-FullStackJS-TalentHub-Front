@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faEnvelope, faBell, faGlobeAmericas, faCalendarDays, faBriefcase, faIdCard } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faEnvelope, faBell, faGlobeAmericas, faCalendarDays, faBriefcase, faIdCard, faBarChart } from '@fortawesome/free-solid-svg-icons';
 import {
   faFileCirclePlus,
   faFilePen,
@@ -168,21 +168,38 @@ function Header() {
   }
 
   let notesButton = null
-  /*  if (isAdmin) {
-     if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
-       notesButton = (
-         <li className="nav-item text-center mx-2 mx-lg-1">
-           <Link to="/dash/notes" className="nav-link">
-             <div>
-               <FontAwesomeIcon icon={faFilePen} className="fa-lg mb-1" />
-             </div>
-             Notes
-           </Link>
-         </li>
-       )
- 
-     }
-   } */
+
+   if (isAdmin) {
+    if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
+      notesButton = (
+        <li className="nav-item text-center mx-2 mx-lg-1">
+          <Link to="/dash/cv" className="nav-link">
+            <div>
+              <FontAwesomeIcon icon={faFilePen} className="fa-lg mb-1" />
+            </div>
+            CV Extracting
+          </Link>
+        </li>
+      )
+
+    }
+  } 
+  let jobsButton = null
+   if (isAdmin) {
+    if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
+      jobsButton = (
+        <li className="nav-item text-center mx-2 mx-lg-1">
+          <Link to="/dash/job" className="nav-link">
+            <div>
+              <FontAwesomeIcon icon={faFilePen} className="fa-lg mb-1" />
+            </div>
+            Job Extracting
+          </Link>
+        </li>
+      )
+
+    }
+  } 
 
   const logoutButton = (
     <li className="nav-item text-center mx-2 mx-lg-1">
@@ -205,6 +222,7 @@ function Header() {
         {newNoteButton}
         {newUserButton}
         {notesButton}
+        {jobsButton}
         {userButton}
         {logoutButton}
       </>
@@ -264,6 +282,16 @@ function Header() {
                     Add Events
                   </Link>
                 </li>}
+                {(isAdmin || isRecruter) &&
+                <li className="nav-item text-center mx-2 mx-lg-1">
+
+                  <Link to="/dash/stats" className="nav-link">                <div>
+
+                    <FontAwesomeIcon icon={faBarChart} className="fa-lg" />
+                  </div>
+                    Statistics
+                  </Link>
+                </li>}
               {/*               <li className="nav-item text-center mx-2 mx-lg-1">
                 <form className="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0" onSubmit={handleSearch}>
                   <input
@@ -294,16 +322,17 @@ function Header() {
 
             </ul>
             <ul className="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
-              {(!isAdmin) &&
-                <li className="nav-item text-center mx-2 mx-lg-1">
-                  <Link to="/dash/Profile" className="nav-link">
-                    <div>
-                      <FontAwesomeIcon icon={faIdCard} className="fa-lg" />
 
-                    </div>
-                    {username}
-                  </Link>
-                </li>}
+            {(!isAdmin) &&
+              <li className="nav-item text-center mx-2 mx-lg-1">
+                <Link to="/dash/Profile" className="nav-link">
+                  <div>
+                    <FontAwesomeIcon icon={faIdCard} className="fa-lg" />
+                    
+                  </div>
+                   {username} 
+                </Link>
+              </li>}
               {buttonContent}
 
             </ul>

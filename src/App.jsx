@@ -25,6 +25,7 @@ import Welcome from './features/auth/Welcome';
 import UsersList from './features/users/UsersList';
 import NotesList from './features/notes/NotesList';
 import EditUser from './features/users/EditUser';
+import AccountStats from './ClientComponent/UserComponent/AcountStats';
 import NewUserForm from './features/users/NewUserForm';
 import EditNote from './features/notes/EditNote';
 import NewNote from './features/notes/NewNote';
@@ -48,6 +49,8 @@ const Student = lazy(() => import('./ClientComponent/StudentsComponent/Students'
 const AddAlumni = lazy(() => import('./ClientComponent/AlumniComponent/AddAlumni'));
 const Alumni = lazy(() => import('./ClientComponent/AlumniComponent/Alumni'));
 const Evenement = lazy(() => import('./ClientComponent/EventComponent/Evenement'));
+const Cv = lazy(() => import('./ClientComponent/cv'));
+const Job = lazy(() => import('./ClientComponent/job'));
 const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'));
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
 const Apply = lazy(() => import('./ClientComponent/OfferComponent/ApplyOffer'));
@@ -116,6 +119,12 @@ function App() {
 
                     </Route>
                     <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                      <Route path="stats">
+                        <Route index element={<AccountStats />} />
+                      </Route>
+
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                       <Route path="notes">
                         <Route index element={<NotesList />} />
                         <Route path=":id" element={<EditNote />} />
@@ -143,10 +152,16 @@ function App() {
                         <Route index element={<Recruiters />} />
                       </Route>
                     </Route>
-
                     <Route path="add-recruiter">
                       <Route index element={<AddRecruiter />} />
                     </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                      <Route path="Alumnis">
+                        <Route index element={<Alumni />} />
+                      </Route>
+                    </Route>
+                 
+                   
 
 
 
@@ -162,6 +177,12 @@ function App() {
                       <Route path="add-event">
                         <Route index element={<AddEvent />} />
                       </Route>
+                    </Route>
+                    <Route path="cv">
+                      <Route index element={<Cv />} />
+                    </Route>
+                    <Route path="job">
+                      <Route index element={<Job />} />
                     </Route>
 
                     <Route path="admin/*">
