@@ -40,8 +40,31 @@ function OfferList() {
         navigate(`/updateoffer/${offerId}`);
     }
 
-  // Slice the offers array to display only the first four offers
-  const displayedOffers = offers.slice(0, 4);
+    // Slice the offers array to display only the first four offers
+    const displayedOffers = offers.slice(0, 4);
+
+    const generatePDFOffers = () => {
+        const doc = new jsPDF();
+
+        offers.forEach((offer, index) => {
+            if (index > 0) {
+                doc.addPage();
+            }
+
+            doc.setFontSize(16);
+            doc.text(offer.Title, 14, 20);
+            doc.setFontSize(10);
+            doc.text(`Experience Required: ${offer.Experience_required}`, 14, 30);
+            doc.text(`Domain: ${offer.Domain}`, 14, 40);
+            doc.text(`Mission: ${offer.Mission}`, 14, 50);
+            doc.text(`Salary: ${offer.Salary}`, 14, 60);
+            doc.text(`Speciality: ${offer.Speciality}`, 14, 70);
+            doc.text(`Job Type: ${offer.JobType}`, 14, 80);
+            doc.text(`Job City: ${offer.JobCity}`, 14, 90);
+        });
+
+        doc.save('Job_Offers.pdf');
+    };
     return (
         <>
             <section className="upcoming-meetings" id="meetings">
@@ -70,6 +93,10 @@ function OfferList() {
                                         <div className="main-button-red">
                                             <li className="scroll-to-section"><Link to="/signup">Apply now</Link></li>
                                         </div>
+                                        <div>
+                                            <button onClick={generatePDFOffers} style={{ margin: '20px', padding: '10px 20px', fontSize: '16px' }}>Generate PDF of Offers</button>
+
+                                        </div>
                                         {/* <MdDeleteForever onClick={(e) => handleDelete(offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
                                         <FaEdit onClick={() => navigateToUpdateOffer(offer._id)} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
                                    */}  </div>
@@ -79,6 +106,8 @@ function OfferList() {
                         ))}
                     </div>
                 </div>
+
+
             </section>
 
         </>

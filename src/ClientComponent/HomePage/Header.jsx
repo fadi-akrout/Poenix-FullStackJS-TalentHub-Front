@@ -135,20 +135,20 @@ function Header() {
   }
 
   let newUserButton = null
- /*  if (isAdmin) {
-    if (USERS_REGEX.test(pathname)) {
-      newUserButton = (
-        <li className="nav-item text-center mx-2 mx-lg-1">
-          <Link to="./new" className="nav-link">
-            <div>
-              <FontAwesomeIcon icon={faUserPlus} className="fa-lg mb-1" />
-            </div>
-            Add User
-          </Link>
-        </li>
-      )
-    }
-  } */
+  /*  if (isAdmin) {
+     if (USERS_REGEX.test(pathname)) {
+       newUserButton = (
+         <li className="nav-item text-center mx-2 mx-lg-1">
+           <Link to="./new" className="nav-link">
+             <div>
+               <FontAwesomeIcon icon={faUserPlus} className="fa-lg mb-1" />
+             </div>
+             Add User
+           </Link>
+         </li>
+       )
+     }
+   } */
 
   let userButton = null
   if (isAdmin) {
@@ -168,21 +168,21 @@ function Header() {
   }
 
   let notesButton = null
- /*  if (isAdmin) {
-    if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
-      notesButton = (
-        <li className="nav-item text-center mx-2 mx-lg-1">
-          <Link to="/dash/notes" className="nav-link">
-            <div>
-              <FontAwesomeIcon icon={faFilePen} className="fa-lg mb-1" />
-            </div>
-            Notes
-          </Link>
-        </li>
-      )
-
-    }
-  } */
+  /*  if (isAdmin) {
+     if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
+       notesButton = (
+         <li className="nav-item text-center mx-2 mx-lg-1">
+           <Link to="/dash/notes" className="nav-link">
+             <div>
+               <FontAwesomeIcon icon={faFilePen} className="fa-lg mb-1" />
+             </div>
+             Notes
+           </Link>
+         </li>
+       )
+ 
+     }
+   } */
 
   const logoutButton = (
     <li className="nav-item text-center mx-2 mx-lg-1">
@@ -215,7 +215,7 @@ function Header() {
   return (
     <>
       <p className={errClass}>{error?.data?.message}</p>
-      <nav className="navbar navbar-expand-lg sticky-top" style={{ height: '80px', padding: '0',margin:'0', width: '100%', backgroundColor: '#a12c2f' }}>
+      <nav className="navbar navbar-expand-lg sticky-top" style={{ height: '80px', padding: '0', margin: '0', width: '100%', backgroundColor: '#a12c2f' }}>
         <div className="container-fluid">
           <a className="navbar" href="#">
             <img src={logoImage} alt="Logo" className="logo-img" style={{ width: '100px', height: 'auto' }} />
@@ -233,6 +233,15 @@ function Header() {
 
                   </div>
                   Home
+                </Link>
+              </li>
+              <li className="nav-item text-center mx-2 mx-lg-1">
+                <Link to="/dash/question" className="nav-link">
+                  <div>
+                    <FontAwesomeIcon icon={faBell} className="fa-lg" />
+
+                  </div>
+                  Quiz
                 </Link>
               </li>
 
@@ -285,16 +294,16 @@ function Header() {
 
             </ul>
             <ul className="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
-            {(!isAdmin) &&
-              <li className="nav-item text-center mx-2 mx-lg-1">
-                <Link to="/dash/Profile" className="nav-link">
-                  <div>
-                    <FontAwesomeIcon icon={faIdCard} className="fa-lg" />
+              {(!isAdmin) &&
+                <li className="nav-item text-center mx-2 mx-lg-1">
+                  <Link to="/dash/Profile" className="nav-link">
+                    <div>
+                      <FontAwesomeIcon icon={faIdCard} className="fa-lg" />
 
-                  </div>
-                   {username}
-                </Link>
-              </li>}
+                    </div>
+                    {username}
+                  </Link>
+                </li>}
               {buttonContent}
 
             </ul>
