@@ -115,12 +115,12 @@ function Offers() {
                   {(isStudent || isAlumni) &&
                     <button type="submit" className="btn btn-danger" onClick={() => navigateToApply(offer._id)}>Apply now</button>
                   }
-                  {(isAdmin || isRecruter) &&
+                 {/*  {(isAdmin || isRecruter) &&
                     <>
                       <MdDeleteForever onClick={() => handleDelete(offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
                       <FaEdit onClick={() => navigateToUpdateOffer(offer._id)} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
                     </>
-                  }
+                  } */}
                 </div>
               </div>
             </div>

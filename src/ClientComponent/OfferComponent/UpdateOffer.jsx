@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link ,useParams ,useNavigate} from 'react-router-dom';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
+import useAuth from '../../hooks/useAuth';
 
 function UpdateOffer() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function UpdateOffer() {
  const [Speciality,SetSpeciality]=useState()
  const [JobType,SetJobType]=useState()
  const [JobCity,SetJobCity]=useState()
-
+ const { userId } = useAuth()
 
         useEffect(() => {
             axios.get('http://localhost:3500/offers/getoffer/'+id)
@@ -45,7 +46,7 @@ function UpdateOffer() {
           axios.patch('http://localhost:3500/offers/'+id,{Title,Experience_required,Domain,Mission,Salary,Speciality,JobType,JobCity})
           .then(result=> {
             console.log(result)
-            navigate('/dash')
+            navigate(`/dash/ownedoffers/${userId}`)
           })
           .catch(err => console.log(err) )
         }

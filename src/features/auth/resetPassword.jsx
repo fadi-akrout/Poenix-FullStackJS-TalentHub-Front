@@ -142,7 +142,7 @@ if(busy) return (
                     <label htmlFor="confirmPassword">Confirme password:</label>
                     <input
                         className="form-control"
-                        type="confirmPassword"
+                        type="password"
                         id="confirmPassword"
                         name="confirmPassword"
                         placeholder='*********'
