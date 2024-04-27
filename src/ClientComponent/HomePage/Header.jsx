@@ -20,7 +20,7 @@ const USERS_REGEX = /^\/dash\/users(\/)?$/
 function Header() {
 
 
-  const { username, email, isStudent, isAdmin, isRecruter } = useAuth()
+  const { username, email, userId, isAdmin, isRecruter,isAlumni,isStudent } = useAuth()
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
@@ -200,6 +200,38 @@ function Header() {
 
     }
   } 
+  let myOffersButton = null
+   if ( isStudent || isAlumni) {
+    if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
+      myOffersButton = (
+        <li className="nav-item text-center mx-2 mx-lg-1">
+          <Link to= {`/dash/myoffers/${userId}`} className="nav-link">
+            <div>
+              <FontAwesomeIcon icon={faFilePen} className="fa-lg mb-1" />
+            </div>
+            My offers
+          </Link>
+        </li>
+      )
+
+    }
+  } 
+  let ownerOffersButton = null
+   if ( isRecruter || isAlumni || isAdmin) {
+    if (!NOTES_REGEX.test(pathname) && pathname.includes('/dash')) {
+      ownerOffersButton = (
+        <li className="nav-item text-center mx-2 mx-lg-1">
+          <Link to= {`/dash/ownedoffers/${userId}`} className="nav-link">
+            <div>
+              <FontAwesomeIcon icon={faFilePen} className="fa-lg mb-1" />
+            </div>
+            Owned offers
+          </Link>
+        </li>
+      )
+
+    }
+  } 
 
   const logoutButton = (
     <li className="nav-item text-center mx-2 mx-lg-1">
@@ -223,6 +255,8 @@ function Header() {
         {newUserButton}
         {notesButton}
         {jobsButton}
+        {myOffersButton}
+        {ownerOffersButton}
         {userButton}
         {logoutButton}
       </>

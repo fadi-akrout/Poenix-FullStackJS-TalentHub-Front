@@ -5,12 +5,15 @@ import { FaEdit } from 'react-icons/fa';
 import generatePDFOffers from '../generatePDFOffers'; // Make sure this path is correct
 import { MdDeleteForever } from 'react-icons/md'
 import useAuth from '../../hooks/useAuth'
-import Feedback from './FeedBack';
+import Feedback from '../HomePage/FeedBack';
+import Footer from '../Dashboard/Footer';
+import Header from '../HomePage/Header';
 
-function Offers() {
+function ownedOfferList() {
   const [offers, setOffers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const { userId,email,isAlumni, isStudent, isAdmin ,isRecruter} = useAuth()
+  const { userId,isAlumni, isStudent, isAdmin ,isRecruter} = useAuth()
+  const [error, setError] = useState(null); // New state variable for error handling
 
   const navigate = useNavigate();
 /*   useEffect(() => {
@@ -28,11 +31,15 @@ function Offers() {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        const response = await fetch(`http://localhost:3500/offers?q=${searchQuery}`);
+        const response = await fetch(`http://localhost:3500/offers/user/${userId}`);
+        if (!response.ok) throw new Error("User does not have any offer ");
         const data = await response.json();
         setOffers(data);
+        setError(null);
       } catch (error) {
         console.error(error);
+        setError(error.message);
+        
       }
     };
 
@@ -54,7 +61,7 @@ function Offers() {
   };
 
   const navigateToUpdateOffer = (offerId) => {
-    navigate(`./updateoffer/${offerId}`);
+    navigate(`/dash/updateoffer/${offerId}`);
   };
 
   const navigateToApply = (offerId) => {
@@ -64,8 +71,40 @@ function Offers() {
   const handleGeneratePDF = () => {
     generatePDFOffers(offers);  // Assuming generatePDFOffers accepts an array of offer objects
   };
+  if (error) {
+    return (
+        <>
+        <div>
+            <Header />
+        </div>
+        <section className="upcoming-meetings" id="meetings">
+           <section className="contact-us" id="contact">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-12 align-self-center">
+                  <div className="row justify-content-center">
+                    <div className="col-lg-10">
+      <div>
+        <p style={{ color: 'red' }}>-{error}</p>
+        {/* You can add additional components or styling here */}
+      </div>
+      </div>
 
+</div></div></div></div>
+</section>    </section>
+
+<section className="upcoming-meetings" id="meetings">
+        <Footer />
+    </section>
+
+</>
+    );
+  }
   return (
+    <>
+    <div>
+        <Header />
+    </div>
     <section className="upcoming-meetings" id="meetings">
        <section className="contact-us" id="contact">
         <div className="container">
@@ -85,7 +124,7 @@ function Offers() {
           {offers.map((offer) => (
             <div key={offer._id} className="justify-content-center col-lg-10 col-md-6 col-sm-8 mb-6">
               <div className="card h-100">
-                <img src="assets/images/meeting-01.jpg" className="card-img-top" alt="Offer" />
+                <img src="../../assets/images/meeting-01.jpg" className="card-img-top" alt="Offer" />
                 <div className="card-body">
                   <h5 className="card-title">{offer.Title}</h5>
                   <p className="card-text">{offer.Mission}</p>
@@ -112,21 +151,22 @@ function Offers() {
                       <Feedback offerId={offer._id} />
                     </li>
                   </ul>
-                  {(isStudent || isAlumni) &&
+                 {/*  {(isStudent || isAlumni) &&
                     <button type="submit" className="btn btn-danger" onClick={() => navigateToApply(offer._id)}>Apply now</button>
-                  }
-                 {/*  {(isAdmin || isRecruter) &&
+                  } */}
+                  {(isAdmin || isRecruter) &&
                     <>
                       <MdDeleteForever onClick={() => handleDelete(offer._id)} style={{ cursor: 'pointer', float: 'right', color: 'red', marginLeft: '10px' }} />
                       <FaEdit onClick={() => navigateToUpdateOffer(offer._id)} style={{ cursor: 'pointer', float: 'right', color: '#0d6efd' }} />
                     </>
-                  } */}
+                  }
+                   <button className="btn btn-primary" onClick={handleGeneratePDF}>Generate PDF of Offers</button>
                 </div>
               </div>
             </div>
           ))}
           <div className="col-12 text-center">
-            <button className="btn btn-primary" onClick={handleGeneratePDF}>Generate PDF of Offers</button>
+          {/*   <button className="btn btn-primary" onClick={handleGeneratePDF}>Generate PDF of Offers</button> */}
           </div>
         </div>
       </div>
@@ -134,8 +174,12 @@ function Offers() {
       </div></div></div></div>
     </section>    </section>
 
-    
+<section className="upcoming-meetings" id="meetings">
+              <Footer />
+          </section>
+
+</>
   );
 }
 
-export default Offers;
+export default ownedOfferList;

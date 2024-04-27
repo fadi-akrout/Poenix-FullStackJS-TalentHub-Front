@@ -140,6 +140,7 @@ function ApplyOffer() {
               <div className="col-lg-12">
                 <fieldset>
                   <button type="submit" id="form-submit" className="button">Apply Now</button>
+                  <Link to="/dash/question" className="btn btn-danger">take the Quiz</Link>
                 </fieldset>
               </div>
             </div>

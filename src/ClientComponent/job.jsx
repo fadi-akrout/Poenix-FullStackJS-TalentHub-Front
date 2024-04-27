@@ -40,7 +40,7 @@ function Job() {
           <div className="row">
             <div className="col-lg-12">
     
-      <h1 style={{ color: 'white' }}>Upload Resume</h1>
+      <h1 style={{ color: 'white' }}>Upload Job</h1>
       <input style={{ color: 'white' }} type="file" onChange={handleFileChange} accept=".pdf" />
       <button className="btn btn-danger" onClick={handleUpload}>Upload</button>
       {result && !result.error && (

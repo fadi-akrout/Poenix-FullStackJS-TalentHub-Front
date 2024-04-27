@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from '../HomePage/Header';
 import Footer from '../Dashboard/Footer';
-
+import useAuth from '../../hooks/useAuth';
 function AddOffer() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -18,6 +18,7 @@ function AddOffer() {
 
   });
   const [errors, setErrors] = useState({});
+  const { userId } = useAuth()
     // Function to validate individual fields
     const validateForm = () => {
       let newErrors = {};
@@ -56,10 +57,10 @@ function AddOffer() {
       alert("Veuillez remplir tous les champs.");
       return;
     }
-
+    const formDataWithUserId = { ...formData, userId };
     // Si les vérifications sont passées, continuez avec la soumission
     try {
-      const response = await axios.post('http://localhost:3500/offers', formData);
+      const response = await axios.post('http://localhost:3500/offers', formDataWithUserId);
       console.log(response.data);
       navigate('/dash');
     } catch (error) {

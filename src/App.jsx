@@ -55,7 +55,9 @@ const AddEvent = lazy(() => import('./ClientComponent/EventComponent/AddEvent'))
 const AddOffer = lazy(() => import('./ClientComponent/OfferComponent/AddOffer'));
 const Apply = lazy(() => import('./ClientComponent/OfferComponent/ApplyOffer'));
 const Question = lazy(() => import('./ClientComponent/HomePage/QuestionComponent'));
-
+const Myoffers = lazy(() => import('./ClientComponent/OfferComponent/ownedOfferList'));
+const Ownedoffers = lazy(() => import('./ClientComponent/OfferComponent/OwnedOfferListRecruiter'));
+const OwnedofferUserList = lazy(() => import('./ClientComponent/OfferComponent/OfferUserList'));
 
 //const Login = lazy(() => import('./ClientComponent/UserComponent/Login'));
 //const Signup = lazy(() => import('./ClientComponent/UserComponent/Signup'));
@@ -146,7 +148,22 @@ function App() {
                     <Route path="apply/:id">
                       <Route index element={<Apply />} />
                     </Route>
-
+                
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Student, ROLES.Alumni ]} />}>
+                      <Route path="myoffers/:id">
+                        <Route index element={<Myoffers />} />
+                      </Route>
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Alumni, ROLES.Recruter ]} />}>
+                      <Route path="ownedoffers/:id">
+                        <Route index element={<Ownedoffers />} />
+                      </Route>
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Alumni, ROLES.Recruter ]} />}>
+                      <Route path="ownedofferUserList/:id">
+                        <Route index element={<OwnedofferUserList />} />
+                      </Route>
+                    </Route>
                     <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                       <Route path="recruiters">
                         <Route index element={<Recruiters />} />
